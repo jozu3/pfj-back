@@ -16,7 +16,7 @@ class PermissionPersonaleSeeder extends Seeder
     public function run()
     {
         /**************************Permisos del personale*************************/
-        $role6 = Role::where('name','Personale')->first();
+        $role6 = Role::where('name','Consejero')->first();
 
         //permisos 
 

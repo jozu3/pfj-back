@@ -4,7 +4,7 @@
     </div-->
 
     <div class="mt-4 text-2xl">
-       <b>Mis pfjs</b>
+       <b>Mis sesiones</b>
     </div>
 
     <!--div class="mt-6 text-gray-500">
@@ -27,17 +27,14 @@
                   <thead class="bg-gray-50">
                     <tr>
                       <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Pfj
+                        Sesion
                       </th>
                       <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Unidades
                       </th>
                       <!--th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Unidades completadas
-                      </th-->
-                      <th scope="col" class="relative px-6 py-3">
-                        <span class="sr-only"></span>
-                      </th>
+                      </th-->                      
                     </tr>
                   </thead>
                   <tbody class="bg-white divide-y divide-gray-200">
@@ -47,27 +44,24 @@
                             <div class="flex items-center">
                               <div class="ml-4">
                                 <div class="text-2xl font-medium text-gray-900">
-                                  {{ $inscripcione->grupo->pfj->nombre }}
+                                  {{ $inscripcione->programa->nombre }}
                                 </div>
                                 <div class="text-sm text-gray-500">
-                                  {{ date('d/m/Y', strtotime($inscripcione->grupo->fecha)) }}                                
+                                  {{ date('d/m/Y', strtotime($inscripcione->programa->fecha_inicio)) }}                                
                                 </div>
                               </div>
                             </div>
                           </td>
+                          
                           <td class="px-6 py-4 whitespace-nowrap">
-                            <span class="px-2 inline-flex text-md leading-5 font-semibold">
-                              {{ $inscripcione->grupo->grupos->count() }}
-                            </span>
-                          </td>
-                          <!--td class="px-6 py-4 whitespace-nowrap">
                             <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                              {{ $inscripcione->grupo->grupos->count() }}
+                              {{-- {{ $inscripcione->programa->count() }} --}}
                             </span>
-                          </td-->
-                          <td width="10px" class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                            <a href="{{ route('st.grupos.show', $inscripcione->grupo) }}" class="text-indigo-600 text-3xl hover:text-indigo-900"><i class="fas fa-chevron-circle-right"></i></a>
                           </td>
+                          <td width=" 10px" class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                            <a href="{{ route('st.programas.show', $inscripcione->programa) }}" class="text-indigo-600 text-3xl hover:text-indigo-900"><i class="fas fa-chevron-circle-right"></i></a>
+                          </td>
+                          
                         </tr>
                     @endforeach
 

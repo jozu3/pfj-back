@@ -18,7 +18,7 @@ class Authenticate extends Middleware
             return route('login');
         }
 
-        if (auth()->user()->hasRole(['Personale'])) {
+        if (auth()->user()->hasRole(['Consejero'])) {
             return route('st.index');
         }
     }
