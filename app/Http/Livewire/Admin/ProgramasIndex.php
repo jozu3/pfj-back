@@ -34,7 +34,7 @@ class ProgramasIndex extends Component
 	    $this->terminado == true ? array_push($states, "2") : '';
 	    //$pfj_id = $this->pfj_id;
 
-    	$programas = Programa::select('programas.id as idprograma','pfjs.nombre','programas.nombre as nombreprograma',  'programas.fecha_inicio', 'programas.estado', 'programas.id', 'pfjs.id as idcurso')
+    	$programas = Programa::select('programas.id as idprograma','pfjs.nombre','programas.nombre as nombreprograma',  'programas.fecha_inicio','programas.fecha_fin', 'programas.estado', 'programas.id', 'pfjs.id as idcurso')
 										->join('pfjs', 'pfjs.id', '=', 'programas.pfj_id');
 
 		if($this->pfj_id != ''){

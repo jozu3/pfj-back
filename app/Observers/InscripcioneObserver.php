@@ -15,7 +15,7 @@ class InscripcioneObserver
      */
     public function creating(Inscripcione $inscripcione){
         if (! \App::runningInConsole()) {
-            $inscripcione->personal_id = auth()->user()->personal->id;
+            //$inscripcione->personal_id = auth()->user()->personal->id;
         }
     }
 

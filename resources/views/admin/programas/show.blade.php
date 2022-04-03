@@ -1,14 +1,14 @@
 @extends('adminlte::page')
 
-@section('title', 'Grupo')
+@section('title', 'Sesión')
 
 @section('content_header')
-	@can('admin.grupos.edit')
-		<a href="{{ route('admin.grupos.edit', $grupo) }}" class="btn btn-success btn-sm float-right">Editar grupo</a>
+	@can('admin.programas.edit')
+		<a href="{{ route('admin.programas.edit', $programa) }}" class="btn btn-success btn-sm float-right">Editar programa</a>
 	@endcan
-	<a href="{{ route('admin.excel.personalesGrupo', $grupo) }}" class="btn btn-success btn-sm float-right mr-3"><i class="far fa-file-excel"></i> Registro de personales</a>
+	<a href="{{ route('admin.excel.personalesGrupo', $programa) }}" class="btn btn-success btn-sm float-right mr-3"><i class="far fa-file-excel"></i> Registro de personales</a>
 
-    <h1>Grupo: {{ $grupo->pfj->nombre.' '.date('d/m/Y', strtotime($grupo->fecha)) }}</h1>
+    <h1>Grupo: {{ $programa->pfj->nombre.' '.date('d/m/Y', strtotime($programa->fecha)) }}</h1>
 @stop
 
 @section('content')
@@ -30,16 +30,16 @@
 					<div class="col-md-3">
 						<p>Unidades:</p>
 					</div>
-					<div class="col-md-9"> <b>{{ count($grupo->grupos)}}</b></div>
+					<div class="col-md-9"> <b>{{ count($programa->grupos)}}</b></div>
 					<div class="col-md-3">
 						<p>Personales:</p>
 					</div>
-					<div class="col-md-9"><b>{{ count($grupo->inscripciones)}}</b></div>
+					<div class="col-md-9"><b>{{ count($programa->inscripciones)}}</b></div>
 				</div>
 			</div>
 		</div>
 	</div>
-	@if ($grupo->grupos->count() != 0)
+	@if ($programa->grupos->count() != 0)
 	<div class="col-md-12">
 		<nav>
 		  <div class="nav nav-tabs" id="nav-tab" role="tablist">

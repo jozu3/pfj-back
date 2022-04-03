@@ -15,9 +15,7 @@ class PersonaleObserver
     public function created(Personale $personal)
     {
         if (isset($personal->user)){
-            $personal->user->update([
-                'name' => $personal->nombres.' '.$personal->apellidos
-            ]);
+            
         }
     }
 
@@ -30,9 +28,7 @@ class PersonaleObserver
     public function updated(Personale $personal)
     {
         if (isset($personal->user)){
-            $personal->user->update([
-                'name' => $personal->nombres.' '.$personal->apellidos
-            ]);
+           
         }
     }
 

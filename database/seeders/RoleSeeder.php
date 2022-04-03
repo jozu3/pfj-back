@@ -68,8 +68,9 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'admin.programas.create', 'description' => 'Crear programas'])->syncRoles([$role1, $role2, $role4]);
         Permission::create(['name' => 'admin.programas.edit', 'description' => 'Editar programas'])->syncRoles([$role1, $role2, $role4]);
         Permission::create(['name' => 'admin.programas.destroy', 'description' => 'Eliminar programas'])->syncRoles([$role1, $role2, $role4]);
-        Permission::create(['name' => 'admin.programas.viewList', 'description' => 'Ver lista de personales de todos los programas'])->syncRoles([$role1, $role2, $role4]);
-
+        Permission::create(['name' => 'admin.programas.viewList', 'description' => 'Ver lista de personales de todos los programas'])->syncRoles([$role1, $role2, $role3, $role4, $role5]);
+        Permission::create(['name' => 'admin.programas.misprogramas', 'description' => 'Ver lista de personales de todos los programas'])->syncRoles([$role1, $role2, $role3, $role4, $role5]);
+        
         //Permisos grupo
         Permission::create(['name' => 'admin.grupos.index', 'description' => 'Ver listado de grupos'])->syncRoles([$role1, $role2, $role4, $role5]);
         Permission::create(['name' => 'admin.grupos.create', 'description' => 'Crear grupos'])->syncRoles([$role1, $role2, $role4, $role5]);

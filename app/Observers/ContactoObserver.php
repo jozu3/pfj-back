@@ -16,7 +16,7 @@ class ContactoObserver
     {
         if (! \App::runningInConsole()) {
             if (!auth()->user()->can('admin.contactos.asignarVendedor')) {
-                $contacto->personal_id = auth()->user()->personal->id;
+              //  $contacto->personal_id = auth()->user()->personal->id;
             }   
         }
     }

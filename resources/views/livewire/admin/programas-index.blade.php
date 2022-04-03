@@ -55,11 +55,10 @@
                         <th>Fecha de fin</th>
                         <th>Estado</th>
                         <th>Personal</th>
-                        @if (!auth()->user()->hasRole('Profesor'))
-                            <th>grupoes</th>
-                        @else
-                            <th>grupoes que enseño</th>
-                        @endif
+                        {{-- @if (!auth()->user()->hasRole('Profesor')) --}}
+                        <th>Grupos</th>
+                        {{-- @else --}}
+                        {{-- @endif --}}
                         @can('admin.programas.edit')
     					<th colspan="2"></th>
                         @endcan
@@ -84,23 +83,23 @@
                             @endif
                         </td>
                         <td>
-                            @if (auth()->user()->hasRole('Profesor'))
-                                {{auth()->user()->profesore->programasqueenseño($programa->id)->count()}}
-                            @else
-                                {{ $programa->grupos->count() }}
-                            @endif
+                            {{-- @if (auth()->user()->hasRole('Profesor')) --}}
+                                {{-- {{auth()->user()->profesore->programasqueenseño($programa->id)->count()}} --}}
+                            {{-- @else --}}
+                                {{ $programa->inscripciones->count() }}
+                            {{-- @endif --}}
                         </td>
                         <td>
-                            {{ $programa->inscripciones->count() }}
+                            {{ $programa->grupos->count() }}
                         </td>
-                        {{-- @can('admin.programas.edit')
+                        @can('admin.programas.edit')
     				  	<td width="10px">
                             <a href="{{ route('admin.programas.edit', $programa) }}" class="btn btn-sm btn-primary" >Editar</a>
                         </td>
                         @endcan
-                        @can(['admin.asistencias.create', 'admin.personale_notas.create'])
+                        @can(['admin.inscripciones.index'])
                         <td width="10px">
-                            <a href="{{ route('admin.programas.show', $programa) }}" class="btn btn-sm btn-primary" >Personales</a>
+                            <a href="{{ route('admin.programas.show', $programa) }}" class="btn btn-sm btn-primary" >Personal</a>
                         </td>
                         @endcan
                         @can('admin.programas.destroy')
@@ -114,9 +113,9 @@
                         @endcan
                         @if (auth()->user()->hasRole('Profesor') or auth()->user()->can('admin.programas.viewList'))
                             <td width="200px">
-                                <a href="{{ route('admin.excel.personalesprograma', $programa) }}" class="btn btn-success btn-sm float-right mr-3"><i class="far fa-file-excel"></i> Registro de personales</a>
+                                {{-- <a href="{{ route('admin.excel.personalesprograma', $programa) }}" class="btn btn-success btn-sm float-right mr-3"><i class="far fa-file-excel"></i> Registro de personales</a> --}}
                             </td>
-                        @endif --}}
+                        @endif
     				  </tr>
     				@endforeach
 

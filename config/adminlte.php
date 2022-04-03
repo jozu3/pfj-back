@@ -298,8 +298,8 @@ return [
             'can'  =>   'admin.seguimientos.index'
         ],
         [
-            'header' => 'Personal',
-            'can'  =>   'admin.pfjs.index'
+            'header' => 'Mis sesiones',
+            'can'  =>   'admin.programas.misprogramas'
         ],
         [
             'text' => 'Mi(s) sesión(es)',
@@ -308,7 +308,7 @@ return [
             'can'  =>   'admin.programas.index'
         ],
         [
-            'text' => 'Familias',
+            'text' => 'Grupos',
             'route'  => 'admin.grupos.index',
             'icon' => 'fab fa-leanpub',
             'can'  =>   'admin.grupos.index'

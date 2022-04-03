@@ -19,11 +19,10 @@ class DatabaseSeeder extends Seeder
         $this->call(PermissionPersonaleSeeder::class);
         $this->call(UserSeeder::class);
         $this->call(ContactoSeeder::class);
-        $this->call(PersonaleSeeder::class);
         $this->call(PfjSeeder::class);
-        $this->call(InscripcioneSeeder::class);
+        $this->call(ProgramaSeeder::class);
+        $this->call(PersonaleSeeder::class);
 /*        $this->call(SeguimientoSeeder::class);
-        $this->call(GrupoSeeder::class);
         $this->call(UnidadSeeder::class);
         $this->call(CuentaSeeder::class);
         $this->call(PagoSeeder::class);*/
