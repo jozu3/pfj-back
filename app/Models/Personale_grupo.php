@@ -7,13 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Personale;
 use App\Models\Personale_nota;
 
-class Personale_unidade extends Model
+class Personale_grupo extends Model
 {
     use HasFactory;
     protected $guarded = ['id', 'created_at', 'updated_at'];
 
-    public function unidad(){
-    	return $this->belongsTo(Unidad::class);
+    public function grupo(){
+    	return $this->belongsTo(Grupo::class);
     }
     
     public function inscripcione(){

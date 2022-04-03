@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
-use App\Models\Grupo;
+use App\Models\Programa;
 use App\Models\Inscripcione;
-use App\Models\Personale_unidade;
+use App\Models\Personale_grupo;
 use Illuminate\Http\Request;
 
-class GrupoController extends Controller
+class ProgramaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -44,28 +44,28 @@ class GrupoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Grupo  $grupo
+     * @param  \App\Models\Programa  $grupo
      * @return \Illuminate\Http\Response
      */
-    public function show(Grupo $grupo)
+    public function show(Programa $programa)
     {
-        $this->authorize('view', $grupo);
+        // $this->authorize('view', $programa);
 
         $personale = auth()->user()->personale;
 
-        $inscripcione = Inscripcione::where('grupo_id', $grupo->id)->where('personale_id', $personale->id)->first();
-        $personale_unidades = Personale_unidade::where('inscripcione_id', $inscripcione->id)->get();
+        $inscripcione = Inscripcione::where('programa_id', $programa->id)->where('personale_id', $personale->id)->first();
+        $personale_grupos = Personale_grupo::where('inscripcione_id', $inscripcione->id)->get();
 
-        return view('student.grupos.show', compact('personale_unidades', 'inscripcione'));
+        return view('student.programas.show', compact('personale_grupos', 'inscripcione'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Grupo  $grupo
+     * @param  \App\Models\Programa  $programa
      * @return \Illuminate\Http\Response
      */
-    public function edit(Grupo $grupo)
+    public function edit(Programa $programa)
     {
         //
     }
@@ -74,10 +74,10 @@ class GrupoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Grupo  $grupo
+     * @param  \App\Models\Programa  $programa
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Grupo $grupo)
+    public function update(Request $request, Programa $programa)
     {
         //
     }
@@ -85,10 +85,10 @@ class GrupoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Grupo  $grupo
+     * @param  \App\Models\Programa  $grupo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Grupo $grupo)
+    public function destroy(Programa $grupo)
     {
         //
     }

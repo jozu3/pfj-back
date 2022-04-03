@@ -21,8 +21,12 @@ class PermissionPersonaleSeeder extends Seeder
         //permisos 
 
         Permission::create(['name' => 'student.home', 'description' => 'Ingresar a perfil de estudiante'])->syncRoles([$role6]);
-        Permission::create(['name' => 'student.obligaciones.index', 'description' => 'Ver sus obligaciones por pagar'])->syncRoles([$role6]);
-        Permission::create(['name' => 'student.pagos.index', 'description' => 'Ver el listado de sus pagos'])->syncRoles([$role6]);
+        Permission::create(['name' => 'student.programas.index', 'description' => 'Ver sus programas'])->syncRoles([$role6]);
+        Permission::create(['name' => 'student.grupos.index', 'description' => 'Ver sus grupos'])->syncRoles([$role6]);
+        Permission::create(['name' => 'student.anuncios.index', 'description' => 'Ver todos los anuncios'])->syncRoles([$role6]);
+        Permission::create(['name' => 'student.capacitaciones.index', 'description' => 'Ver todos los anuncios'])->syncRoles([$role6]);
+        Permission::create(['name' => 'student.lecturas.index', 'description' => 'Ver sus lecturas'])->syncRoles([$role6]);
+        Permission::create(['name' => 'student.lecturas.edit', 'description' => 'Editar sus lecturas'])->syncRoles([$role6]);
 
 
     }
