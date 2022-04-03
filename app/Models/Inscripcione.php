@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Spatie\Permission\Models\Role;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Personale;
 use App\Models\Asistencia;
@@ -21,9 +22,8 @@ class Inscripcione extends Model
 	public function programa(){
     	return $this->belongsTo(Programa::class);
     }
-
-    public function personal(){ //quien realizó la matrícula
-    	return $this->belongsTo(Personale::class);
+    public function role(){
+    	return $this->belongsTo(Role::class);
     }
 
     public function obligaciones(){

@@ -17,11 +17,23 @@ class CreateInscripcionesTable extends Migration
             $table->id();
             $table->foreignId('personale_id')->constrained();
             $table->foreignId('programa_id')->constrained();
+            $table->foreignId('role_id')->constrained();
             $table->tinyInteger('estado');
             $table->date('fecha');
             $table->timestamps();
         });
     }
+
+    /*
+        asignacion: role_id
+
+        2 -> Matrimonio Director
+        3 -> Matrimonio logistica
+        4 -> Cordinador
+        5 -> Cordinador auxiliar
+        6 -> Consejero
+    
+    */
 
     /**
      * Reverse the migrations.

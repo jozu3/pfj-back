@@ -6,6 +6,7 @@ use Illuminate\Database\Seeder;
 use App\Models\Inscripcione;
 use App\Models\Personale;
 use App\Models\Programa;
+use Spatie\Permission\Models\Role;
 use App\Models\User;
 use App\Models\Contacto;
 use Faker\Generator as Faker;
@@ -31,12 +32,13 @@ class PersonaleSeeder extends Seeder
 
             $personale = Personale:: create([
                 'contacto_id' => $matrimonios_contactos[$i]->id,
-                'user_id' => $matrimonio->id
+                'user_id' => $matrimonio->id,
             ]);
-
+            
             Inscripcione::create([
                 "personale_id" => $personale->id,
                 "programa_id" => Programa::all()->random()->id,
+                'role_id' => Role::find(2)->id,
                 "estado" => 1,
                 "fecha" => date('Y-m-d'),
             ]);
@@ -55,12 +57,13 @@ class PersonaleSeeder extends Seeder
 
             $personale = Personale:: create([
                 'contacto_id' => $consejeros_contactos[$i]->id,
-                'user_id' => $consejero->id
+                'user_id' => $consejero->id,
             ]);
             
             Inscripcione::create([
                 "personale_id" => $personale->id,
                 "programa_id" => Programa::all()->random()->id,
+                'role_id' => Role::find(6)->id,
                 "estado" => 1,
                 "fecha" => date('Y-m-d'),
             ]);
