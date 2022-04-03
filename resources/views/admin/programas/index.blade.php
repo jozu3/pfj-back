@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Sesiiones')
+@section('title', 'Sesiones')
 
 @section('content_header')
     <h1>Lista de Sesiones</h1>
