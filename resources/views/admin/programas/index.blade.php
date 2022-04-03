@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Grupos')
+@section('title', 'Sesiiones')
 
 @section('content_header')
-    <h1>Lista de grupos</h1>
+    <h1>Lista de Sesiones</h1>
 @stop
 
 @section('content')
@@ -12,7 +12,7 @@
             {{ session('info') }}
         </div>
     @endif
-    @livewire('admin.grupos-index')
+    @livewire('admin.programas-index')
 @stop
 
 @section('css')

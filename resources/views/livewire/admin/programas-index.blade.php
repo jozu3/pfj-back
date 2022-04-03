@@ -50,15 +50,16 @@
     			<thead>
     				<tr>
                         <th>ID</th>
-    					<th>Pfj</th>
-    					<th>programa</th>
+    					<th>Sesión</th>
+    					<th>Fecha de inicio</th>
+                        <th>Fecha de fin</th>
                         <th>Estado</th>
+                        <th>Personal</th>
                         @if (!auth()->user()->hasRole('Profesor'))
                             <th>grupoes</th>
                         @else
                             <th>grupoes que enseño</th>
                         @endif
-                        <th>Personales</th>
                         @can('admin.programas.edit')
     					<th colspan="2"></th>
                         @endcan

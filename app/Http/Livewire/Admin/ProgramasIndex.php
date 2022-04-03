@@ -42,6 +42,7 @@ class ProgramasIndex extends Component
 		}
 
 		$programas = $programas->where('pfjs.nombre', 'like','%'.$this->search.'%')
+			->orWhere('programas.nombre', 'like','%'.$this->search.'%')
 			->whereIn('programas.estado', $states)
 			->orderby('programas.fecha_inicio', 'desc')
 		    ->paginate($this->cant);

@@ -271,6 +271,12 @@ return [
             'icon'        => 'fas fa-chalkboard-teacher',
             'can'  =>   'admin.pfjs.index'
         ],
+        [
+            'text'        => 'Sesiones',
+            'route'         => 'admin.programas.index',
+            'icon'        => 'fas fa-chalkboard-teacher',
+            'can'  =>   'admin.programas.index'
+        ],
       
         [
             'header' => 'Inscripción', 
