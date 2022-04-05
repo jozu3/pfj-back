@@ -35,11 +35,15 @@
 						<p>Personales:</p>
 					</div>
 					<div class="col-md-9"><b>{{ count($programa->inscripciones)}}</b></div>
+					<div class="col-md-3">
+						<p>Capacitaciones:</p>
+					</div>
+					<div class="col-md-9"><b>{{ count($programa->capacitaciones)}}</b></div>
 				</div>
 			</div>
 		</div>
 	</div>
-	@if ($programa->grupos->count() != 0)
+	@if ($programa->capacitaciones->count() != 0)
 	<div class="col-md-12">
 		<nav>
 		  <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -49,10 +53,10 @@
 		</nav>
 		<div class="tab-content" id="nav-tabContent">
 		  <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-				@include('admin.grupos.partials.asistencia')
+				@include('admin.programas.partials.asistencia')
 		  </div>
 		  <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-				@include('admin.grupos.partials.register-notas')
+				{{-- @include('admin.programas.partials.register-notas') --}}
 		  </div>
 		</div>		
 	</div>
@@ -60,7 +64,7 @@
 	<div class="col-md-12">
 		<div class="card">
 			<div class="card-header text-warning">
-				{{ 'Debe crear las unidades de este grupo' }}
+				{{ 'Debe crear las clases de esta semana' }}
 			</div>
 		</div>
 	</div>
