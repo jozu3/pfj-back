@@ -309,9 +309,15 @@ return [
         ],
         [
             'text' => 'Grupos',
-            'route'  => 'admin.grupos.index',
+            'route'  => 'admin.programas.grupos',
             'icon' => 'fab fa-leanpub',
-            'can'  =>   'admin.grupos.index'
+            'can'  =>   'admin.programas.grupos'
+        ],
+        [
+            'text' => 'Mi grupo',
+            'route'  => 'admin.grupos.migrupo',
+            'icon' => 'fab fa-leanpub',
+            'can'  =>   'admin.grupos.migrupo'
         ],
         [
             'text' => 'Inscripciones',

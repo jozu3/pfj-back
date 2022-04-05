@@ -22,8 +22,8 @@ class PersonaleSeeder extends Seeder
     {
 
         //matrimonios
-        $matrimonios_users = User::factory(10)->create();
-        $matrimonios_contactos = Contacto::factory(10)->create();
+        $matrimonios_users = User::factory(40)->create();
+        $matrimonios_contactos = Contacto::factory(40)->create();
 
         $i = 0;
 
@@ -33,6 +33,10 @@ class PersonaleSeeder extends Seeder
             $personale = Personale:: create([
                 'contacto_id' => $matrimonios_contactos[$i]->id,
                 'user_id' => $matrimonio->id,
+            ]);
+
+            $personale->contacto->update([
+                'email' => $matrimonio->email
             ]);
             
             Inscripcione::create([
@@ -49,8 +53,8 @@ class PersonaleSeeder extends Seeder
         //consejeros
         $i = 0;
 
-        $consejeros_users = User::factory(50)->create();
-        $consejeros_contactos = Contacto::factory(50)->create();
+        $consejeros_users = User::factory(200)->create();
+        $consejeros_contactos = Contacto::factory(200)->create();
 
         foreach ($consejeros_users as $consejero){
             $consejero->assignRole('Consejero');
@@ -58,6 +62,10 @@ class PersonaleSeeder extends Seeder
             $personale = Personale:: create([
                 'contacto_id' => $consejeros_contactos[$i]->id,
                 'user_id' => $consejero->id,
+            ]);
+
+            $personale->contacto->update([
+                'email' => $consejero->email
             ]);
             
             Inscripcione::create([

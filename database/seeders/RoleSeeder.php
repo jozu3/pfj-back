@@ -70,12 +70,14 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'admin.programas.destroy', 'description' => 'Eliminar programas'])->syncRoles([$role1, $role2, $role4]);
         Permission::create(['name' => 'admin.programas.viewList', 'description' => 'Ver lista de personales de todos los programas'])->syncRoles([$role1, $role2, $role3, $role4, $role5]);
         Permission::create(['name' => 'admin.programas.misprogramas', 'description' => 'Ver lista de personales de todos los programas'])->syncRoles([$role1, $role2, $role3, $role4, $role5]);
+        Permission::create(['name' => 'admin.programas.grupos', 'description' => 'Ver los grupos de su sesión'])->syncRoles([$role1, $role2, $role3, $role4, $role5]);
         
         //Permisos grupo
-        Permission::create(['name' => 'admin.grupos.index', 'description' => 'Ver listado de grupos'])->syncRoles([$role1, $role2, $role4, $role5]);
-        Permission::create(['name' => 'admin.grupos.create', 'description' => 'Crear grupos'])->syncRoles([$role1, $role2, $role4, $role5]);
-        Permission::create(['name' => 'admin.grupos.edit', 'description' => 'Editar grupos'])->syncRoles([$role1, $role2, $role4, $role5]);
-        Permission::create(['name' => 'admin.grupos.destroy', 'description' => 'Eliminar grupos'])->syncRoles([$role1, $role2, $role4, $role5]);
+        Permission::create(['name' => 'admin.grupos.index', 'description' => 'Ver listado de grupos'])->syncRoles([$role1, $role2, $role3, $role4, $role5]);
+        Permission::create(['name' => 'admin.grupos.create', 'description' => 'Crear grupos'])->syncRoles([$role1, $role2, $role3, $role4, $role5]);
+        Permission::create(['name' => 'admin.grupos.edit', 'description' => 'Editar grupos'])->syncRoles([$role1, $role2, $role3, $role4, $role5]);
+        Permission::create(['name' => 'admin.grupos.destroy', 'description' => 'Eliminar grupos'])->syncRoles([$role1, $role2, $role3, $role4, $role5]);
+        Permission::create(['name' => 'admin.grupos.migrupo', 'description' => 'Ver el grupo del que es cordinador auxiliar'])->syncRoles([$role1, $role4, $role5]);
 
         //Permisos Nota
         Permission::create(['name' => 'admin.notas.index', 'description' => 'Ver listado de notas'])->syncRoles([$role1, $role2, $role4, $role5]);

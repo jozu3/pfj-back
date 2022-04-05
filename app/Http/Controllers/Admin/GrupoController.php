@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Unidad;
 use App\Models\Profesore;
 
-class UnidadController extends Controller
+class GrupoController extends Controller
 {
     public function __construct(){
         $this->middleware('can:admin.grupos.index');//->only('index');
@@ -110,5 +110,9 @@ class UnidadController extends Controller
         $unidad->delete();
 
         return redirect()->route('admin.grupos.edit', $unidad->grupo)->with('info', 'La unidad se eliminó con éxito'); 
+    }
+
+    public function migrupo(){
+        
     }
 }

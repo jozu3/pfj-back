@@ -126,8 +126,10 @@ class ProgramaController extends Controller
 
     public function misprogramas()
     {
-        
-
         return view('admin.programas.misprogramas');
+    }
+
+    public function grupos(){
+        return view('admin.programas.grupos');
     }
 }

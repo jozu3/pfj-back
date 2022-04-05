@@ -15,15 +15,16 @@ class CreateCapacitacionesTable extends Migration
     {
         Schema::create('capacitaciones', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('programa_id')->constrained();
+            $table->string('tema');
             $table->date('fechacapacitacion');
             $table->tinyInteger('estado');
+            $table->foreignId('programa_id')->constrained();
             $table->timestamps();
         });
     }
 
 
-    /**
+    /*
     estados = [
         '',
         ' '
