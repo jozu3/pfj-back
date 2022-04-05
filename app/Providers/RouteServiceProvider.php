@@ -17,7 +17,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const HOME = '/admin';
+    public const HOME = '/st';
     public const STUDENT = '/st';
 
     /**
@@ -48,15 +48,16 @@ class RouteServiceProvider extends ServiceProvider
                 ->namespace($this->namespace)
                 ->group(base_path('routes/web.php'));
 
-            Route::middleware(['web', 'auth', 'role'])
-                ->prefix('admin')
-                ->namespace($this->namespace)
-                ->group(base_path('routes/admin.php'));
-
             Route::middleware(['web', 'auth'])
                 ->prefix('st')
                 ->namespace($this->namespace)
                 ->group(base_path('routes/student.php'));
+
+            Route::middleware(['web', 'auth'])
+                ->prefix('admin')
+                ->namespace($this->namespace)
+                ->group(base_path('routes/admin.php'));
+
 
         });
     }

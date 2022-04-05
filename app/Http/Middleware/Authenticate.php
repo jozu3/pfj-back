@@ -17,9 +17,9 @@ class Authenticate extends Middleware
         if (! $request->expectsJson()) {
             return route('login');
         }
-
-        if (auth()->user()->hasRole(['Consejero'])) {
-            return route('st.index');
-        }
+        
+        // if (auth()->user()->hasRole(['Consejero'])) {
+        //     return route('st.index');
+        // }
     }
 }

@@ -32,7 +32,9 @@ Route::resource('seguimientos', SeguimientoController::class)->names('admin.segu
 Route::resource('pfjs', PfjController::class)->names('admin.pfjs');
 Route::resource('grupos', GrupoController::class)->names('admin.grupos');
 Route::resource('notas', NotaController::class)->names('admin.notas');
+Route::get('/programas/misprogramas', [ProgramaController::class, 'misprogramas'])->name('admin.programas.misprogramas');
 Route::resource('programas', ProgramaController::class)->names('admin.programas');
+
 Route::resource('inscripciones', InscripcioneController::class)->names('admin.inscripciones');
 Route::resource('obligaciones', ObligacioneController::class)->names('admin.obligaciones');
 Route::resource('pagos', PagoController::class)->names('admin.pagos');

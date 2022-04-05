@@ -303,9 +303,9 @@ return [
         ],
         [
             'text' => 'Mi(s) sesión(es)',
-            'route'  => 'admin.programas.index',
+            'route'  => 'admin.programas.misprogramas',
             'icon' => 'fab fa-leanpub',
-            'can'  =>   'admin.programas.index'
+            'can'  =>   'admin.programas.misprogramas'
         ],
         [
             'text' => 'Grupos',

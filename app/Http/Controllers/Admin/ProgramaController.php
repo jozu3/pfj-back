@@ -16,6 +16,7 @@ class ProgramaController extends Controller
         $this->middleware('can:admin.programas.create')->only('create', 'store');
         $this->middleware('can:admin.programas.edit')->only('edit', 'update');
         $this->middleware('can:admin.programas.destroy')->only('destroy');
+        $this->middleware('can:admin.programas.misprogramas')->only('misprogramas');
     }
     /**
      * Display a listing of the resource.
@@ -24,9 +25,9 @@ class ProgramaController extends Controller
      */
     public function index()
     {
-        $programas = Programa::all();
+        //$programas = Programa::all();
         
-        return view('admin.programas.index', compact('programas'));
+        return view('admin.programas.index');
     }
 
     /**
@@ -37,7 +38,7 @@ class ProgramaController extends Controller
     public function create()
     {   
     
-        $pfj = Pfj::find($_GET['idcurso']);
+        $pfj = Pfj::find($_GET['idpfj']);
 
         return view('admin.programas.create', compact('pfj'));
     }
@@ -127,5 +128,13 @@ class ProgramaController extends Controller
         $programa->delete();
 
         return redirect()->route('admin.pfjs.edit', $programa->pfj)->with('info', 'El programa se eliminó con éxito'); 
+    }
+
+
+    public function misprogramas()
+    {
+        
+
+        return view('admin.programas.misprogramas');
     }
 }

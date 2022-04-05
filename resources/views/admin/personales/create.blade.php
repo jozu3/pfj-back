@@ -8,12 +8,12 @@
 
 @section('content')
     <div class="card">
-    	<dic class="card-body">
+    	<div class="card-body">
     		{!! Form::open(['route' => 'admin.personales.store']) !!}
     			@include('admin.personales.partials.form')
                 {!! Form::submit('Crear personal', ['class' => 'btn btn-primary']) !!}
     		{!! Form::close() !!}
-    	</dic>
+    	</div>
     </div>
 @stop
 
