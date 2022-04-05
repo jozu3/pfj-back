@@ -100,14 +100,8 @@ class ProgramaController extends Controller
     {
         $request->validate([
             'pfj_id' => 'required',
-            'inscripcione' => ['required', 'numeric'],
-            'inscripcione2' => ['required', 'numeric'],
-            'ncuotas' => ['required', 'numeric'],
-            'cuota' => ['required', 'numeric'],
-            'cuota2' => ['required', 'numeric'],
-            'certificacion' => ['required', 'numeric'],
-            'certificacion2' => ['required', 'numeric'],
-            'fecha' => ['required', 'date'],
+            'fecha_inicio' => ['required', 'date'],
+            'fecha_fin' => ['required', 'date'],
             'estado' => ['required', 'numeric'],
         ]);
 
