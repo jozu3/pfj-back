@@ -54,9 +54,11 @@ class ProgramaController extends Controller
         $personale = auth()->user()->personale;
 
         $inscripcione = Inscripcione::where('programa_id', $programa->id)->where('personale_id', $personale->id)->first();
-        $personale_grupos = Personale_grupo::where('inscripcione_id', $inscripcione->id)->get();
+        // $personale_grupos = Personale_grupo::where('inscripcione_id', $inscripcione->id)->get();
 
-        return view('student.programas.show', compact('personale_grupos', 'inscripcione'));
+        // return view('student.programas.show', compact('personale_grupos', 'inscripcione'));
+        return view('student.programas.show', compact('inscripcione'));
+
     }
 
     /**

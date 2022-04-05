@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-3xl text-gray-800 leading-tight">
-            {{ $inscripcione->grupo->pfj->nombre }}
+            {{ $inscripcione->programa->nombre }}
         </h2>
     </x-slot>
 
@@ -14,51 +14,104 @@
                   <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                       <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+
+                        <div class="grid content-center">
+                          <table class="bg-white divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                              <tr class="">
+                                <th class="text-center px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                  Matrimonio de Sesión
+                                </th>
+                              </tr>
+                            </thead>
+                            <tbody class="">
+                              <tr><td class="object-top">
+                                <div class="flex justify-center">
+                                <img src="https://files.mormonsud.org/wp-content/uploads/2018/12/matrimonio1.jpg" alt="" class="object-top" width="300px">
+                              </div>
+                            </td></tr>
+                              @forelse ($inscripcione->programa->matrimonioDirectores() as $lider)
+                              <tr>
+                                <td class="text-center"><b>{{ $lider->personale->user->name }}</b></td>
+                              </tr>
+                              @empty
+                              <tr><td>No asignados</td></tr>
+                              @endforelse
+                            </tbody>
+                          </table>
+                        </div>
+
+                        <div class="grid content-center">
+                          <table class="bg-white divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                              <tr class="">
+                                <th class="text-center px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                  Anuncios
+                                </th>
+                              </tr>
+                            </thead>
+                            <tbody class="">                                                          
+                              <tr>
+                                <td class="flex items-center justify-center">
+                                  <div class="grid max-w-5xl gap-4 flex justify-center">
+                                    <div class="grid col-span-6 relative">
+                                      <a class="group shadow-lg hover:shadow-2xl duration-200 delay-75 w-full bg-white rounded-sm py-6 pr-6 pl-9" href="">                                      
+                                        <!-- Title -->
+                                        <p class="text-2xl font-bold text-gray-500 group-hover:text-gray-700"> View repositories with Code in Jira </p>                                      
+                                        <!-- Description -->
+                                        <p class="text-sm font-semibold text-gray-500 group-hover:text-gray-700 mt-2 leading-6"> Include an issue key in a commit, branch name, or PR, and it will automatically update in Jira. </p>                                      
+                                        <!-- Color -->
+                                        <div class="bg-blue-400 group-hover:bg-blue-600 h-full w-4 absolute top-0 left-0"> </div>                                      
+                                      </a>
+                                    </div>
+                                  </div>
+                                </td>
+                              </tr>                                                            
+                            </tbody>
+                          </table>
+                        </div>
+                        <br><br>
+                        {{-- <p>Este espacio</p> --}}
+                        
                         <table class="min-w-full divide-y divide-gray-200">
                           <thead class="bg-gray-50">
                             <tr>
                               <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                
-                              </th>
-                              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Asistencias
-                              </th>
-                              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Promedio
-                              </th>
+                                Nombre
+                              </th>                              
                             </tr>
                           </thead>
                           <tbody class="bg-white divide-y divide-gray-200">
-                            @forelse ($personale_unidades as $personale_unidade)
+                            @forelse ($inscripcione->programa->lideres() as $lider)
                               <tr>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                   <div class="flex items-center">
                                     <div class="ml-4">
                                       <div class="text-2xl font-medium text-gray-900">
-                                        <b>{{ $personale_unidade->unidad->descripcion }}</b>
+                                        <b>{{ $lider->personale->user->name }}</b>
                                       </div>
                                       <div class="text-sm text-gray-500">
-                                        {{ date('d/m/Y', strtotime($personale_unidade->unidad->fechainicio)) }}
+                                        {{-- {{ date('d/m/Y', strtotime($personale_unidade->unidad->fechainicio)) }} --}}
                                       </div>
                                     </div>
                                   </div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                   <span class="px-2 inline-flex text-md leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                      {{ $inscripcione->asistenciasUnidad($personale_unidade->unidad)->count() }} - {{ $personale_unidade->unidad->clases->count() }}
+                                      {{ $lider->role->name }}
                                   </span>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                   <div class="text-sm">
                                     <div class="flex items-center justify-center">
                                       <div class="rounded-md bg-yellow-400 text-white font-semibold py-2 px-4">
-                                        {{ $personale_unidade->nota }}
+                                        {{-- {{ $personale_unidade->nota }} --}}
                                       </div>
                                     </div>
                                   </div>
                                 </td>
                               </tr>
-                              <tr>
+                              {{-- <tr>
                                 <td class="px-6 py-4" colspan="100%">
                                   <b>Comentario del docente:</b> 
                                   @if ($personale_unidade->comentario == '')
@@ -96,7 +149,7 @@
                                   </div>
                                   @endforeach
                                 </td>
-                              </tr>
+                              </tr> --}}
                             @empty
                               <tr>
                                 <td class="px-6 py-4 text-gray-300" colspan="100%">
