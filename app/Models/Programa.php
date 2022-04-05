@@ -29,6 +29,27 @@ class Programa extends Model
     	return $this->hasMany(Capacitacione::class);
     }
 
+    public function lideres(){
+        $inscripciones = Inscripcione::where('programa_id', $this->id)->whereIn('role_id', [2,3,4])->get();
+        return $inscripciones;
+    }
+
+    public function matrimonioDirectores(){
+        $inscripciones = Inscripcione::where('programa_id', $this->id)->where('role_id', 2)->get();
+        return $inscripciones;
+    }
+
+    public function matrimonioLogisticas(){
+        $inscripciones = Inscripcione::where('programa_id', $this->id)->where('role_id', 3)->get();
+        return $inscripciones;
+    }
+
+    public function coordinadores(){
+        $inscripciones = Inscripcione::where('programa_id', $this->id)->where('role_id', 4)->get();
+        return $inscripciones;
+
+    }
+
     public function inscripcioneEstado($estados = []){
         $inscripcione = Inscripcione::where('programa_id', $this->id)->whereIn('estado', $estados)->get();
         return $inscripcione;
@@ -52,16 +73,6 @@ class Programa extends Model
         }
 
         return $capacitaciones_generadas;
-    }
-
-    public function personaleGrupoesporInscripcione(){
-        $personale_unidades = 0;
-
-        foreach ($this->grupos as $grupo){
-            $personale_unidades = Personale_unidade::select('grupo_id', 'inscripcione_id')->where('grupo_id', $grupo->id)->count();
-        }
-
-        return $personale_unidades;
     }
 
 }

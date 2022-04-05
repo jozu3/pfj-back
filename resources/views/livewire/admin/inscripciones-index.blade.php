@@ -30,6 +30,7 @@
               <th>Apellidos</th>
               <th>Nombres</th>
               <th>Telefono</th>
+              <th>Correo electrónico</th>
               <th>Fecha de inscripción</th>
               <th>Sesión</th>
               <th>Asignación</th>
@@ -44,6 +45,7 @@
                         <td>{{ $inscripcione->personale->contacto->nombres }}</td>
                         <td>{{ $inscripcione->personale->contacto->apellidos }}</td>
                         <td>{{ $inscripcione->personale->contacto->telefono }}</td>
+                        <td>{{ $inscripcione->personale->user->email }}</td>                        
                         <td>{{ date('d/m/Y', strtotime($inscripcione->fecha)) }}</td>
                         <td>{{ $inscripcione->programa->nombre }}</td>
                         <td>{{ $inscripcione->role->name }}</td>

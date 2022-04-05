@@ -19,7 +19,6 @@ class CheckRole
     {   
         if (auth()->user()->hasRole(['Consejero'])) {
            return redirect()->route('st.index');
-        }
 
         return $next($request);
     }
