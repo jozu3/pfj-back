@@ -86,8 +86,7 @@ class ProgramaController extends Controller
      */
     public function edit(Programa $programa)
     {
-        $pfj = $programa->pfj;
-        return view('admin.programas.edit', compact('programa', 'pfj'));
+        return view('admin.programas.edit', compact('programa'));
     }
 
     /**

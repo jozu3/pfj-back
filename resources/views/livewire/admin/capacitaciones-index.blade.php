@@ -7,12 +7,12 @@
     		</tr>
     	</thead>
     	<tbody>
-    		@foreach ($clases as $clase)
+    		@foreach ($capacitaciones as $capacitacione)
     			<tr>
-    				{!! Form::model($clase, ['route' => ['admin.clases.update', $clase], 'method' => 'put']) !!}
+    				{!! Form::model($capacitacione, ['route' => ['admin.capacitaciones.update', $capacitacione], 'method' => 'put']) !!}
     				{!! Form::hidden('unidad_id', $unidad->id) !!}
     				<td>
-    					{!! Form::date('fechaclase', null, ['class' => 'form-control']) !!}
+    					{!! Form::date('fechacapacitacione', null, ['class' => 'form-control']) !!}
     				<td>
     					{!! Form::submit('Guardar',  ['class' => 'btn btn-primary'])!!}
     				</td>

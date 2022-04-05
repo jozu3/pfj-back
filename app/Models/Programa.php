@@ -25,6 +25,10 @@ class Programa extends Model
     	return $this->hasMany(Inscripcione::class);
     }
 
+    public function capacitaciones(){
+    	return $this->hasMany(Capacitacione::class);
+    }
+
     public function inscripcioneEstado($estados = []){
         $inscripcione = Inscripcione::where('programa_id', $this->id)->whereIn('estado', $estados)->get();
         return $inscripcione;

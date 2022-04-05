@@ -1,13 +1,13 @@
 @extends('adminlte::page')
 
-@section('title', 'Editar grupo')
+@section('title', 'Editar programa')
 
 @section('plugins.Sweetalert2', true)
 
 @section('content_header')
-     <a href="{{ route('admin.grupos.show', $grupo) }}" class="btn btn-success btn-sm float-right"><i class="fas fa-user-graduate"></i> Ver personales</a>
+     <a href="{{ route('admin.programas.show', $programa) }}" class="btn btn-success btn-sm float-right"><i class="fas fa-user-graduate"></i> Ver personales</a>
 
-    <h1>Editar grupo</h1>
+    <h1>Editar programa</h1>
 @stop
 
 @section('content')
@@ -16,11 +16,11 @@
             {{ session('info') }}
         </div>
     @endif
-    @if (auth()->user()->can('admin.grupos.edit'))
+    @if (auth()->user()->can('admin.programas.edit'))
 	<div class="card">
 		<div class="card-body">
-			{!! Form::model($grupo, ['route' => ['admin.grupos.update', $grupo], 'method' => 'put']) !!}
-				@include('admin.grupos.partials.form')
+			{!! Form::model($programa, ['route' => ['admin.programas.update', $programa], 'method' => 'put']) !!}
+				@include('admin.programas.partials.form')
 				<br>
 				<div class="form-group">
 				{!! Form::submit('Guardar', ['class' => 'btn btn-primary']) !!}
@@ -40,16 +40,16 @@
         </div>
     @endif
 	<div class="card">
-		<div class="card-header">
+		{{-- <div class="card-header">
 			@php
 				$iniciado = false;
 				$hay_personales_nuevos = false;
-				if ($grupo->inscripciones->count() != $grupo->personaleUnidadesporInscripcione()) {
+				if ($programa->inscripciones->count() != $programa->personaleUnidadesporInscripcione()) {
 					$hay_personales_nuevos = true;
 				}
 			@endphp
 			Unidades{{ $hay_personales_nuevos}}
-			@if ($grupo->grupos->count())
+			@if ($programa->grupos->count())
 				@if(!$grupo->notasGenerateds())
 					<div class="float-right">
 					{!! Form::open(['route' => 'admin.personale_unidades.store', 'class' =>'crear_notas_clases']) !!}
@@ -95,8 +95,8 @@
 					</div>				
 				@endif	
 			@endif
-		</div>	
-        @livewire('admin.unidad-index', [ 'grupo' => $grupo, 'iniciado' => $iniciado])
+		</div>	 --}}
+        @livewire('admin.capacitaciones-index', [ 'programa' => $programa])
 	</div>
 @stop
 

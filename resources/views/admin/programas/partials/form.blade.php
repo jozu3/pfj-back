@@ -1,8 +1,8 @@
 <div class="row">
 <div class="col-md-12">
 	{!! Form::label('nombre', 'Nombre') !!}
-	{!! Form::text('nombre', $pfj->nombre, ['class' => 'form-control', /*'disabled' => ''*/]) !!}
-	{!! Form::hidden('pfj_id', $pfj->id) !!}
+	{!! Form::text('nombre', $programa->pfj->nombre, ['class' => 'form-control', /*'disabled' => ''*/]) !!}
+	{!! Form::hidden('pfj_id', $programa->pfj->id) !!}
 
 	@error('nombre')
 		<small class="text-danger">{{ $message }}</small>
