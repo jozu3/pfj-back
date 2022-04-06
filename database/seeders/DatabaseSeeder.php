@@ -22,9 +22,9 @@ class DatabaseSeeder extends Seeder
         $this->call(PfjSeeder::class);
         $this->call(ProgramaSeeder::class);
         $this->call(PersonaleSeeder::class);
-/*        $this->call(SeguimientoSeeder::class);
-        $this->call(UnidadSeeder::class);
-        $this->call(CuentaSeeder::class);
+        $this->call(CapacitacioneSeeder::class);
+        $this->call(GrupoSeeder::class);
+      /*$this->call(CuentaSeeder::class);
         $this->call(PagoSeeder::class);*/
     }
 }

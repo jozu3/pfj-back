@@ -13,7 +13,7 @@
         </div>
     @endif
     @forelse (auth()->user()->personale->inscripciones as $inscripcione)
-        @livewire('admin.programas-grupos', ['programa' => $inscripcione->programa->id])
+        @livewire('admin.programas-grupos', ['programa' => $inscripcione->programa])
     @empty
         {{ 'No estás inscrito en ninguna sesión' }}
     @endforelse

@@ -28,17 +28,17 @@
 			<div class="card-body">
 				<div class="row">
 					<div class="col-md-3">
-						<p>Unidades:</p>
-					</div>
-					<div class="col-md-9"> <b>{{ count($programa->grupos)}}</b></div>
-					<div class="col-md-3">
-						<p>Personales:</p>
-					</div>
-					<div class="col-md-9"><b>{{ count($programa->inscripciones)}}</b></div>
-					<div class="col-md-3">
 						<p>Capacitaciones:</p>
 					</div>
 					<div class="col-md-9"><b>{{ count($programa->capacitaciones)}}</b></div>
+					<div class="col-md-3">
+						<p>Grupos:</p>
+					</div>
+					<div class="col-md-9"> <b>{{ count($programa->grupos)}}</b></div>
+					<div class="col-md-3">
+						<p>Personal:</p>
+					</div>
+					<div class="col-md-9"><b>{{ count($programa->inscripciones)}}</b></div>
 				</div>
 			</div>
 		</div>
@@ -48,7 +48,7 @@
 		<nav>
 		  <div class="nav nav-tabs" id="nav-tab" role="tablist">
 		    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Asistencia</a>
-		    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Notas</a>
+		    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Lecturas</a>
 		  </div>
 		</nav>
 		<div class="tab-content" id="nav-tabContent">

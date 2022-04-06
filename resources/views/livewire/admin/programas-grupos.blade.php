@@ -1,27 +1,28 @@
 <div>
-    <div class="card text-center">
-        <div class="card-header">
-          <ul class="nav nav-tabs card-header-tabs">
-            <li class="nav-item">
-              <a class="nav-link active" href="#card1">Active</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#card2">Link</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#">Disabled</a>
-            </li>
-          </ul>
-        </div>
-        <div id="card1" class="card-body">
-            <h5 class="card-title">Special title treatment</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
-        <div id="card2" class="card-body">
-        <h5 class="card-title">Special title treatment</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-      </div>
+  @if ($programa->grupos->count() != 0)
+	<div class="col-md-12">
+		<nav>
+		  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+		    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Asistencia</a>
+		    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Lecturas</a>
+		  </div>
+		</nav>
+		<div class="tab-content" id="nav-tabContent">
+		  <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+				{{-- @include('admin.programas.partials.asistencia') --}}
+		  </div>
+		  <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+				{{-- @include('admin.programas.partials.register-notas') --}}
+		  </div>
+		</div>		
+	</div>
+	@else
+	<div class="col-md-12">
+		<div class="card">
+			<div class="card-header text-warning">
+				{{ 'Debe crear las clases de esta semana' }}
+			</div>
+		</div>
+	</div>
+	@endif
 </div>
