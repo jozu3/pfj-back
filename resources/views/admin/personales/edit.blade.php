@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Inyawa')
+@section('title', 'PFJ')
 
 @section('content_header')
     <h1>Editar personal</h1>
@@ -13,14 +13,14 @@
         </div>
     @endif
     <div class="card">
-    	<dic class="card-body">
-    		{!! Form::model($personal, ['route' => ['admin.personales.update', $personal], 'method' => 'put']) !!}
+    	<div class="card-body">
+    		{!! Form::model($personale, ['route' => ['admin.personales.update', $personale], 'method' => 'put']) !!}
 
     			@include('admin.personales.partials.form')
                 
                 {!! Form::submit('Guardar', ['class' => 'btn btn-primary']) !!}
     		{!! Form::close() !!}
-    	</dic>
+    	</div>
     </div>
 @stop
 

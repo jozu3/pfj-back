@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Inscripcione;
+use App\Models\Personale_grupo;
 use App\Models\Personale;
 use App\Models\Programa;
 use Spatie\Permission\Models\Role;
@@ -38,6 +39,10 @@ class PersonaleSeeder extends Seeder
             $personale->contacto->update([
                 'email' => $matrimonio->email
             ]);
+
+            $personale->user->update([
+                'name' => $personale->contacto->nombres . ' ' . $personale->contacto->apellidos
+            ]);
             
             Inscripcione::create([
                 "personale_id" => $personale->id,
@@ -53,8 +58,8 @@ class PersonaleSeeder extends Seeder
         //consejeros
         $i = 0;
 
-        $consejeros_users = User::factory(200)->create();
-        $consejeros_contactos = Contacto::factory(200)->create();
+        $consejeros_users = User::factory(500)->create();
+        $consejeros_contactos = Contacto::factory(500)->create();
 
         foreach ($consejeros_users as $consejero){
             $consejero->assignRole('Consejero');
@@ -65,10 +70,15 @@ class PersonaleSeeder extends Seeder
             ]);
 
             $personale->contacto->update([
-                'email' => $consejero->email
+                'email' => $consejero->email,
+                'estado' => 5
             ]);
             
-            Inscripcione::create([
+            $personale->user->update([
+                'name' => $personale->contacto->nombres . ' ' . $personale->contacto->apellidos
+            ]);
+            
+            $inscripcione = Inscripcione::create([
                 "personale_id" => $personale->id,
                 "programa_id" => Programa::all()->random()->id,
                 'role_id' => Role::find(6)->id,
@@ -77,7 +87,27 @@ class PersonaleSeeder extends Seeder
             ]);
 
             $i = $i+1;
+         /*   $grupos = $inscripcione->programa->grupos;
+
+
+            Personale_grupo::create([
+                'grupo_id' => $faker->randomElement($grupos)->id,
+                'personale_id' => $inscripcione->id
+            ]);*/
 
         }
+
+        $inscripciones = Inscripcione::whereNotIn('role_id', [1,2,3])->get();
+        
+        foreach ($inscripciones as $inscripcione) {
+            Personale_grupo::create([
+                'grupo_id' => $faker->randomElement($inscripcione->programa->grupos)->id,
+                'personale_id' => $inscripcione->personale->id
+            ]);
+        }
+
+        
+
+
     }
 }

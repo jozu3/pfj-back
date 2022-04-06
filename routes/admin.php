@@ -20,7 +20,6 @@ use App\Http\Controllers\Admin\CuentaController;
 use App\Http\Controllers\Admin\PDFController;
 use App\Http\Controllers\Admin\CapacitacioneController;
 use App\Http\Controllers\Admin\PersonaleGrupoeController;
-use App\Http\Controllers\Admin\PersonaleNotaController;
 use App\Http\Controllers\Admin\ExcelController;
 
 Route::resource('', HomeController::class)->names('admin');
@@ -43,7 +42,6 @@ Route::resource('pagos', PagoController::class)->names('admin.pagos');
 Route::resource('cuentas', CuentaController::class)->names('admin.cuentas');
 Route::resource('capacitaciones', CapacitacioneController::class)->names('admin.capacitaciones');
 Route::resource('personale_grupoes', PersonaleGrupoeController::class)->names('admin.personale_grupoes');
-Route::resource('personale_notas', PersonaleNotaController::class)->names('admin.personale_notas');
 
 Route::delete('personale_grupoes/destroyfromgroup/{grupo}', [PersonaleGrupoeController::class, 'destroyfromgroup'])->name('admin.personale_grupoes.destroyfromgroup');
 Route::post('capacitaciones/updatefromgroup/{grupo}', [PersonaleGrupoeController::class, 'updatefromgroup'])->name('admin.personale_grupoes.updatefromgroup');

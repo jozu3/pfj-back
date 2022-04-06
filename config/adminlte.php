@@ -325,12 +325,6 @@ return [
             'icon' => 'fas fa-address-card',
             'can'  =>   'admin.inscripciones.index'
         ],
-        [
-            'text' => 'Personales',
-            'route'  => 'admin.personales.index',
-            'icon' => 'fas fa-user-graduate',
-            'can'  =>   'admin.personales.index'
-        ],
         [ 
             'header' => 'Anuncios',
             'can'  =>   'admin.personales.index'

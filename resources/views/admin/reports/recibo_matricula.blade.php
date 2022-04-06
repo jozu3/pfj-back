@@ -9,7 +9,7 @@
     <div class="">		
     	<div class="d-flex" style="border:1px solid black">
 			<div class="" style="height:65px">
-				<img class="logo" src="{{ config('app.url') }}/img/logo_inyawa.jpg" alt="">
+				<img class="logo" src="{{ config('app.url') }}/img/logo_pfj.jpg" alt="">
 			</div>
 			<div class="" style="margin-left:150px; height:65px">
 				<div><b style="font-size:25px">INYAWA PERU</b></div>

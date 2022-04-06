@@ -57,6 +57,7 @@
     				<tr>
                         <th>ID</th>
     					<th>Sesión</th>
+    					<th>Matrimonio Director</th>
     					<th>Fecha de inicio</th>
                         <th>Fecha de fin</th>
                         <th>Estado</th>
@@ -75,6 +76,11 @@
     				  <tr>
                         <td>{{ $programa->id }}</td>
     				  	<td>{{ $programa->nombre }}</td>
+    				  	<td>
+                              @foreach ($programa->matrimonioDirectores() as $mdirector)
+                                {{$mdirector->personale->user->name}}<br>
+                              @endforeach
+                        </td>
     				  	<td>{{ date('d/m/Y', strtotime($programa->fecha_inicio)) }}</td>
     				  	<td>{{ date('d/m/Y', strtotime($programa->fecha_fin)) }}</td>
     				  	<td>

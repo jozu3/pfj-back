@@ -5,8 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Programa;
-use App\Models\Cord_auxiliare;
-use App\Models\Nota;
+use App\Models\Personale_grupo;
 
 class Grupo extends Model
 {
@@ -17,19 +16,12 @@ class Grupo extends Model
     	return $this->belongsTo(Programa::class);
     }
 
-    public function cordAuxiliare(){
-    	return $this->belongsTo(Cord_auxiliare::class);
-    }
-
-    public function notas(){
-        return $this->hasMany(Nota::class);
-    }
 
     public function capacitaciones(){
         return $this->hasMany(Capacitacione::class);
     } 
 
-    public function personale_unidades()   {
-        return $this->hasMany(Personale_unidade::class);
+    public function personale_grupos()   {
+        return $this->hasMany(Personale_grupo::class);
     }
 }

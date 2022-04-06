@@ -86,7 +86,7 @@ class ResetPasswordNotification extends Notification
     protected function buildMailMessage($url)
     {
         return (new MailMessage)
-            ->from('no-reply@inyawaperu.com','Inyawa Perú')
+            ->from('no-reply@pfjperu.com','PFJ Perú')
             ->subject(Lang::get('Reset Password Notification'))
             ->line(Lang::get('You are receiving this email because we received a password reset request for your account.'))
             ->action(Lang::get('Reset Password'), $url)

@@ -17,14 +17,15 @@ class GrupoSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        $grupos = Grupo::factory(500)->create();
+        $grupos = Grupo::factory(100)->create();
         
 
-        foreach ($grupos as $grupo){
-			Personale_grupo::create([
-                'grupo_id' => $grupo->id,
-                'personale_id' => $faker->randomElement(Personale::all()->pluck('id'))
-            ]);
-        }
+        // foreach ($grupos as $grupo){
+
+		// 	Personale_grupo::create([
+        //         'grupo_id' => $grupo->id,
+        //         'personale_id' => $faker->randomElement(Personale::all()->pluck('id'))
+        //     ]);
+        // }
     }
 }

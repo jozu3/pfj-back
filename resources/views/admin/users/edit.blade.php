@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Inyawa')
+@section('title', 'PFJ')
 
 @section('content_header')
     <h1>Editar usuario y asignar roles</h1>

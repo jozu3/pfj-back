@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Inyawa')
+@section('title', 'PFJ')
 
 @section('content_header')
     <a href="{{ route('admin.contactos.create') }}" class="btn btn-success btn-sm float-right">Nuevo contacto</a>

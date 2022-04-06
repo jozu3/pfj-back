@@ -36,14 +36,15 @@ class UserSeeder extends Seeder
             'telefono' => $faker->phoneNumber(),
             'email' => $user1->email,
             'doc' => $faker->unique()->dni,
-            'estado' => $faker->numberBetween($min = 0, $max = 3),
+            'estado' => 3,
         ]);
 
-        Personale::create([
+        $personale = Personale::create([
             'permiso_obispo' => 1,
             'contacto_id' => $contacto->id,
             'user_id' => $user1->id,
         ]);
+
         
     }
 }

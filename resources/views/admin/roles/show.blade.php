@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Inyawa')
+@section('title', 'PFJ')
 
 @section('content_header')
-    <h1>Inyawa</h1>
+    <h1>PFJ</h1>
 @stop
 
 @section('content')

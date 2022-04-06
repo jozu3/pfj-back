@@ -21,9 +21,9 @@ class DatabaseSeeder extends Seeder
         $this->call(ContactoSeeder::class);
         $this->call(PfjSeeder::class);
         $this->call(ProgramaSeeder::class);
+        $this->call(GrupoSeeder::class);
         $this->call(PersonaleSeeder::class);
         $this->call(CapacitacioneSeeder::class);
-        $this->call(GrupoSeeder::class);
       /*$this->call(CuentaSeeder::class);
         $this->call(PagoSeeder::class);*/
     }

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Pfj;
 use App\Models\Inscripcione;
 use App\Models\Capacitacione;
+use App\Models\Grupo;
 use App\Models\Personale_unidade;
 
 class Programa extends Model
