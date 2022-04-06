@@ -25,21 +25,21 @@
 						</tr>
 					</thead>
 					<tbody>
-					@forelse ($grupo->personale_grupos as $personale_grupo)
+					@forelse ($grupo->personale_companerismos as $personale_companerismo)
 							<tr>
-								<td>{{ $personale_grupo->personale->rolPrograma($grupo->programa)->name }}</td>
-								<td>{{ $personale_grupo->personale->contacto->nombres }}</td>
-								<td>{{ $personale_grupo->personale->contacto->apellidos }}</td>
-								<td>{{ $personale_grupo->personale->contacto->telefono }}</td>
+								<td>{{ $personale_companerismo->personale->rolPrograma($grupo->programa)->name }}</td>
+								<td>{{ $personale_companerismo->personale->contacto->nombres }}</td>
+								<td>{{ $personale_companerismo->personale->contacto->apellidos }}</td>
+								<td>{{ $personale_companerismo->personale->contacto->telefono }}</td>
 								<td>
-									@if ( $personale_grupo->personale->user)
-									{{ $personale_grupo->personale->user->email }}
+									@if ( $personale_companerismo->personale->user)
+									{{ $personale_companerismo->personale->user->email }}
 									@else
-									<a href="{{ route('admin.users.create', ['personale' => $personale_grupo->personale]) }}" class="btn btn-primary" >Crear usuario</a>
+									<a href="{{ route('admin.users.create', ['personale' => $personale_companerismo->personale]) }}" class="btn btn-primary" >Crear usuario</a>
 									@endif
 								</td>
 								<td width="10px">
-									<a href="{{ route('admin.personales.edit', $personale_grupo->personale) }}" class="btn btn-primary" >Editar</a>
+									<a href="{{ route('admin.personales.edit', $personale_companerismo->personale) }}" class="btn btn-primary" >Editar</a>
 								</td>
 							</tr>
 					@empty

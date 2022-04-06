@@ -6,6 +6,7 @@
 	@can('admin.programas.edit')
 		<a href="{{ route('admin.programas.edit', $programa) }}" class="btn btn-success btn-sm float-right">Editar programa</a>
 	@endcan
+	<a href="{{ route('admin.programas.asignar', $programa) }}" class="btn btn-success btn-sm float-right mr-3"><i class="far fa-user"></i> Asignaciones</a>
 	<a href="{{ route('admin.excel.personalesGrupo', $programa) }}" class="btn btn-success btn-sm float-right mr-3"><i class="far fa-file-excel"></i> Registro de personales</a>
 
     <h1>Grupo: {{ $programa->pfj->nombre.' '.date('d/m/Y', strtotime($programa->fecha)) }}</h1>

@@ -4,7 +4,7 @@ namespace App\Http\Livewire\Admin;
 
 use Livewire\Component;
 use App\Models\Programa;
-use App\Models\Personale_grupo;
+use App\Models\Personale_companerismo;
 
 class ProgramasGrupos extends Component
 {

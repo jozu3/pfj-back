@@ -132,4 +132,9 @@ class ProgramaController extends Controller
     public function grupos(){
         return view('admin.programas.grupos');
     }
+
+
+    public function asignar(){
+        return view('admin.programas.asignar');
+    }
 }

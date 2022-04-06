@@ -17,8 +17,10 @@ class PersonaleProgramaIndex extends Component
     {
         $that = $this;
         if($this->grupo_id != ''){
-            $this->personales = Personale::whereHas('personale_grupos', function ($q) use ($that){
-                $q->where('grupo_id', $that->grupo_id);
+            $this->personales = Personale::whereHas('personale_companerismos', function ($q) use ($that){
+                $q->whereHas('companerismo', function($qu) use ($that){
+                    $qu->where('grupo_id', $that->grupo_id);
+                });                
             })->get();
             $programa = Grupo::find($this->grupo_id)->programa;
         } 

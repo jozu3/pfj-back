@@ -4,12 +4,14 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Inscripcione;
-use App\Models\Personale_grupo;
+use App\Models\Personale_companerismo;
 use App\Models\Personale;
+use App\Models\Companerismo;
 use App\Models\Programa;
 use Spatie\Permission\Models\Role;
 use App\Models\User;
 use App\Models\Contacto;
+use App\Models\Grupo;
 use Faker\Generator as Faker;
 
 class PersonaleSeeder extends Seeder
@@ -23,39 +25,104 @@ class PersonaleSeeder extends Seeder
     {
 
         //matrimonios
-        $matrimonios_users = User::factory(40)->create();
-        $matrimonios_contactos = Contacto::factory(40)->create();
+        foreach (Programa::all() as $programa) {
+            
+            //esposo
+            $mduser = User::factory(1)->create();
+            $mduser[0]->assignRole('Matrimonio Director');
+            $nombres = $faker->firstNameMale().' '.$faker->firstNameMale();
+            $apellidos = $faker->lastName().' '.$faker->lastName();
 
-        $i = 0;
+            $mdcontacto = Contacto::create([
+                'nombres' => $nombres,
+                'apellidos' => $apellidos,
+                'telefono' => $faker->phoneNumber(),
+                'email' => $faker->unique()->safeEmail,
+                'doc' => $faker->unique()->dni,
+                'estado' => $faker->numberBetween($min = 1, $max = 3),
+            ]);
 
-        foreach ($matrimonios_users as $matrimonio){
-            $matrimonio->assignRole('Matrimonio Director');
 
             $personale = Personale:: create([
-                'contacto_id' => $matrimonios_contactos[$i]->id,
-                'user_id' => $matrimonio->id,
+                'contacto_id' => $mdcontacto->id,
+                'user_id' => $mduser[0]->id,
             ]);
 
-            $personale->contacto->update([
-                'email' => $matrimonio->email
-            ]);
-
+            
             $personale->user->update([
                 'name' => $personale->contacto->nombres . ' ' . $personale->contacto->apellidos
             ]);
-            
+
             Inscripcione::create([
                 "personale_id" => $personale->id,
-                "programa_id" => Programa::all()->random()->id,
+                "programa_id" => $programa->id,
+                'role_id' => Role::find(2)->id,
+                "estado" => 1,
+                "fecha" => date('Y-m-d'),
+            ]);
+            
+            //actualizar estado
+            $personale->contacto->update([
+                'email' => $mduser[0]->email,
+                'estado' => 5
+            ]);
+
+
+            //esposa
+
+            $mduser2 = User::factory(1)->create();
+            $mduser2[0]->assignRole('Matrimonio Director');
+            $nombres = $faker->firstNameFemale().' '.$faker->firstNameFemale();
+            $apellidos = $faker->lastName().' '.$faker->lastName();
+
+            $mdcontacto = Contacto::create([
+                'nombres' => $nombres,
+                'apellidos' => $apellidos,
+                'telefono' => $faker->phoneNumber(),
+                'email' => $faker->unique()->safeEmail,
+                'doc' => $faker->unique()->dni,
+                'estado' => $faker->numberBetween($min = 1, $max = 3),
+            ]);
+
+
+            $personale = Personale:: create([
+                'contacto_id' => $mdcontacto->id,
+                'user_id' => $mduser2[0]->id,
+            ]);
+
+            
+            $personale->user->update([
+                'name' => $personale->contacto->nombres . ' ' . $personale->contacto->apellidos
+            ]);
+
+            Inscripcione::create([
+                "personale_id" => $personale->id,
+                "programa_id" => $programa->id,
                 'role_id' => Role::find(2)->id,
                 "estado" => 1,
                 "fecha" => date('Y-m-d'),
             ]);
 
-            $i = $i+1;
+            //actualizar estado
+            $personale->contacto->update([
+                'email' => $mduser2[0]->email,
+                'estado' => 5 //inscrito
+            ]);
+
+
+
+
+
         }
 
+
+
+
+
+
+
         //consejeros
+        /*
         $i = 0;
 
         $consejeros_users = User::factory(500)->create();
@@ -87,27 +154,139 @@ class PersonaleSeeder extends Seeder
             ]);
 
             $i = $i+1;
-         /*   $grupos = $inscripcione->programa->grupos;
+            $grupos = $inscripcione->programa->grupos;
 
 
-            Personale_grupo::create([
+            Personale_companerismo::create([
                 'grupo_id' => $faker->randomElement($grupos)->id,
                 'personale_id' => $inscripcione->id
-            ]);*/
+            ]);
 
         }
-
-        $inscripciones = Inscripcione::whereNotIn('role_id', [1,2,3])->get();
+*/
         
-        foreach ($inscripciones as $inscripcione) {
-            Personale_grupo::create([
-                'grupo_id' => $faker->randomElement($inscripcione->programa->grupos)->id,
-                'personale_id' => $inscripcione->personale->id
+        //Crear compañerismos
+        foreach (Grupo::all() as $grupo) {
+            for ($i=0; $i < 5; $i++) { 
+                Companerismo::create([
+                    'numero' => ($i+1),
+                    'nombre' => $faker->word(1),
+                    'grupo_id'=> $grupo->id
+                ]);
+            }
+        }
+        
+        //por cada compañerimo dos consejeros
+        foreach (Companerismo::all() as $companerismo) {
+
+            //consejera
+            $mduser2 = User::factory(1)->create();
+            $mduser2[0]->assignRole('Consejero');
+            $nombres = $faker->firstNameFemale().' '.$faker->firstNameFemale();
+            $apellidos = $faker->lastName().' '.$faker->lastName();
+
+            $mdcontacto = Contacto::create([
+                'nombres' => $nombres,
+                'apellidos' => $apellidos,
+                'telefono' => $faker->phoneNumber(),
+                'email' => $faker->unique()->safeEmail,
+                'doc' => $faker->unique()->dni,
+                'estado' => $faker->numberBetween($min = 1, $max = 3),
+            ]);
+
+
+            $personale = Personale:: create([
+                'contacto_id' => $mdcontacto->id,
+                'user_id' => $mduser2[0]->id,
+            ]);
+
+            
+            $personale->user->update([
+                'name' => $personale->contacto->nombres . ' ' . $personale->contacto->apellidos
+            ]);
+
+            Inscripcione::create([
+                "personale_id" => $personale->id,
+                "programa_id" => $companerismo->grupo->programa->id,
+                'role_id' => 6,//consejero
+                "estado" => 1,
+                "fecha" => date('Y-m-d'),
+            ]);
+
+            //actualizar estado
+            $personale->contacto->update([
+                'email' => $mduser2[0]->email,
+                'estado' => 5 //inscrito
+            ]);
+
+
+            Personale_companerismo::create([
+                'personale_id' => $personale->id,
+                'companerismo_id' => $companerismo->id,
+            ]);
+
+
+
+            //consejero
+            $mduser = User::factory(1)->create();
+            $mduser[0]->assignRole('Consejero');
+            $nombres = $faker->firstNameMale().' '.$faker->firstNameMale();
+            $apellidos = $faker->lastName().' '.$faker->lastName();
+
+            $mdcontacto = Contacto::create([
+                'nombres' => $nombres,
+                'apellidos' => $apellidos,
+                'telefono' => $faker->phoneNumber(),
+                'email' => $faker->unique()->safeEmail,
+                'doc' => $faker->unique()->dni,
+                'estado' => $faker->numberBetween($min = 1, $max = 3),
+            ]);
+
+
+            $personale = Personale:: create([
+                'contacto_id' => $mdcontacto->id,
+                'user_id' => $mduser[0]->id,
+            ]);
+
+            
+            $personale->user->update([
+                'name' => $personale->contacto->nombres . ' ' . $personale->contacto->apellidos
+            ]);
+
+            Inscripcione::create([
+                "personale_id" => $personale->id,
+                "programa_id" => $companerismo->grupo->programa->id,
+                'role_id' => 6,//consejero
+                "estado" => 1,
+                "fecha" => date('Y-m-d'),
+            ]);
+            
+            //actualizar estado
+            $personale->contacto->update([
+                'email' => $mduser[0]->email,
+                'estado' => 5
+            ]);
+
+            Personale_companerismo::create([
+                'personale_id' => $personale->id,
+                'companerismo_id' => $companerismo->id,
             ]);
         }
-
         
-
+       /* $inscripciones = Inscripcione::whereNotIn('role_id', [1,2,3])->get();
+        
+        foreach ($inscripciones as $inscripcione) {
+            $companerismo = $faker->randomElement(
+                Companerismo::whereHas('grupo', function($q) use ($inscripcione){
+                    $q->where('programa_id', $inscripcione->programa->id);
+                })->get());
+                
+                
+            Personale_companerismo::create([
+                'personale_id' => $inscripcione->personale->id,
+                'companerismo_id' => $companerismo->id,
+            ]);
+        }*/
 
     }
 }
