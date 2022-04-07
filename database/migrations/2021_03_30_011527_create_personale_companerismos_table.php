@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePersonaleGruposTable extends Migration
+class CreatePersonaleCompanerismosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreatePersonaleGruposTable extends Migration
      */
     public function up()
     {
-        Schema::create('personale_grupos', function (Blueprint $table) {
+        Schema::create('personale_companerismos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('grupo_id')->constrained();
             $table->foreignId('personale_id')->constrained();
+            $table->foreignId('companerismo_id')->constrained();
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreatePersonaleGruposTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('personale_grupos');
+        Schema::dropIfExists('personale_companerismos');
     }
 }

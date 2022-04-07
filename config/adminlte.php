@@ -66,9 +66,9 @@ return [
     */
 
     'usermenu_enabled' => true,
-    'usermenu_header' => false,
+    'usermenu_header' => true,
     'usermenu_header_class' => 'bg-primary',
-    'usermenu_image' => false,
+    'usermenu_image' => true,
     'usermenu_desc' => false,
     'usermenu_profile_url' => true,
 
@@ -303,27 +303,27 @@ return [
         ],
         [
             'text' => 'Mi(s) sesión(es)',
-            'route'  => 'admin.programas.index',
+            'route'  => 'admin.programas.misprogramas',
             'icon' => 'fab fa-leanpub',
-            'can'  =>   'admin.programas.index'
+            'can'  =>   'admin.programas.misprogramas'
         ],
         [
             'text' => 'Grupos',
-            'route'  => 'admin.grupos.index',
+            'route'  => 'admin.programas.grupos',
             'icon' => 'fab fa-leanpub',
-            'can'  =>   'admin.grupos.index'
+            'can'  =>   'admin.programas.grupos'
+        ],
+        [
+            'text' => 'Mi grupo',
+            'route'  => 'admin.grupos.migrupo',
+            'icon' => 'fab fa-leanpub',
+            'can'  =>   'admin.grupos.migrupo'
         ],
         [
             'text' => 'Inscripciones',
             'route'  => 'admin.inscripciones.index',
             'icon' => 'fas fa-address-card',
             'can'  =>   'admin.inscripciones.index'
-        ],
-        [
-            'text' => 'Personales',
-            'route'  => 'admin.personales.index',
-            'icon' => 'fas fa-user-graduate',
-            'can'  =>   'admin.personales.index'
         ],
         [ 
             'header' => 'Anuncios',

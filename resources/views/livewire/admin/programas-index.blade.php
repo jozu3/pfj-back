@@ -1,8 +1,10 @@
 <div>
     <div class="card">
     	<div class="card-header">
-            @if (!isset($pfj_id))
-            <div class="form-row align-items-center">
+            @if (isset($pfj_id) || $mis_programas == true)
+                <a href="{{ route('admin.programas.create', 'idpfj='.$pfj_id) }}" class="btn btn-success btn-sm float-right">Nueva sesión</a>
+            @else
+                <div class="form-row align-items-center">
                 <div class="col-md-10 my-1">
                     <input wire:model="search" class="form-control" placeholder="Ingrese nombre de un pfj">
                 </div>
@@ -18,8 +20,6 @@
                   </select>
                 </div>
               </div>
-            @else
-              <a href="{{ route('admin.programas.create', 'idcurso='.$pfj_id) }}" class="btn btn-success btn-sm float-right">Nueva sesión</a>
             @endif
             <div class="form-row align-items-center">
                 <div class="col-auto my-1">
@@ -41,6 +41,12 @@
                     	Terminado
                     </label>
                   </div>
+                  <div class="custom-control custom-checkbox mr-sm-2 d-none">
+                    <input class="form-check-input" wire:model= "mis_programas" type="checkbox" disabled id="mis_programas" >
+                    <label class="form-check-label" for="mis_programas">
+                    	Mis programas
+                    </label>
+                  </div>
                 </div>
             </div>
     	</div>
@@ -51,6 +57,7 @@
     				<tr>
                         <th>ID</th>
     					<th>Sesión</th>
+    					<th>Matrimonio Director</th>
     					<th>Fecha de inicio</th>
                         <th>Fecha de fin</th>
                         <th>Estado</th>
@@ -67,8 +74,13 @@
     			<tbody>
     				@foreach($programas as $programa)
     				  <tr>
-                        <td>{{ $programa->idprograma }}</td>
-    				  	<td>{{ $programa->nombreprograma }}</td>
+                        <td>{{ $programa->id }}</td>
+    				  	<td>{{ $programa->nombre }}</td>
+    				  	<td>
+                              @foreach ($programa->matrimonioDirectores() as $mdirector)
+                                {{$mdirector->personale->user->name}}<br>
+                              @endforeach
+                        </td>
     				  	<td>{{ date('d/m/Y', strtotime($programa->fecha_inicio)) }}</td>
     				  	<td>{{ date('d/m/Y', strtotime($programa->fecha_fin)) }}</td>
     				  	<td>

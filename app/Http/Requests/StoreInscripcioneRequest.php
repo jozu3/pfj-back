@@ -36,6 +36,7 @@ class StoreInscripcioneRequest extends FormRequest
                 'email' => ['required', 'email'],
                 //'estado' => 'required|in:1,2,3,4,5',
                 'pfj_id' => 'required',
+                'role_id' => 'required',
                 'programa_id' => 'required',
                 'fecha' => ['required', 'date'],
             ];

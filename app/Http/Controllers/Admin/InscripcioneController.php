@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Personale;
 use App\Models\Contacto;
+use Spatie\Permission\Models\Role;
 use App\Models\User;
 use App\Models\Inscripcione;
 use App\Models\Pago;
@@ -48,13 +49,15 @@ class InscripcioneController extends Controller
             $personale_existe = 'Ya es personale, se sugiere tipo de matrícula para personale antiguo.';
         }
 
+        $roles = Role::whereNotIn('id', [1])->pluck('name', 'id');
+
         // $vendedores = [];
         // if (auth()->user()->can(['Admin'])) {
         //     $vendedores = Personale::select(DB::raw('concat(nombres, " ", apellidos) as nombre'), 'id')->pluck('nombre', 'id');
         //     //$contacto['vendedor_id'] = $contacto->personal_id;
         // }
 
-        return view('admin.inscripciones.create', compact('contacto', 'personale_existe'));
+        return view('admin.inscripciones.create', compact('contacto', 'personale_existe', 'roles'));
     }
 
     /**
@@ -108,7 +111,7 @@ class InscripcioneController extends Controller
             $personale = Personale::create($request->all());
 
         } else {
-            $inscripcione_existe = Inscripcione::where('personale_id', $contacto->personale->id)->where('sesion_id', $request->sesion_id)->get();
+            $inscripcione_existe = Inscripcione::where('personale_id', $contacto->personale->id)->where('programa_id', $request->programa_id)->get();
             
             if (!count($inscripcione_existe)){ //Entra si no hay inscripcione en el mismo grupo
                 $contacto->update($request->all());

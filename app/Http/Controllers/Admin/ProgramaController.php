@@ -16,6 +16,7 @@ class ProgramaController extends Controller
         $this->middleware('can:admin.programas.create')->only('create', 'store');
         $this->middleware('can:admin.programas.edit')->only('edit', 'update');
         $this->middleware('can:admin.programas.destroy')->only('destroy');
+        $this->middleware('can:admin.programas.misprogramas')->only('misprogramas');
     }
     /**
      * Display a listing of the resource.
@@ -24,9 +25,9 @@ class ProgramaController extends Controller
      */
     public function index()
     {
-        $programas = Programa::all();
+        //$programas = Programa::all();
         
-        return view('admin.programas.index', compact('programas'));
+        return view('admin.programas.index');
     }
 
     /**
@@ -37,7 +38,7 @@ class ProgramaController extends Controller
     public function create()
     {   
     
-        $pfj = Pfj::find($_GET['idcurso']);
+        $pfj = Pfj::find($_GET['idpfj']);
 
         return view('admin.programas.create', compact('pfj'));
     }
@@ -85,8 +86,7 @@ class ProgramaController extends Controller
      */
     public function edit(Programa $programa)
     {
-        $pfj = $programa->pfj;
-        return view('admin.programas.edit', compact('programa', 'pfj'));
+        return view('admin.programas.edit', compact('programa'));
     }
 
     /**
@@ -100,14 +100,8 @@ class ProgramaController extends Controller
     {
         $request->validate([
             'pfj_id' => 'required',
-            'inscripcione' => ['required', 'numeric'],
-            'inscripcione2' => ['required', 'numeric'],
-            'ncuotas' => ['required', 'numeric'],
-            'cuota' => ['required', 'numeric'],
-            'cuota2' => ['required', 'numeric'],
-            'certificacion' => ['required', 'numeric'],
-            'certificacion2' => ['required', 'numeric'],
-            'fecha' => ['required', 'date'],
+            'fecha_inicio' => ['required', 'date'],
+            'fecha_fin' => ['required', 'date'],
             'estado' => ['required', 'numeric'],
         ]);
 
@@ -127,5 +121,20 @@ class ProgramaController extends Controller
         $programa->delete();
 
         return redirect()->route('admin.pfjs.edit', $programa->pfj)->with('info', 'El programa se eliminó con éxito'); 
+    }
+
+
+    public function misprogramas()
+    {
+        return view('admin.programas.misprogramas');
+    }
+
+    public function grupos(){
+        return view('admin.programas.grupos');
+    }
+
+
+    public function asignar(Programa $programa){
+        return view('admin.programas.asignar', compact('programa'));
     }
 }

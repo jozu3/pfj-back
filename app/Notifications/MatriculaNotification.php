@@ -45,14 +45,14 @@ class InscripcioneNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->from('no-reply@inyawaperu.com', config('app.name'))
+                    ->from('no-reply@pfjperu.com', config('app.name'))
                     ->greeting(Lang::get('Hello!') . ' ' . $this->inscripcione->personale->contacto->nombres)
                     ->line('Te damos una cordial bienvenida a la especialización de '.$this->inscripcione->grupo->pfj->nombre.' que inicia el '.date( 'd/m/Y', strtotime($this->inscripcione->grupo->fecha)).'. En este correo encontrarás tu usuario y contraseña de la plataforma donde podrás visualizar los pagos que realices correspondientes a tus pfjs y las notas de tus unidades educativas terminadas, asimismo los comentarios y recomendaciones del docente en cada unidad.')
                     ->line('Debes ingresar a '. route('st.index'))
                     ->line('Usuario: '.$this->inscripcione->personale->user->email)
                     ->line('Contraseña: password')
                     ->line('Te sugerimos que cambies tu contraseña en las próximas 24 horas, ingresando al menú perfil desde tu portal de estudiante.')
-                    ->action('Portal de estudiante de Inyawa Perú', url('/st'))
+                    ->action('Portal de estudiante de PFJ Perú', url('/st'))
                     ->line('Bienvenido a una nueva experiencia de aprendizaje.')
                     ->salutation("La excelencia es el camino");
 

@@ -19,5 +19,4 @@
 	        <b>No hay pfjs disponibles</b>        
 	    </div>
 	@endif
-   
 </div>

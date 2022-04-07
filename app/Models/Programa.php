@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Pfj;
 use App\Models\Inscripcione;
+use App\Models\Capacitacione;
+use App\Models\Grupo;
 use App\Models\Personale_unidade;
 
 class Programa extends Model
@@ -23,6 +25,10 @@ class Programa extends Model
 
     public function inscripciones(){
     	return $this->hasMany(Inscripcione::class);
+    }
+
+    public function capacitaciones(){
+    	return $this->hasMany(Capacitacione::class);
     }
 
     public function lideres(){
@@ -43,9 +49,10 @@ class Programa extends Model
     public function coordinadores(){
         $inscripciones = Inscripcione::where('programa_id', $this->id)->where('role_id', 4)->get();
         return $inscripciones;
+
     }
 
-    public function inscripcioneEstado($estados = []){
+    public function inscripcionesEstado($estados = []){
         $inscripcione = Inscripcione::where('programa_id', $this->id)->whereIn('estado', $estados)->get();
         return $inscripcione;
     }

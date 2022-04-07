@@ -21,10 +21,16 @@
               </label>
             </div>
             <div class="form-check mt-1 d-inline">
-              <input class="form-check-input" wire:model= "confirmado" type="checkbox" value="true" id="flexCheckDefault2">
-              <label class="form-check-label" for="flexCheckDefault2">
-                Confirmado
-              </label>
+                <input class="form-check-input" wire:model= "confirmado" type="checkbox" value="true" id="flexCheckDefault2">
+                <label class="form-check-label" for="flexCheckDefault2">
+                  Confirmado
+                </label>
+            </div>
+            <div class="form-check mt-1 d-inline">
+            <input class="form-check-input" wire:model= "inscrito" type="checkbox" value="true" id="flexCheckDefault3">
+            <label class="form-check-label" for="flexCheckDefault3">
+                Inscrito
+            </label>
             </div>
     	</div>
         @if ($contactos->count())
@@ -77,7 +83,7 @@
                                         '2' => 'Contactado',
                                         '3' => 'Probable',
                                         '4' => 'Confirmado',
-                                        '5' => 'Inscripcionedo',
+                                        '5' => 'Inscrito',
                                     ];
                             @endphp
                             @switch($contacto->estado)

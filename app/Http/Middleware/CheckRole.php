@@ -17,9 +17,8 @@ class CheckRole
      */
     public function handle(Request $request, Closure $next)
     {   
-        if (auth()->user()->hasRole('Personale')) {
-            return redirect()->route('st.index');
-        }
+        if (auth()->user()->hasRole(['Consejero'])) {
+           return redirect()->route('st.index');
 
         return $next($request);
     }

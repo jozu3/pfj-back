@@ -18,7 +18,7 @@ class ProgramaInfo extends Component
         				->where(function($query){
                               $query->orWhere('estado', '=', '0')
                                     ->orWhere('estado', '=', '1');
-                        })->pluck('fecha_inicio', 'id');
+                        })->pluck('nombre', 'id');
 
         $programa_seleccionado = Programa::find($this->programa_id);
         

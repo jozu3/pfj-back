@@ -14,50 +14,16 @@
 						<th class="">Grado académico</th>
 						<th class="">Teléfono</th>
 	                @endif
-					@forelse($grupo->grupos as $unidad)
-						@if (auth()->user()->can('admin.grupos.viewList') || (auth()->user()->hasRole('Profesor') && $unidad->profesore_id == auth()->user()->profesore->id))
-							<th colspan="{{ $unidad->clases->count() }}" class="text-center border-left">
-								{{ $unidad->descripcion }}
-							</th>
-						@else
-						@endif
+					@forelse($programa->capacitaciones as $capacitacione)
+						<th colspan="1" class="text-center border-left">
+							<b>{{ date('d/m/Y', strtotime($capacitacione->fechacapacitacion)) }}</b>
+						</th>
 					@empty
 					@endforelse
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td class="apellido-fijo">
-					</td>
-					<td class="nombre-fijo">
-					</td>
-					@if (isset($is_report) && $is_report == true)
-	                	<td class="">
-						</td>
-						<td class="">
-						</td>
-						<td class="">
-						</td>
-						<td class="">
-						</td>
-	                @endif
-					@forelse($grupo->grupos as $unidad)
-						@if (auth()->user()->can('admin.grupos.viewList') || (auth()->user()->hasRole('Profesor') && $unidad->profesore_id == auth()->user()->profesore->id))
-							@foreach($unidad->clases as $clase)
-							<td>	
-								<b>{{ date('d/m/Y', strtotime($clase->fechaclase)) }}</b>
-							</td>
-							@endforeach
-						@else
-						<td>
-							<br>
-						</td>
-						@endif
-					@empty
-						<td></td>
-					@endforelse
-				</tr>
-				@foreach($grupo->inscripcionesEstado([0,2]) as $inscripcione)
+				@foreach($programa->inscripcionesEstado([0,1,2]) as $inscripcione)
 					<tr>
 						<td class="apellido-fijo">
 							<b>{{$inscripcione->personale->contacto->apellidos.' ' }}</b>
@@ -93,49 +59,36 @@
 	                		{{ $inscripcione->personale->contacto->telefono }}
 						</td>
 	                	@endif
-	                	@if (count($inscripcione->grupo->grupos))
-							@if ($inscripcione->grupo->grupos[0]->clases->count())
-								@forelse($inscripcione->grupo->grupos as $unidad)
-									@if (auth()->user()->can('admin.grupos.viewList') || (auth()->user()->hasRole('Profesor') && $unidad->profesore_id == auth()->user()->profesore->id))
-										@foreach($unidad->clases as $clase)
-											<td class="border-left">
-												<div class="form-row align-items-center una-fila">
-									                <div class="col-auto my-1 mx-2">
-									                	@if (!isset($is_report))
-									                		{{ $is_report = false }}
-									                	@endif
-									                	{!! Form::model($inscripcione->asistenciaClase($clase)) !!}
-									                	@livewire('admin.create-asistencia', [
-									                		'clase_id' => $clase->id,
-									                		'inscripcione_id' => $inscripcione->id,
-									                		'is_report' => $is_report
-									                		//'asistencia' => $inscripcione->asistenciaClase($clase)
-									                		])
-									                	{!! Form::close() !!}
-									                </div>
-												</div>
-											</td>
-										@endforeach
-									@else
-									<td>
-										<br>
-									</td>
-									@endif
-								@empty
-								<td>
-									<br>
-								</td>
-								@endforelse
-							@else
-								<td colspan="100%" class="alert-light alturatd-dis">
-									{{ 'No se han generado las clases para los personales' }}
-								</td>
-							@endif
-						@else
-	                	@endif
+						@forelse($inscripcione->programa->capacitaciones as $capacitacione)
+							<td class="border-left">
+								<div class="form-row align-items-center una-fila">
+									<div class="col-auto my-1 mx-2">
+										@if (!isset($is_report))
+											{{ $is_report = false }}
+										@endif
+										@if($inscripcione->asistenciaCapacitacione($capacitacione))
+										{!! Form::model($inscripcione->asistenciaCapacitacione($capacitacione)) !!}
+										@else
+										{!! Form::open(['route' => 'admin.capacitaciones.store']) !!}
+										@endif
+										@livewire('admin.create-asistencia', [
+											'capacitacione_id' => $capacitacione->id,
+											'inscripcione_id' => $inscripcione->id,
+											'is_report' => $is_report
+											])
+										{!! Form::close() !!}
+									</div>
+								</div>
+							</td>
+						@empty
+						<td>
+							<br>
+						</td>
+						@endforelse
 	                	<td>
 	                		<br>
-	                		<br></td>
+	                		<br>
+						</td>
 					</tr>
 				@endforeach
 			</tbody>

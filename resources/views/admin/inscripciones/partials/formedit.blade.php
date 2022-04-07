@@ -1,18 +1,12 @@
 <div class="form-group">
-	{{-- <div>
-	{!! Form::label('', 'Tipo de matrícula') !!}
-	@php 
-		$personale_nuevo = false;
-		$personale_antiguo = false;
-	@endphp
-	@if(isset($personale_existe))
-		@php
-			$personale_antiguo = true;
-		@endphp
-		<div class="text-warning">{{ $personale_existe }}</div>
-	@endif
-	</div>
-	<div class="form-check">
+	<div class="form-group">
+		{!! Form::label('role_id', 'Rol') !!}
+		{!! Form::select('role_id', $roles, null, ['class' => 'form-control ', 'placeholder' => 'Escoge un rol', 'wire:model' => 'role_id']); !!}
+		@error('role_id')
+			<small class="text-danger">{{ $message }}</small>
+		@enderror
+	</div> 
+	{{-- <div class="form-check">
 		@if (isset($inscripcione)) 
 			@if ($inscripcione->tipoinscripcione == 0)
 			@php

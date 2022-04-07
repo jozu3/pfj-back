@@ -6,6 +6,7 @@
 	@can('admin.programas.edit')
 		<a href="{{ route('admin.programas.edit', $programa) }}" class="btn btn-success btn-sm float-right">Editar programa</a>
 	@endcan
+	<a href="{{ route('admin.programas.asignar', $programa) }}" class="btn btn-success btn-sm float-right mr-3"><i class="far fa-user"></i> Asignaciones</a>
 	<a href="{{ route('admin.excel.personalesGrupo', $programa) }}" class="btn btn-success btn-sm float-right mr-3"><i class="far fa-file-excel"></i> Registro de personales</a>
 
     <h1>Grupo: {{ $programa->pfj->nombre.' '.date('d/m/Y', strtotime($programa->fecha)) }}</h1>
@@ -28,31 +29,39 @@
 			<div class="card-body">
 				<div class="row">
 					<div class="col-md-3">
-						<p>Unidades:</p>
+						<p>Capacitaciones:</p>
+					</div>
+					<div class="col-md-9"><b>{{ count($programa->capacitaciones)}}</b></div>
+					<div class="col-md-3">
+						<p>Grupos:</p>
 					</div>
 					<div class="col-md-9"> <b>{{ count($programa->grupos)}}</b></div>
 					<div class="col-md-3">
-						<p>Personales:</p>
+						<p>Personal:</p>
 					</div>
 					<div class="col-md-9"><b>{{ count($programa->inscripciones)}}</b></div>
 				</div>
 			</div>
 		</div>
 	</div>
-	@if ($programa->grupos->count() != 0)
+	@if ($programa->capacitaciones->count() != 0)
 	<div class="col-md-12">
 		<nav>
 		  <div class="nav nav-tabs" id="nav-tab" role="tablist">
-		    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Asistencia</a>
-		    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Notas</a>
+		    <a class="nav-item nav-link active" id="nav-personal-tab" data-toggle="tab" href="#nav-personal" role="tab" aria-controls="nav-personal" aria-selected="true">Personal</a>
+		    <a class="nav-item nav-link " id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Asistencia</a>
+		    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Lecturas</a>
 		  </div>
 		</nav>
 		<div class="tab-content" id="nav-tabContent">
-		  <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-				@include('admin.grupos.partials.asistencia')
+			<div class="tab-pane fade show active" id="nav-personal" role="tabpanel" aria-labelledby="nav-personal-tab">
+				@livewire('admin.personale-programa-index', ['programa_id' => $programa->id])
 		  </div>
+		  <div class="tab-pane fade show" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+				@include('admin.programas.partials.asistencia')
+		</div>
 		  <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-				@include('admin.grupos.partials.register-notas')
+				{{-- @include('admin.programas.partials.register-notas') --}}
 		  </div>
 		</div>		
 	</div>
@@ -60,7 +69,7 @@
 	<div class="col-md-12">
 		<div class="card">
 			<div class="card-header text-warning">
-				{{ 'Debe crear las unidades de este grupo' }}
+				{{ 'Debe crear las clases de esta semana' }}
 			</div>
 		</div>
 	</div>

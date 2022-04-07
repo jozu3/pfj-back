@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCapacitacionesTable extends Migration
+class CreateCompanerismosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,29 +13,22 @@ class CreateCapacitacionesTable extends Migration
      */
     public function up()
     {
-        Schema::create('capacitaciones', function (Blueprint $table) {
+        Schema::create('companerismos', function (Blueprint $table) {
             $table->id();
-            $table->string('tema');
-            $table->date('fechacapacitacion');
-            $table->tinyInteger('estado');
-            $table->foreignId('programa_id')->constrained();
+            $table->string('numero');
+            $table->string('nombre');
+            $table->foreignId('grupo_id')->constrained();
             $table->timestamps();
         });
     }
 
-
-    /*
-    estados = [
-        '',
-        ' '
-        ]
-
+    /**
      * Reverse the migrations.
      *
      * @return void
      */
     public function down()
     {
-        Schema::dropIfExists('capacitaciones');
+        Schema::dropIfExists('companerismos');
     }
 }

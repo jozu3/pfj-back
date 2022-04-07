@@ -17,6 +17,7 @@ class ProgramasIndex extends Component
 	public $poriniciar = true;
     public $iniciado = true;
     public $terminado = true;
+	public $mis_programas;
 
 	protected $paginationTheme = 'bootstrap';
 	public $cant = 15;
@@ -32,30 +33,37 @@ class ProgramasIndex extends Component
 		$this->poriniciar == true ? array_push($states, "0") : ''; 
 	    $this->iniciado == true ? array_push($states, "1") : '';
 	    $this->terminado == true ? array_push($states, "2") : '';
+	    
 	    //$pfj_id = $this->pfj_id;
 
-    	$programas = Programa::select('programas.id as idprograma','pfjs.nombre','programas.nombre as nombreprograma',  'programas.fecha_inicio','programas.fecha_fin', 'programas.estado', 'programas.id', 'pfjs.id as idcurso')
-										->join('pfjs', 'pfjs.id', '=', 'programas.pfj_id');
+    	$programas = Programa::orWhere('nombre', 'like','%'.$this->search.'%')
+							->whereIn('estado', $states);
+										
 
 		if($this->pfj_id != ''){
-			$programas = $programas->where('pfjs.id', '=', $this->pfj_id)	;
+			$programas = $programas->orWhereHas('pfj', function($q) {
+				$q->where( 'id', $this->pfj_id);
+			});
+		}
+		
+		$programas = $programas->orWhereHas('pfj', function ($q){
+			$q->where( 'nombre', 'like','%'.$this->search.'%');
+		});
+		
+
+							
+		if ($this->mis_programas == true) {
+			$programas = Programa::whereHas("inscripciones", function($q) {
+				$q->where("personale_id", auth()->user()->personale->id); 
+			});
 		}
 
-		$programas = $programas->where('pfjs.nombre', 'like','%'.$this->search.'%')
-			->orWhere('programas.nombre', 'like','%'.$this->search.'%')
-			->whereIn('programas.estado', $states)
-			->orderby('programas.fecha_inicio', 'desc')
-		    ->paginate($this->cant);
 
-		// if (auth()->user()->hasRole('Profesor')) {
-        // 	$programas = Programa::select('programas.id as idprograma', 'pfjs.nombre','programas.fecha_inicio','programas.fecha_fin', 'programas.estado', 'programas.id', 'pfjs.id as idcurso')
-        // 					->join('grupos', 'grupos.programa_id', '=', 'programas.id')
-        // 					->join('pfjs', 'programas.pfj_id', '=', 'pfjs.id')
-        // 					->where('grupos.profesore_id', auth()->user()->profesore->id)
-        // 					->where('pfjs.nombre', 'like','%'.$this->search.'%')
-        // 					->groupBy('programas.id', 'pfjs.nombre', 'programas.fecha_inicio', 'programas.estado', 'idcurso')
-        // 					->paginate();
-        // }
+
+		$programas = $programas->orderby('programas.fecha_inicio', 'desc')
+							->paginate($this->cant);
+
+
 
 		$this->resetPage();
 

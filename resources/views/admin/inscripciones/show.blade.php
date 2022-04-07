@@ -31,7 +31,7 @@
 					<div class="col-md-3">
 						<p>Correo electrónico:</p>
 					</div>
-					<div class="col-md-9">{{ $inscripcione->personale->contacto->email}}</div>
+					<div class="col-md-9">{{ $inscripcione->personale->user->email}}</div>
 					<div class="col-md-3">
 						<p>Teléfono:</p>
 					</div>
@@ -43,11 +43,11 @@
 					<div class="col-md-3">
 						<p>Pfj:</p>
 					</div>
-					<div class="col-md-9">{{ $inscripcione->grupo->pfj->nombre }}</div>
+					<div class="col-md-9">{{ $inscripcione->programa->nombre }}</div>
 					<div class="col-md-3">
-						<p>Fecha de inicio del grupo:</p>
+						<p>Fecha de inicio de la sesión:</p>
 					</div>
-					<div class="col-md-9">{{ date('d/m/Y', strtotime($inscripcione->grupo->fecha)) }}</div>
+					<div class="col-md-9">{{ date('d/m/Y', strtotime($inscripcione->programa->fecha_inicio)) }}</div>
 				</div>
 			</div>
 		</div>

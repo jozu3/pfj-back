@@ -23,11 +23,13 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {   
-                if (Auth::user()->hasRole(['Consejero'])) {
-                    return redirect(RouteServiceProvider::STUDENT);
-                } else {
-                    return redirect(RouteServiceProvider::HOME);
-                }
+
+                //return redirect(RouteServiceProvider::STUDENT);
+                // if (Auth::user()->hasRole(['Admin', 'Matrimonio Director', 'Matrimonio de logística', 'Cordinador', 'Cordinador auxiliar', 'Consejero'])) {
+                // } else {
+                 return redirect(RouteServiceProvider::HOME);
+                // }
+
             }
         }
 

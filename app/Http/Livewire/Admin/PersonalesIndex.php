@@ -23,13 +23,11 @@ class PersonalesIndex extends Component
     {
 		$that = $this;
 
-    	$personales = Personale::select('*','personales.id as id', 'contactos.id as idcontacto')
-							->join('contactos', 'personales.contacto_id', '=', 'contactos.id')
-							->where(function($query) use ($that) {
-								$query->orWhere('contactos.apellidos', 'like','%'.$that->search.'%')
-										->orWhere('contactos.nombres', 'like','%'.$that->search.'%')
-										->orWhere('contactos.telefono', 'like','%'.$that->search.'%')
-										->orWhere('contactos.email', 'like','%'.$that->search.'%');
+    	$personales = Personale::whereHas('contacto', function($query) use ($that) {
+								$query->orWhere('apellidos', 'like','%'.$that->search.'%')
+										->orWhere('nombres', 'like','%'.$that->search.'%')
+										->orWhere('telefono', 'like','%'.$that->search.'%')
+										->orWhere('email', 'like','%'.$that->search.'%');
 								})
 							->paginate();
 

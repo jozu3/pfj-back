@@ -6,7 +6,6 @@ use App\Models\Inscripcione;
 use App\Models\Personale;
 use App\Models\Contacto;
 use App\Models\User;
-use App\Models\Personale;
 use App\Models\Grupo;
 use Illuminate\Database\Eloquent\Factories\Factory;
 

@@ -69,9 +69,9 @@ class PersonaleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Personale $personal)
+    public function edit(Personale $personale)
     {
-        return view('admin.personales.edit', compact('personal'));
+        return view('admin.personales.edit', compact('personale'));
     }
 
     /**
@@ -81,7 +81,7 @@ class PersonaleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Personale $personal, Request $request)
+    public function update(Personale $personale, Request $request)
     {
 
         $request->validate([
@@ -90,15 +90,13 @@ class PersonaleController extends Controller
             'telefono' => 'required',
         ]);
 
-        $personal->update($request->all());
+        $personale->contacto->update($request->all());
 
-        $upt = User::where('id', $personal->user_id)->update([
+        $upt = User::where('id', $personale->user_id)->update([
             'name' => $request->nombres. ' ' . $request->apellidos
         ]);
 
-
-
-        return redirect()->route('admin.personales.edit', $personal)->with('info', 'Los datos se guardaron correctamente');
+        return redirect()->route('admin.personales.edit', $personale)->with('info', 'Los datos se guardaron correctamente');
     }
 
     /**

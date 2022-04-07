@@ -24,11 +24,11 @@
                             @if ( $personal->user)
                             {{ $personal->user->email }}
                             @else
-                            <a href="{{ route('admin.users.create', ['personal' => $personal]) }}" class="btn btn-primary" >Crear usuario</a>
+                            <a href="{{ route('admin.users.create', ['personale' => $personal]) }}" class="btn btn-primary" >Crear usuario</a>
                             @endif
                         </td>
     				  	<td width="10px">
-    				  		<a href="{{ route('admin.personales.edit', $personal) }}" class="btn btn-primary" >Editar</a>
+    				  		<a href="{{ route('admin.personales.edit', ['personale' => $personal]) }}" class="btn btn-primary" >Editar</a>
     				  	</td>
     				  </tr>
     				@endforeach

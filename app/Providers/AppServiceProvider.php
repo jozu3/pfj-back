@@ -4,12 +4,10 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use App\Models\Personale;
-use App\Models\Personale_nota;
 use App\Models\Contacto;
 use App\Models\Inscripcione;
 use App\Models\Pago;
 use App\Models\Seguimiento;
-use App\Models\Unidad;
 use App\Models\Obligacione;
 use App\Observers\PersonaleObserver;
 use App\Observers\PersonaleNotaObserver;
@@ -74,12 +72,10 @@ class AppServiceProvider extends ServiceProvider
 
 
         Pago::observe(PagoObserver::class);
-        Unidad::observe(UnidadObserver::class);
         Personale::observe(PersonaleObserver::class);
         Inscripcione::observe(InscripcioneObserver::class);
         Seguimiento::observe(SeguimientoObserver::class);
         Contacto::observe(ContactoObserver::class);
-        Personale_nota::observe(PersonaleNotaObserver::class);
         Obligacione::observe(ObligacioneObserver::class);
     }
 }

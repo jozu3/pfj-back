@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Inyawa')
+@section('title', 'PFJ')
 
 @section('content_header')
-	<a href="{{ route('admin.inscripciones.create', 'idcontacto='.$contacto->id) }}" class="btn btn-success btn-sm float-right">Inscripcioner</a>
+	<a href="{{ route('admin.inscripciones.create', 'idcontacto='.$contacto->id) }}" class="btn btn-success btn-sm float-right">Inscribir</a>
     <h1>Contacto: {{ $contacto->nombres.' '.$contacto->apellidos }}</h1>
 @stop
 
@@ -34,7 +34,7 @@
 								'2' => 'Contactado',
 								'3' => 'Probable',
 								'4' => 'Confirmado',
-								'5' => 'Inscripcionedo',
+								'5' => 'Inscrito',
 							], null, ['class' => 'form-control', 'placeholder' => 'Escoge', 'disabled' => 'disabled', 'style' => 'appearance: none; ']); !!}
 				</div>
 				</div>

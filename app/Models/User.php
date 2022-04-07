@@ -66,6 +66,10 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
+    public function adminlte_image(){
+        return 'https://picsum.photos/300/300';
+    }
+
     /**
      * Send the password reset notification.
      *
