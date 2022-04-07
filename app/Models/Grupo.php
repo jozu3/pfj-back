@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Programa;
-use App\Models\Personale_companerismo;
 
 class Grupo extends Model
 {
@@ -19,6 +18,10 @@ class Grupo extends Model
 
     public function capacitaciones(){
         return $this->hasMany(Capacitacione::class);
+    } 
+
+    public function companerismos(){
+        return $this->hasMany(Companerismo::class);
     } 
 
 }

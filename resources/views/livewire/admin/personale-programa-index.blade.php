@@ -3,6 +3,7 @@
         <thead>
             <tr>
                 <th>Asignación</th>
+                <th>Compañerismo</th>
                 <th>Nombres</th>
                 <th>Apellidos</th>
                 <th>Telefono</th>
@@ -13,6 +14,16 @@
         @forelse ($personales as $personale)
                 <tr>
                     <td>{{ $personale->rolPrograma($programa)->name }}</td>
+                    @if ($personale->rolPrograma($programa)->name == 'Matrimonio Director')
+                        <td>{{ $personale->rolPrograma($programa)->name }}</td>
+                    @else
+                        @if ($personale->companerismoPrograma($programa) != null)
+                            
+                        <td>{{ $personale->companerismoPrograma($programa)->numero }}</td>
+                        @else
+                            <td> No tiene compañero(a)</td>
+                        @endif
+                    @endif
                     <td>{{ $personale->contacto->nombres }}</td>
                     <td>{{ $personale->contacto->apellidos }}</td>
                     <td>{{ $personale->contacto->telefono }}</td>

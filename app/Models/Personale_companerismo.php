@@ -19,5 +19,5 @@ class Personale_companerismo extends Model
     	return $this->belongsTo(Personale::class);
     }
 
-
+   
 }

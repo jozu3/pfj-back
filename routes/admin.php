@@ -34,7 +34,7 @@ Route::resource('grupos', GrupoController::class)->names('admin.grupos');
 Route::resource('notas', NotaController::class)->names('admin.notas');
 Route::get('/programas/misprogramas', [ProgramaController::class, 'misprogramas'])->name('admin.programas.misprogramas');
 Route::get('/programas/grupos', [ProgramaController::class, 'grupos'])->name('admin.programas.grupos');
-Route::get('/programas/asignar', [ProgramaController::class, 'asignar'])->name('admin.programas.asignar');
+Route::get('/programas/{programa}/asignar', [ProgramaController::class, 'asignar'])->name('admin.programas.asignar');
 Route::resource('programas', ProgramaController::class)->names('admin.programas');
 
 Route::resource('inscripciones', InscripcioneController::class)->names('admin.inscripciones');

@@ -134,7 +134,7 @@ class ProgramaController extends Controller
     }
 
 
-    public function asignar(){
-        return view('admin.programas.asignar');
+    public function asignar(Programa $programa){
+        return view('admin.programas.asignar', compact('programa'));
     }
 }
