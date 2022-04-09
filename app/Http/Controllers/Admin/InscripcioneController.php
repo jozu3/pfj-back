@@ -158,8 +158,8 @@ class InscripcioneController extends Controller
      */
     public function edit(Inscripcione $inscripcione)
     {
-        $inscripcione['pfj_id'] = $inscripcione->grupo->pfj->id;
-        return view('admin.inscripciones.edit', compact('inscripcione'));
+        $roles = Role::whereIn('id', [2,3,4,5,6])->pluck('name', 'id');
+        return view('admin.inscripciones.edit', compact('inscripcione', 'roles'));
     }
 
     /**
@@ -172,17 +172,17 @@ class InscripcioneController extends Controller
     public function update(Request $request, Inscripcione $inscripcione)
     {   
 
-        if ($request->tipoinscripcione != $inscripcione->tipoinscripcione) {
+        // if ($request->tipoinscripcione != $inscripcione->tipoinscripcione) {
             
-            $haypagos = Pago::whereHas('obligacione', function($query) use ($inscripcione){
-                $query->where('inscripcione_id', $inscripcione->id);
-            })->count();
-            //dd($haypagos);
-            if ($haypagos > 0 ){
-                return redirect()->back()->with('haypagos', 'No puede cambiar el tipo de inscripcione porque algunas obligaciones ya fueron pagadas.');
-            }
+        //     $haypagos = Pago::whereHas('obligacione', function($query) use ($inscripcione){
+        //         $query->where('inscripcione_id', $inscripcione->id);
+        //     })->count();
+        //     //dd($haypagos);
+        //     if ($haypagos > 0 ){
+        //         return redirect()->back()->with('haypagos', 'No puede cambiar el tipo de inscripcione porque algunas obligaciones ya fueron pagadas.');
+        //     }
             
-        }
+        // }
 
        /* $request->validate([
             'estado' => 'in:0,1,2,3',
@@ -194,9 +194,8 @@ class InscripcioneController extends Controller
 
 
         $inscripcione->update([
-            'tipoinscripcione' => $request->tipoinscripcione,
-            'estado' => $request->estado
-            //'grupo_id' => $request->grupo_id
+            'estado' => $request->estado,
+            'role_id' => $request->role_id
         ]);
         
         return redirect()->route('admin.inscripciones.edit', compact('inscripcione'))->with('info','Se actualizaron los datos correctamente');

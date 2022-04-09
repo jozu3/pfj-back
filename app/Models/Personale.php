@@ -53,5 +53,9 @@ class Personale extends Model
         }
     }
 
-    /* */
+    public function inscripcionePrograma(Programa $programa){
+        $inscripcione = Inscripcione::where('personale_id', $this->id)->where('programa_id', $programa->id)->first();
+        return $inscripcione;
+    }
+
 }

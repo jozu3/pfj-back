@@ -29,10 +29,6 @@
 	@error('tipoinscripcione')
 		<small class="text-danger">{{ $message }}</small>
 	@enderror --}}
-	
-	@error('personale_id')
-		<small class="text-danger">{{ $message }}</small>
-	@enderror
 	<div>
 	@if(session('haypagos'))
 		<small class="text-danger">{{ session('haypagos') }}</small>

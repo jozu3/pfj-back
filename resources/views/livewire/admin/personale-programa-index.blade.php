@@ -35,7 +35,7 @@
                         @endif
                     </td>
                     <td width="10px">
-                        <a href="{{ route('admin.personales.edit', $personale) }}" class="btn btn-primary" >Editar</a>
+                        <a href="{{ route('admin.inscripciones.edit', $personale->inscripcionePrograma($programa)) }}" class="btn btn-primary" >Editar</a>
                     </td>
                 </tr>
         @empty

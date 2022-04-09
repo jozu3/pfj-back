@@ -33,7 +33,7 @@
     		{!! Form::close() !!}
         </div>  
     </div>
-    <div class="card">  
+    {{-- <div class="card">  
         <div class="card-header">
                 <b>Obligaciones por pagar</b>
         </div>
@@ -100,7 +100,7 @@
                     </tbody>
                 </table>
         </div>
-    </div>
+    </div> --}}
 @stop
 
 @section('css')

@@ -11,7 +11,7 @@ class Grupo extends Model
     use HasFactory;
     protected $guarded = ['id', 'created_at', 'updated_at'];
     
-    public function Programa(){
+    public function programa(){
     	return $this->belongsTo(Programa::class);
     }
 
