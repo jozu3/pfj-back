@@ -31,6 +31,14 @@ class Programa extends Model
     	return $this->hasMany(Capacitacione::class);
     }
 
+    public function anuncios(){
+    	return $this->hasMany(Anuncio::class);
+    }
+
+    public function tareas(){
+    	return $this->hasMany(Tarea::class);
+    }
+
     public function lideres(){
         $inscripciones = Inscripcione::where('programa_id', $this->id)->whereIn('role_id', [2,3,4])->get();
         return $inscripciones;
