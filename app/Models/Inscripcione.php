@@ -38,6 +38,10 @@ class Inscripcione extends Model
         return $this->hasMany(Personale_unidade::class);
     }
 
+    public function asignaciones(){
+        return $this->hasMany(Asignacione::class);
+    }
+
     public function asistenciaCapacitacione(Capacitacione $capacitacione){
         return Asistencia::where('capacitacione_id', $capacitacione->id)->where('inscripcione_id', $this->id)->first();
     }

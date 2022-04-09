@@ -12,7 +12,8 @@
                     <!-- This example requires Tailwind CSS v2.0+ -->
                     <div class="flex flex-col">
                         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-                            <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+                            <div class="py-2 align-middle min-w-full sm:px-6 lg:px-8">
+                                <!-- inline-block --->
 
                                 <div class="container py-6">
                                     <div class="text-xl text-center text-gray-900 border-b-2 font-bold">
@@ -34,40 +35,34 @@
 
                                 <div class="container py-6">
                                     <div class="text-3xl text-center text-gray-900 border-b-2 font-bold">
-                                        <p class="">Anuncios</p> <!-- border-b-4 -->                                        
+                                        <p class="">Anuncios</p> <!-- border-b-4 -->
                                     </div>
                                     <div class="flex items-center justify-center">
-                                      <div class="grid max-w-2xl flex justify-center ">
-                                          <div class="grid col-span-6 relative">
+                                        <div class="grid max-w-2xl flex justify-center ">
+                                            <div class="grid col-span-6 relative">
 
-                                              <div
-                                                  class="group shadow-lg hover:shadow-2xl duration-200 delay-75 w-full border-2 border-yellow-300 rounded-sm my-4">                                                  
-                                                  <div
-                                                      class="bg-yellow-300 text-xl font-bold text-white text-center">
-                                                      <p>Mensaje</p>
-                                                  </div>
-                                                  <div class="bg-white py-6 pr-6 pl-9">
-                                                      <!-- Description -->
-                                                      <p
-                                                          class="text-sm font-semibold text-gray-500 group-hover:text-gray-700 mt-2 leading-6  ">
-                                                          Lorem ipsum dolor sit, amet consectetur
-                                                          adipisicing elit. Quae officiis animi nisi
-                                                          in
-                                                          cupiditate eius, dolores natus atque,
-                                                          distinctio, ratione eveniet! Ea
-                                                          exercitationem
-                                                          enim non repellendus itaque iusto officia
-                                                          porro?
-                                                      </p>
-                                                  </div>
-                                                  <!-- Color -->
-                                                  {{-- <div
-                                                      class="bg-blue-400 group-hover:bg-blue-600 h-full w-4 absolute m-0 left-0">
-                                                  </div> --}}
-                                                  {{-- </a> --}}
-                                              </div>
-                                          </div>
-                                      </div>
+                                                <div
+                                                    class="group shadow-lg hover:shadow-2xl duration-200 delay-75 w-full border-2 border-yellow-300 rounded-sm my-4">
+                                                    <div class="bg-yellow-300 text-xl font-bold text-white text-center">
+                                                        <p class="px-6 py-4">Mensaje</p>
+                                                    </div>
+                                                    <div class="bg-white py-6 pr-6 pl-9">
+                                                        <!-- Description -->
+                                                        <p
+                                                            class="text-sm font-semibold text-gray-500 group-hover:text-gray-700 mt-2 leading-6  ">
+                                                            Lorem ipsum dolor sit, amet consectetur
+                                                            adipisicing elit. Quae officiis animi nisi
+                                                            in
+                                                            cupiditate eius, dolores natus atque,
+                                                            distinctio, ratione eveniet! Ea
+                                                            exercitationem
+                                                            enim non repellendus itaque iusto officia
+                                                            porro?
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
 
                                 </div>
@@ -76,10 +71,39 @@
                                     <div class="text-2xl text-right text-gray-400 border-b-2 font-bold">
                                         <p class="">Metas</p> <!-- border-b-4 -->
                                     </div>
+                                    <div class="overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                                        <table class="min-w-full divide-y divide-gray-200 text-center">
+                                            {{-- <thead>
+                                                <tr>
+                                                    <th>Hecho</th>                                                    
+                                                    <th>Escritura</th>
+                                                    <th>Fecha</th>
+                                                </tr>
+                                            </thead> --}}
+                                            <tbody class="bg-white divide-y divide-gray-200">
+                                                <tr>
+                                                    <td class="px-6 py-4"><input type="checkbox" name="" id=""></td>                                                    
+                                                    <td class="px-6 py-4 font-bold whitespace-normal">1 Nefi 4-5</td>
+                                                    <td class="px-6 py-4 font-bold text-gray-400">16/03/2022</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="px-6 py-4"><input type="checkbox" name="" id=""></td>                                                    
+                                                    <td class="px-6 py-4 font-bold whitespace-normal">1 Nefi 2-4</td>
+                                                    <td class="px-6 py-4 font-bold text-gray-400">15/03/2022</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="px-6 py-4"><input type="checkbox" name="" id=""></td>                                                    
+                                                    <td class="px-6 py-4 font-bold whitespace-normal">1 Nefi 1-2</td>
+                                                    <td class="px-6 py-4 font-bold text-gray-400">14/03/2022</td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
 
                                 </div>
 
-                                <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">                                  
+                                <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
                                     <table class="min-w-full divide-y divide-gray-200">
                                         <thead class="bg-gray-50">
                                             <tr>
