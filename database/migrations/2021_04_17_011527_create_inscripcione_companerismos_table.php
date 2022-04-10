@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePagosTable extends Migration
+class CreateInscripcioneCompanerismosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class CreatePagosTable extends Migration
      */
     public function up()
     {
-        Schema::create('pagos', function (Blueprint $table) {
+        Schema::create('inscripcione_companerismos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('cuenta_id')->constrained();
-            $table->foreignId('obligacione_id')->constrained()->onDelete('cascade');
-            $table->double('monto');
-            $table->date('fechapago');
-            $table->foreignId('personale_id')->constrained();
+            $table->foreignId('inscripcione_id')->constrained();
+            $table->foreignId('companerismo_id')->constrained();
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ class CreatePagosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pagos');
+        Schema::dropIfExists('inscripcioneCompanerismos');
     }
 }

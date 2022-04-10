@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Student;
 use App\Http\Controllers\Controller;
 use App\Models\Programa;
 use App\Models\Inscripcione;
-use App\Models\Personale_companerismo;
+use App\Models\InscripcioneCompanerismo;
 use Illuminate\Http\Request;
 
 class ProgramaController extends Controller
@@ -54,9 +54,9 @@ class ProgramaController extends Controller
         $personale = auth()->user()->personale;
 
         $inscripcione = Inscripcione::where('programa_id', $programa->id)->where('personale_id', $personale->id)->first();
-        // $personale_companerismos = Personale_companerismo::where('inscripcione_id', $inscripcione->id)->get();
+        // $inscripcioneCompanerismos = InscripcioneCompanerismo::where('inscripcione_id', $inscripcione->id)->get();
 
-        // return view('student.programas.show', compact('personale_companerismos', 'inscripcione'));
+        // return view('student.programas.show', compact('inscripcioneCompanerismos', 'inscripcione'));
         return view('student.programas.show', compact('inscripcione'));
 
     }

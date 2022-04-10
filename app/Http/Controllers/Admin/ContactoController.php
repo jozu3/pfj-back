@@ -12,6 +12,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StoreContactoRequest;
 use DB;
 
+use Illuminate\Support\Facades\Storage;
+
 class ContactoController extends Controller
 {
     public function __construct(){
@@ -55,11 +57,22 @@ class ContactoController extends Controller
      */
     public function store(StoreContactoRequest $request)
     {
+
+        //return Storage::put('contactos', $request->file('imgperfil'));
+
+        
         $request['estado'] = 1;
         /*if (isset($request['vendedor_id'])) {
             $request['personal_id'] = $request['vendedor_id'];
         }*/
         $contacto = Contacto::create($request->all());
+
+        if ($request->file('imgperfil')) {
+            $url = Storage::put('contactos', $request->file('imgperfil'));
+            $contacto->image()->create([
+                'url' => $url
+            ]);
+        }
 
         return redirect()->route('admin.contactos.show', compact('contacto'))->with('info', 'Contacto creado con éxito');
     }
@@ -114,9 +127,26 @@ class ContactoController extends Controller
         /*if (isset($request['vendedor_id'])) {
             $request['personal_id'] = $request['vendedor_id'];
         }*/
+        //return Storage::put('contactos', $request->imgperfil);
 
         if (!$contacto->update($request->all())) {
+            
             return redirect()->route('admin.contactos.show', compact('contacto'))->with('error', 'Hubo un error al actualizar');
+        }
+        
+        if ($request->file('imgperfil')) {
+            $url = Storage::put('contactos', $request->file('imgperfil'));
+            //$contacto->image()->delete();
+            if($contacto->image != null){
+                Storage::delete($contacto->image->url);
+                $contacto->image->update([
+                    'url' => $url
+                ]);
+            } else {
+                $contacto->image()->create([
+                    'url' => $url
+                ]);
+            }
         }
 
         if ($request->asignar == 'true'){

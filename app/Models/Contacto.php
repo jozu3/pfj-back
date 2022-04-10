@@ -25,4 +25,8 @@ class Contacto extends Model
         return $this->belongsTo(Personale::class);
     }
 
+    public function image(){
+        return $this->morphOne(Image::class, 'imageable');
+    }
+
 }

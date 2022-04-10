@@ -17,6 +17,7 @@ class CreateCompanerismosTable extends Migration
             $table->id();
             $table->string('numero');
             $table->string('nombre');
+            $table->foreignId('role_id')->constrained();
             $table->foreignId('grupo_id')->constrained();
             $table->timestamps();
         });

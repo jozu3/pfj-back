@@ -19,7 +19,7 @@ use App\Http\Controllers\Admin\PagoController;
 use App\Http\Controllers\Admin\CuentaController;
 use App\Http\Controllers\Admin\PDFController;
 use App\Http\Controllers\Admin\CapacitacioneController;
-use App\Http\Controllers\Admin\PersonaleCompanerismoeController;
+use App\Http\Controllers\Admin\InscripcioneCompanerismoeController;
 use App\Http\Controllers\Admin\ExcelController;
 
 Route::resource('', HomeController::class)->names('admin');
@@ -42,10 +42,10 @@ Route::resource('obligaciones', ObligacioneController::class)->names('admin.obli
 Route::resource('pagos', PagoController::class)->names('admin.pagos');
 Route::resource('cuentas', CuentaController::class)->names('admin.cuentas');
 Route::resource('capacitaciones', CapacitacioneController::class)->names('admin.capacitaciones');
-Route::resource('personale_companerismoes', PersonaleCompanerismoeController::class)->names('admin.personale_companerismoes');
+Route::resource('inscripcioneCompanerismoes', InscripcioneCompanerismoeController::class)->names('admin.inscripcioneCompanerismoes');
 
-Route::delete('personale_companerismoes/destroyfromgroup/{grupo}', [PersonaleCompanerismoeController::class, 'destroyfromgroup'])->name('admin.personale_companerismoes.destroyfromgroup');
-Route::post('capacitaciones/updatefromgroup/{grupo}', [PersonaleCompanerismoeController::class, 'updatefromgroup'])->name('admin.personale_companerismoes.updatefromgroup');
+Route::delete('inscripcioneCompanerismoes/destroyfromgroup/{grupo}', [InscripcioneCompanerismoeController::class, 'destroyfromgroup'])->name('admin.inscripcioneCompanerismoes.destroyfromgroup');
+Route::post('capacitaciones/updatefromgroup/{grupo}', [InscripcioneCompanerismoeController::class, 'updatefromgroup'])->name('admin.inscripcioneCompanerismoes.updatefromgroup');
 
 Route::delete('capacitaciones/destroyfromgroup/{grupo}', [CapacitacioneController::class, 'destroyfromgroup'])->name('admin.capacitaciones.destroyfromgroup');
 Route::post('capacitaciones/storeforgroup/{grupo}', [CapacitacioneController::class, 'storeforgroup'])->name('admin.capacitaciones.storeforgroup');

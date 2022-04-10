@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\Grupo;
 use App\Models\Programa;
-use App\Models\Personale_companerismo;
+use App\Models\InscripcioneCompanerismo;
 use App\Models\Personale;
 use Faker\Generator as Faker;
 
@@ -33,7 +33,7 @@ class GrupoSeeder extends Seeder
 
         // foreach ($grupos as $grupo){
 
-		// 	Personale_companerismo::create([
+		// 	InscripcioneCompanerismo::create([
         //         'grupo_id' => $grupo->id,
         //         'personale_id' => $faker->randomElement(Personale::all()->pluck('id'))
         //     ]);

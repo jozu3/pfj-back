@@ -111,10 +111,10 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'admin.cuentas.destroy', 'description' => 'Eliminar cuentas'])->syncRoles([$role1, $role2]);
 
         //Permisos personale grupo
-        Permission::create(['name' => 'admin.personale_companerismos.index', 'description' => 'Ver listado de personale grupos'])->syncRoles([$role1, $role2, $role4, $role5]);
-        Permission::create(['name' => 'admin.personale_companerismos.create', 'description' => 'Crear personale grupos'])->syncRoles([$role1, $role2, $role4, $role5]);
-        Permission::create(['name' => 'admin.personale_companerismos.edit', 'description' => 'Editar personale grupos'])->syncRoles([$role1, $role2, $role4, $role5]);
-        Permission::create(['name' => 'admin.personale_companerismos.destroy', 'description' => 'Eliminar personale grupos'])->syncRoles([$role1, $role2, $role4, $role5]);
+        Permission::create(['name' => 'admin.inscripcioneCompanerismos.index', 'description' => 'Ver listado de personale grupos'])->syncRoles([$role1, $role2, $role4, $role5]);
+        Permission::create(['name' => 'admin.inscripcioneCompanerismos.create', 'description' => 'Crear personale grupos'])->syncRoles([$role1, $role2, $role4, $role5]);
+        Permission::create(['name' => 'admin.inscripcioneCompanerismos.edit', 'description' => 'Editar personale grupos'])->syncRoles([$role1, $role2, $role4, $role5]);
+        Permission::create(['name' => 'admin.inscripcioneCompanerismos.destroy', 'description' => 'Eliminar personale grupos'])->syncRoles([$role1, $role2, $role4, $role5]);
 
         //Permisos personale nota
         Permission::create(['name' => 'admin.personale_notas.index', 'description' => 'Ver listado de personale notas'])->syncRoles([$role1, $role2, $role4, $role5]);

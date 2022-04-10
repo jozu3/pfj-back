@@ -22,6 +22,22 @@
 	@enderror
 
 </div>
+<div class="col-md-12">
+	{!! Form::label('imgperfil', 'Imagen de perfil') !!}
+	<div class="row p-2">
+		<div class="col">
+			<img id="img-show" class="img-fluid" src="@if ( isset($contacto) && $contacto->image != null) {{ Storage::url($contacto->image->url) }} @else {{'no image'}} @endif"  alt="">
+		</div>
+		<div class="col">
+			{!! Form::file('imgperfil', ['class' => 'form-control-file', 'accept' => 'image/*']) !!}
+			<p>Solo se permite los formatos de imagen(jpg, png)</p>
+			@error('imgperfil')
+				<small class="text-danger">{{ $message }}</small>
+			@enderror
+		</div>
+	</div>
+
+</div>
 <div class="col-md-4">
 	
 	{!! Form::label('email', 'Correo electrónico') !!}

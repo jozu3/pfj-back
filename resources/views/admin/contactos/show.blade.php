@@ -22,7 +22,7 @@
 	<div class="col-md-12">
 		<div class="card">
 			<div class="card-body">
-				{!! Form::model($contacto, ['route' => ['admin.contactos.update', $contacto], 'method' => 'put']) !!}
+				{!! Form::model($contacto, ['route' => ['admin.contactos.update', $contacto], 'method' => 'put', 'files' => true]) !!}
 
 				@include('admin.contactos.partials.form')
 				<div class="row">
@@ -63,5 +63,18 @@
 @stop
 
 @section('js')
-    <script> console.log('Hi!'); </script>
+    <script> 
+		document.getElementById('imgperfil').addEventListener('change', cambiarImagen);
+
+		function cambiarImagen(event){
+			var file = event.target.files[0];
+
+			var reader = new FileReader();
+			reader.onload = (event) => {
+				document.getElementById("img-show").setAttribute('src', event.target.result);
+			};
+
+			reader.readAsDataURL(file);
+		}
+	</script>
 @stop

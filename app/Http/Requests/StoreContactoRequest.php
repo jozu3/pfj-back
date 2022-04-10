@@ -40,6 +40,7 @@ class StoreContactoRequest extends FormRequest
             $rules = [
                 //'nombres' => 'required',
                 'telefono' => 'required|numeric',
+                'imgperfil' => 'image',
                 //'estado' => 'required|in:1,2,3,4,5', //el estado se actuliza solo
             ];
 

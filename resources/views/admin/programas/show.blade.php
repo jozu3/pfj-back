@@ -55,7 +55,7 @@
 		</nav>
 		<div class="tab-content" id="nav-tabContent">
 			<div class="tab-pane fade show active" id="nav-personal" role="tabpanel" aria-labelledby="nav-personal-tab">
-				@livewire('admin.personale-programa-index', ['programa_id' => $programa->id])
+				@livewire('admin.inscripcione-programa-index', ['programa_id' => $programa->id])
 		  </div>
 		  <div class="tab-pane fade show" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
 				@include('admin.programas.partials.asistencia')
@@ -129,6 +129,7 @@
         }
     </style>
     <link rel="stylesheet" href="{{ config('app.url') }}/css/app.css">
+
 @stop
 
 @section('js')
