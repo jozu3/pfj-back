@@ -21,6 +21,7 @@ use App\Http\Controllers\Admin\PDFController;
 use App\Http\Controllers\Admin\CapacitacioneController;
 use App\Http\Controllers\Admin\InscripcioneCompanerismoeController;
 use App\Http\Controllers\Admin\ExcelController;
+use App\Http\Controllers\Admin\CompanerismoController;
 
 Route::resource('', HomeController::class)->names('admin');
 Route::resource('users', UserController::class)->names('admin.users');
@@ -31,17 +32,18 @@ Route::resource('seguimientos', SeguimientoController::class)->names('admin.segu
 Route::resource('pfjs', PfjController::class)->names('admin.pfjs');
 Route::get('grupos/migrupo', [GrupoController::class, 'migrupo'])->name('admin.grupos.migrupo');
 Route::resource('grupos', GrupoController::class)->names('admin.grupos');
+Route::resource('companerismos', CompanerismoController::class)->names('admin.companerismos');
 Route::resource('notas', NotaController::class)->names('admin.notas');
 Route::get('/programas/misprogramas', [ProgramaController::class, 'misprogramas'])->name('admin.programas.misprogramas');
 Route::get('/programas/grupos', [ProgramaController::class, 'grupos'])->name('admin.programas.grupos');
 Route::get('/programas/{programa}/asignar', [ProgramaController::class, 'asignar'])->name('admin.programas.asignar');
 Route::resource('programas', ProgramaController::class)->names('admin.programas');
+Route::resource('capacitaciones', CapacitacioneController::class)->names('admin.capacitaciones');
 
 Route::resource('inscripciones', InscripcioneController::class)->names('admin.inscripciones');
 Route::resource('obligaciones', ObligacioneController::class)->names('admin.obligaciones');
 Route::resource('pagos', PagoController::class)->names('admin.pagos');
 Route::resource('cuentas', CuentaController::class)->names('admin.cuentas');
-Route::resource('capacitaciones', CapacitacioneController::class)->names('admin.capacitaciones');
 Route::resource('inscripcioneCompanerismoes', InscripcioneCompanerismoeController::class)->names('admin.inscripcioneCompanerismoes');
 
 Route::delete('inscripcioneCompanerismoes/destroyfromgroup/{grupo}', [InscripcioneCompanerismoeController::class, 'destroyfromgroup'])->name('admin.inscripcioneCompanerismoes.destroyfromgroup');
@@ -49,7 +51,7 @@ Route::post('capacitaciones/updatefromgroup/{grupo}', [InscripcioneCompanerismoe
 
 Route::delete('capacitaciones/destroyfromgroup/{grupo}', [CapacitacioneController::class, 'destroyfromgroup'])->name('admin.capacitaciones.destroyfromgroup');
 Route::post('capacitaciones/storeforgroup/{grupo}', [CapacitacioneController::class, 'storeforgroup'])->name('admin.capacitaciones.storeforgroup');
-  
+
 
   
 

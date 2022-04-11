@@ -67,7 +67,7 @@
                         {{-- @else --}}
                         {{-- @endif --}}
                         @can('admin.programas.edit')
-    					<th colspan="2"></th>
+    					<th colspan="1"></th>
                         @endcan
     				</tr>
     			</thead>
@@ -123,10 +123,14 @@
 							</form>
 						</td>
                         @endcan
-                        @if (auth()->user()->hasRole('Profesor') or auth()->user()->can('admin.programas.viewList'))
-                            <td width="200px">
-                                {{-- <a href="{{ route('admin.excel.personalesprograma', $programa) }}" class="btn btn-success btn-sm float-right mr-3"><i class="far fa-file-excel"></i> Registro de personales</a> --}}
-                            </td>
+                        <td>
+                        </td>
+                        @if (auth()->user()->can('admin.programas.viewList'))
+                        <td width="200px">
+                            <a href="{{ route('admin.programas.asignar', $programa) }}" 
+                                        class="btn btn-success btn-sm float-right mr-3">
+                                <i class="fas fa-sitemap"></i> Asignaciones</a>
+                        </td>
                         @endif
     				  </tr>
     				@endforeach

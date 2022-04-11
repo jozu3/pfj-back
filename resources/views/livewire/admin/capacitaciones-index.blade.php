@@ -27,10 +27,19 @@
 					</td>
 					<td>
 						{!! Form::date('fechacapacitacion', null, ['class' => 'form-control']) !!}
-					<td>
-    					{!! Form::submit('Guardar',  ['class' => 'btn btn-primary'])!!}
+					<td width="10px">
+						<button type="submit" class="btn btn-sm btn-primary"><i class="fas fa-save"></i></button>
     				</td>
     				{!! Form::close() !!}
+					<td width="10px">
+						<form method="POST" action="{{ route('admin.capacitaciones.destroy', $capacitacione) }}">
+							@csrf
+							@method('DELETE')
+							<button type="submit" class="btn btn-sm btn-danger">
+								<i class="fas fa-trash-alt"></i>
+							</button>
+						</form>
+					</td>
     			</tr>
     		@endforeach
 
