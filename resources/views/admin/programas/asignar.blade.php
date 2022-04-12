@@ -5,6 +5,8 @@
 @section('content_header')
     <h2 class="txt-yellow-pfj font-weight-bold">{{ $programa->nombre }}</h2>
     <h1>Organizar Personal y Grupos</h1>
+    <button id="guardar" class="btn btn-success btn-sm ">Guardar cambios</button>
+
 @stop
 
 @section('content')
@@ -45,7 +47,7 @@
 
         for (var i = 0; i < grupos.length; i++) {
             new Sortable(grupos[i], {
-                group: 'grupos',
+                group: 'grupo',
                 sort: false,
                 animation: 150,
                 fallbackOnBody: true,
@@ -57,14 +59,14 @@
                     //guardamos el orden
                     set:(sortable) => {
                         const orden = sortable.toArray();
-			            localStorage.setItem(sortable.options.group.name, orden.join('|'));
-                        console.log(orden)
+			            localStorage.setItem(sortable.el.getAttribute('data-id'), orden.join('|'));
+                        //console.log(sortable.el)
                         //Livewire.emit('moverCompanerismo')
 
                     },
                     // Obtenemos el orden de la lista
                     get: (sortable) => {
-                        const orden = localStorage.getItem(sortable.options.group.name);
+                        const orden = localStorage.getItem(sortable.el.getAttribute('data-id'));
                         return orden ? orden.split('|') : [];
                     }
                 }
@@ -72,9 +74,10 @@
             });
         }
 
+
         for (var i = 0; i < compas.length; i++) {
             new Sortable(compas[i], {
-                group: 'companerismos',
+                group: 'companerismo',
                 sort: false,
                 animation: 150,
                 fallbackOnBody: true,
@@ -86,18 +89,42 @@
                     //guardamos el orden
                     set:(sortable) => {
                         const orden = sortable.toArray();
-			            localStorage.setItem(sortable.options.group.name, orden.join('|'));
-                        console.log(orden)
-                        // Livewire.emit('moverPersonal')
+			            localStorage.setItem(sortable.el.getAttribute('data-id'), orden.join('|'));
+                        //console.log(sortable)
                     },
                     // Obtenemos el orden de la lista
                     get: (sortable) => {
-                        const orden = localStorage.getItem(sortable.options.group.name);
+                        const orden = localStorage.getItem(sortable.el.getAttribute('data-id'));
                         return orden ? orden.split('|') : [];
                     }
                 }
 
             });
         }
+
+        var result = {
+
+        }
+        $('#guardar').click(function(){
+
+            for (let i = 0; i < localStorage.length; i++) {
+
+                console.log(localStorage.key(i))
+                var k = localStorage.key(i)
+                console.log(localStorage.getItem(k))
+                result[k] = localStorage.getItem(k)
+
+/*
+                $.post( "{{ route('admin.grupos.index') }}", function( data ) {
+                    $( ".result" ).html( data );
+                });
+*/
+                
+            }
+            var m = localStorage.key(4)+ localStorage.getItem(localStorage.key(4));
+            Livewire.emit('moverPersonal:'+m)
+        })
+
+
     </script>
 @stop
