@@ -15,6 +15,7 @@ use Spatie\Permission\Traits\HasRoles;
 use App\Models\Personale;
 use App\Models\Cord_auxiliare;
 
+use Illuminate\Support\Facades\Storage;
 use App\Notifications\ResetPasswordNotification;
 
 class User extends Authenticatable
@@ -67,6 +68,9 @@ class User extends Authenticatable
     ];
 
     public function adminlte_image(){
+        if ($this->personale->contacto->image) {
+            return Storage::url($this->personale->contacto->image->url);
+        }
         return 'https://picsum.photos/300/300';
     }
 

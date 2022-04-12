@@ -15,8 +15,9 @@ class CreateCompanerismosTable extends Migration
     {
         Schema::create('companerismos', function (Blueprint $table) {
             $table->id();
-            $table->string('numero');
-            $table->string('nombre');
+            $table->string('numero')->nullable();
+            $table->string('nombre')->nullable();
+            $table->foreignId('role_id')->constrained();
             $table->foreignId('grupo_id')->constrained();
             $table->timestamps();
         });

@@ -1,4 +1,6 @@
 <div>
+    {{$alert}}
+    {{$data}}
     <div class="container-fluid h-100">
         <div class="row">
             <div class="col-md-4"></div>
@@ -9,11 +11,11 @@
                             Cordinadores
                         </h3>
                     </div>
-                    <div class="card-body group" id="">
+                    <div class="card-body group" >
                         <div class="card card-primary card-outline" >
-                            <div class="card-header companerismo row">
+                            <div class="card-header companerismo row" data-id="cordis">
                                     @forelse ($programa->coordinadores() as $inscripcione)
-                                    <div class="col-6 p-0" data-id="{{$inscripcione->personale->id}}">
+                                    <div class="col-6 p-0" data-id="{{ 'ins-' . $inscripcione->id}}">
                                         <div class="card text-center">
                                             <div class="card-header">
                                                 <img class="img-fluid rounded-circle" src="{{ $inscripcione->personale->user->adminlte_image() }}" alt="">
@@ -24,13 +26,13 @@
                                         </div>
                                     </div>
                                     @empty
-                                    <div class="col-12">
+                                    {{-- <div class="col-12">
                                         <div class="card text-center">
                                             <div class="card-body">
                                                 No se ha asignado cordinadores
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     @endforelse
                             </div>
                         </div>
@@ -46,18 +48,19 @@
                                 {{ 'Grupo ' . $grupo->numero }}
                             </h3>
                         </div>
-                        <div class="card-body group" id="">
+                        <div class="card-body group" data-id="{{'grupo-'.$grupo->id}}">
                             @foreach ($grupo->companerismos as $companerismo)
-                                <div class="card card-primary card-outline" data-id="{{$companerismo->id}}">
-                                    <div class="card-header companerismo row">
-                                        @foreach ($companerismo->personale_companerismos as $personale_companerismo)
-                                        <div class="col-6 p-0" data-id="{{$personale_companerismo->personale->id}}">
+                                <div class="card card-primary card-outline" data-id="{{'com-'.$companerismo->id}}">
+                                    <div class="card-header companerismo row" data-id="{{'com-'.$companerismo->id}}"> 
+                                        @foreach ($companerismo->inscripcioneCompanerismos as $inscripcioneCompanerismo)
+                                        <div class="col-6 p-0" data-id="{{'ins-'.$inscripcioneCompanerismo->inscripcione->id}}">
                                             <div class="card text-center">
                                                 <div class="card-header">
-                                                    <img class="img-fluid rounded-circle" src="{{ $personale_companerismo->personale->user->adminlte_image() }}" alt="">
+                                                    <img class="img-fluid rounded-circle" src="{{ $inscripcioneCompanerismo->inscripcione->personale->user->adminlte_image() }}" alt="">
+                                                    <div class="card-text"><small class="text-muted">{{ $inscripcioneCompanerismo->inscripcione->role->name }}</small></div>                                                   
                                                 </div>
                                                 <div class="card-body p-0">
-                                                    {{ $personale_companerismo->personale->user->name }}
+                                                    <div class="card-text">{{ $inscripcioneCompanerismo->inscripcione->personale->user->name }}</div>
                                                 </div>
                                             </div>
                                         </div>

@@ -11,11 +11,12 @@
 @stop
 
 @section('content')
-	@if (session('info'))
-        <div class="alert alert-success">
-            {{ session('info') }}
-        </div>
-    @endif
+@if (session('info'))
+<div class="alert alert-success">
+	{{ session('info') }}
+</div>
+@endif
+
     @if (auth()->user()->can('admin.programas.edit'))
 	<div class="card">
 		<div class="card-body">
@@ -29,74 +30,39 @@
 		</div>
 	</div>
     @endif
-	@if (session('info_personale_nota'))
+
+	@if (session('info_comp'))
         <div class="alert alert-success">
-            {{ session('info_personale_nota') }}
-        </div>
-    @endif
-    @if (session('error_personale_nota'))
-        <div class="alert alert-danger">
-            {{ session('error_personale_nota') }}
+            {{ session('info_comp') }}
         </div>
     @endif
 	<div class="card">
-		{{-- <div class="card-header">
-			@php
-				$iniciado = false;
-				$hay_personales_nuevos = false;
-				if ($programa->inscripciones->count() != $programa->personaleUnidadesporInscripcione()) {
-					$hay_personales_nuevos = true;
-				}
-			@endphp
-			Unidades{{ $hay_personales_nuevos}}
-			@if ($programa->grupos->count())
-				@if(!$grupo->notasGenerateds())
-					<div class="float-right">
-					{!! Form::open(['route' => 'admin.personale_unidades.store', 'class' =>'crear_notas_clases']) !!}
-						{!! Form::hidden('grupo_id', $grupo->id) !!}
-						{!! Form::submit('Generar notas', ['class' =>'btn btn-primary float-right mx-2']) !!}
-					{!! Form::close() !!} 
-					</div>
-				@else
-					<div class="float-right">
-					@php
-						$iniciado = true;
-					@endphp
-					{!! Form::open(['route' => ['admin.personale_unidades.destroyfromgroup', $grupo]]) !!}
-						@method('DELETE')
-						{!! Form::submit('Eliminar registro de notas', ['class' =>'btn btn-danger float-right mx-2']) !!}
-					{!! Form::close() !!} 
-					</div>
-					@if ($hay_personales_nuevos)
-					<div class="float-right">
-					{!! Form::open(['route' => ['admin.personale_unidades.updatefromgroup', $grupo], 'class' =>'crear_notas_clases']) !!}
-						{!! Form::hidden('grupo_id', $grupo->id) !!}
-						{!! Form::submit('Generar notas', ['class' =>'btn btn-primary float-right mx-2']) !!}
-					{!! Form::close() !!} 
-					</div>
-					@endif
-				@endif
-
-				@if(!$grupo->clasesGenerateds())
-					<div class="float-right">
-					{!! Form::open(['route' => ['admin.clases.storeforgroup', $grupo], 'class' =>'crear_notas_clases']) !!}
-						{!! Form::submit('Crear clases', ['class' =>'btn btn-primary float-right']) !!}
-					{!! Form::close() !!}  
-					</div>
-				@else
-					@php
-						$iniciado = true;
-					@endphp
-					<div class="float-right">
-					{!! Form::open(['route' => ['admin.clases.destroyfromgroup', $grupo]]) !!}
-						@method('DELETE')
-						{!! Form::submit('Eliminar registro de clases', ['class' =>'btn btn-danger float-right mx-2']) !!}
-					{!! Form::close() !!} 
-					</div>				
-				@endif	
-			@endif
-		</div>	 --}}
-        @livewire('admin.capacitaciones-index', [ 'programa' => $programa])
+		<div class="row">
+			<div class="col-md-12">
+                <nav>
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        <a class="nav-item nav-link active" id="nav-personal-tab" data-toggle="tab" href="#nav-personal"
+                            role="tab" aria-controls="nav-personal" aria-selected="true">Capacitaciones</a>
+                        <a class="nav-item nav-link" id="nav-comp-tab" data-toggle="tab" href="#nav-comp" role="tab"
+                            aria-controls="nav-comp" aria-selected="true">Compañerismos</a>
+                        <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
+                            aria-controls="nav-profile" aria-selected="false">Lecturas</a>
+                    </div>
+                </nav>
+                <div class="tab-content overflow-auto" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="nav-personal" role="tabpanel"
+                        aria-labelledby="nav-personal-tab">
+						@livewire('admin.capacitaciones-index', [ 'programa' => $programa])
+                    </div>
+                    <div class="tab-pane fade show" id="nav-comp" role="tabpanel" aria-labelledby="nav-comp-tab">
+						@livewire('admin.grupos-index', [ 'programa' => $programa])
+                    </div>
+                    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+						{{-- @livewire('admin.asignaciones-index', [ 'programa' => $programa]) --}}
+                    </div>
+                </div>
+            </div>
+		</div>
 	</div>
 @stop
 
@@ -118,6 +84,28 @@
 @stop
 
 @section('js')
+
+	@if (session('info_comp'))
+        <script>
+			$().ready(function() {
+				$('#nav-comp-tab').click();
+				
+				const urlParams = new URLSearchParams(window.location.search);
+				const grupo_id = urlParams.get('grupo')
+				$('#comps-' + grupo_id ).click();
+
+			})
+
+		</script>
+    @endif
+	@if (session('info_grupo'))
+        <script>
+			$().ready(function() {
+				$('#nav-comp-tab').click();
+			})
+
+		</script>
+    @endif
     <script>
     	$().ready(function() {
 		

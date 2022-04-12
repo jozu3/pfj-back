@@ -55,7 +55,7 @@ class CapacitacioneController extends Controller
      */
     public function show(Capacitacione $capacitacione)
     {
-        //
+        return 'show';
     }
 
     /**
@@ -94,7 +94,11 @@ class CapacitacioneController extends Controller
      */
     public function destroy(Capacitacione $capacitacione)
     {
-        //
+        $capacitacione->delete();
+        $programa = $capacitacione->programa;
+
+        return redirect()->route('admin.programas.edit', compact('programa'))
+        ->with('info_capacitacione', 'La capacitación se eliminó correctamente');
     }
 
     public function storeforgroup(Grupo $grupo){

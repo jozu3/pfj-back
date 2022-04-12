@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Pfj;
 use App\Models\Programa;
+use Spatie\Permission\Models\Role;
 
 class ProgramaController extends Controller
 {

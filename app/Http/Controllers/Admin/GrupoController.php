@@ -4,8 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Unidad;
-use App\Models\Profesore;
+use App\Models\Grupo;
 
 class GrupoController extends Controller
 {
@@ -40,7 +39,6 @@ class GrupoController extends Controller
      */
     public function store(Request $request)
     {
-        Unidad::create($request->all());
         //return ;
     }
 
@@ -61,19 +59,11 @@ class GrupoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Unidad $unidad)
+    public function edit(Grupo $grupo)
     {
-        $profesores = Profesore::select('id', 'nombres', 'apellidos')->get();
 
-        $profes = [];
 
-        foreach ($profesores as $p){
-            $profes[ $p['id']] = $p['nombres'] . ' ' . $p['apellidos'];
-        }
 
-        $profesores = $profes;
-
-        return view('admin.grupos.edit', compact('unidad', 'profesores'));
     }
 
     /**
@@ -83,15 +73,16 @@ class GrupoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Unidad $unidad)
+    public function update(Request $request, Grupo $grupo)
     {
          $request->validate([
-            'descripcion' => 'required',
+            'numero' => 'required',
         ]);
          
-        $unidad->update($request->all());
+        $grupo->update($request->all());
+        $programa = $grupo->programa;
 
-        return redirect()->route('admin.grupos.edit', compact('unidad'))->with('info', 'Se actualizaron los datos');
+        return redirect()->route('admin.programas.edit', compact('programa'))->with('info_grupo', 'Se actualizaron los datos del grupo');
     }
 
     /**
@@ -100,16 +91,16 @@ class GrupoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Unidad $unidad)
+    public function destroy(Grupo $grupo)
     {
 
-        foreach ($unidad->notas as $nota){
-            $nota->delete();
+        foreach ($grupo->companerismos as $companerismo){
+            $companerismo->delete();
         }
 
-        $unidad->delete();
+        $grupo->delete();
 
-        return redirect()->route('admin.grupos.edit', $unidad->grupo)->with('info', 'La unidad se eliminó con éxito'); 
+        return redirect()->route('admin.programas.edit', $grupo->programa)->with('info', 'El grupo se eliminó con éxito'); 
     }
 
     public function migrupo(){

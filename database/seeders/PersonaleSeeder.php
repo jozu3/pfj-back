@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Inscripcione;
-use App\Models\Personale_companerismo;
+use App\Models\InscripcioneCompanerismo;
 use App\Models\Personale;
 use App\Models\Companerismo;
 use App\Models\Programa;
@@ -157,7 +157,7 @@ class PersonaleSeeder extends Seeder
             $grupos = $inscripcione->programa->grupos;
 
 
-            Personale_companerismo::create([
+            InscripcioneCompanerismo::create([
                 'grupo_id' => $faker->randomElement($grupos)->id,
                 'personale_id' => $inscripcione->id
             ]);
@@ -171,7 +171,8 @@ class PersonaleSeeder extends Seeder
                 Companerismo::create([
                     'numero' => ($i+1),
                     'nombre' => $faker->word(1),
-                    'grupo_id'=> $grupo->id
+                    'grupo_id'=> $grupo->id,
+                    'role_id' => 6 //consejero
                 ]);
             }
         }
@@ -205,7 +206,7 @@ class PersonaleSeeder extends Seeder
                 'name' => $personale->contacto->nombres . ' ' . $personale->contacto->apellidos
             ]);
 
-            Inscripcione::create([
+            $inscripcione = Inscripcione::create([
                 "personale_id" => $personale->id,
                 "programa_id" => $companerismo->grupo->programa->id,
                 'role_id' => 6,//consejero
@@ -220,8 +221,8 @@ class PersonaleSeeder extends Seeder
             ]);
 
 
-            Personale_companerismo::create([
-                'personale_id' => $personale->id,
+            InscripcioneCompanerismo::create([
+                'inscripcione_id' => $inscripcione->id,
                 'companerismo_id' => $companerismo->id,
             ]);
 
@@ -253,7 +254,7 @@ class PersonaleSeeder extends Seeder
                 'name' => $personale->contacto->nombres . ' ' . $personale->contacto->apellidos
             ]);
 
-            Inscripcione::create([
+            $inscripcione = Inscripcione::create([
                 "personale_id" => $personale->id,
                 "programa_id" => $companerismo->grupo->programa->id,
                 'role_id' => 6,//consejero
@@ -267,8 +268,8 @@ class PersonaleSeeder extends Seeder
                 'estado' => 5
             ]);
 
-            Personale_companerismo::create([
-                'personale_id' => $personale->id,
+            InscripcioneCompanerismo::create([
+                'inscripcione_id' => $inscripcione->id,
                 'companerismo_id' => $companerismo->id,
             ]);
         }
@@ -282,7 +283,7 @@ class PersonaleSeeder extends Seeder
                 })->get());
                 
                 
-            Personale_companerismo::create([
+            InscripcioneCompanerismo::create([
                 'personale_id' => $inscripcione->personale->id,
                 'companerismo_id' => $companerismo->id,
             ]);

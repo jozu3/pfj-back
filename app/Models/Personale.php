@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Personale_companerismo;
+use App\Models\InscripcioneCompanerismo;
 use App\Models\Seguimiento;
 use App\Models\Programa;
 use App\Models\Contacto;
@@ -33,8 +33,8 @@ class Personale extends Model
     	return $this->belongsTo(Contacto::class);
     }
     
-    public function personale_companerismos(){
-    	return $this->hasMany(Personale_companerismo::class);
+    public function inscripcioneCompanerismos(){
+    	return $this->hasMany(InscripcioneCompanerismo::class);
     }
     
     public function rolPrograma(Programa $programa){
@@ -42,14 +42,14 @@ class Personale extends Model
     }
 
     public function companerismoPrograma(Programa $programa){
-        $personale_companerismo = Personale_companerismo::where('personale_id', $this->id)->whereHas('companerismo', function($q) use ($programa){
+        $inscripcioneCompanerismo = InscripcioneCompanerismo::where('personale_id', $this->id)->whereHas('companerismo', function($q) use ($programa){
             $q->whereHas('grupo', function($qu) use ($programa){
                 $qu->where('programa_id', $programa->id);
             });
         })->first();
 
-        if($personale_companerismo != null){
-            return $personale_companerismo->companerismo;
+        if($inscripcioneCompanerismo != null){
+            return $inscripcioneCompanerismo->companerismo;
         }
     }
 

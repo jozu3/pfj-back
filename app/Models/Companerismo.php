@@ -15,7 +15,7 @@ class Companerismo extends Model
     	return $this->belongsTo(Grupo::class);
     }
 
-    public function personale_companerismos()   {
-        return $this->hasMany(Personale_companerismo::class);
+    public function inscripcioneCompanerismos()   {
+        return $this->hasMany(InscripcioneCompanerismo::class);
     }
 }

@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Personale;
 use App\Models\Asistencia;
 use App\Models\Programa;
-use App\Models\Obligacione;
 
 class Inscripcione extends Model
 {
@@ -34,8 +33,8 @@ class Inscripcione extends Model
         return $this->hasMany(Asistencia::class);
     }
 
-    public function personaleUnidades(){
-        return $this->hasMany(Personale_unidade::class);
+    public function inscripcioneCompanerismo(){
+        return $this->hasOne(InscripcioneCompanerismo::class);
     }
 
     public function asignaciones(){
