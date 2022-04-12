@@ -17,6 +17,9 @@
                     @if ($inscripcione->role->name == 'Matrimonio Director')
                         <td>{{ $inscripcione->role->name }}</td>
                     @else
+                    @if ($inscripcione->role->name == 'Cordinador')
+                        <td>{{ $inscripcione->role->name }}</td>
+                    @else
                         @if ($inscripcione->inscripcioneCompanerismo->companerismo != null)
                             
                         <td>
@@ -25,7 +28,8 @@
                         @else
                         <td> No tiene compañero(a)</td>
                         @endif
-                        @endif
+                    @endif
+                    @endif
                     <td>
                         <img id="imgperfil" class="rounded-circle" width="50" src="{{ $inscripcione->personale->user->adminlte_image() }}" alt="">
                     </td>

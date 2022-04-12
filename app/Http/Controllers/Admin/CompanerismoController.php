@@ -91,6 +91,7 @@ class CompanerismoController extends Controller
             
             return redirect()->route('admin.programas.edit', compact('programa', 'grupo'))->with('info_comp', 'El compañerismo se actualizó con éxito'); 
         }
+        
         $companerismo->update([
             'grupo_id' => $request->grupo_id
         ]);
