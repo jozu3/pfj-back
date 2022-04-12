@@ -19,6 +19,7 @@
                                         <div class="card text-center">
                                             <div class="card-header">
                                                 <img class="img-fluid rounded-circle" src="{{ $inscripcione->personale->user->adminlte_image() }}" alt="">
+                                                <div class="card-text"><small class="text-muted">{{ $inscripcione->role->name }}</small></div>
                                             </div>
                                             <div class="card-body p-0">
                                                 {{ $inscripcione->personale->user->name }}
@@ -55,7 +56,7 @@
                                         @foreach ($companerismo->inscripcioneCompanerismos as $inscripcioneCompanerismo)
                                         <div class="col-6 p-0" data-id="{{'ins-'.$inscripcioneCompanerismo->inscripcione->id}}">
                                             <div class="card text-center">
-                                                <div class="card-header">
+                                                <div class="card-header inscripcione">
                                                     <img class="img-fluid rounded-circle" src="{{ $inscripcioneCompanerismo->inscripcione->personale->user->adminlte_image() }}" alt="">
                                                     <div class="card-text"><small class="text-muted">{{ $inscripcioneCompanerismo->inscripcione->role->name }}</small></div>                                                   
                                                 </div>
