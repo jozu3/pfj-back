@@ -56,12 +56,16 @@
         .card-primary.card-outline {
             border-top: 3px solid #ffc907;
         }
-
+        
         .group {
             padding: 2px
         }
-
-    </style>
+        .bg-cordauxiliar{
+            border-top: 3px solid #40bf1f;
+        
+        }
+        
+        </style>
 @stop
 
 @section('js')

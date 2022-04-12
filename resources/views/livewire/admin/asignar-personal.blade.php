@@ -51,7 +51,7 @@
                         </div>
                         <div class="card-body group" data-id="{{'grupo-'.$grupo->id}}">
                             @foreach ($grupo->companerismos as $companerismo)
-                                <div class="card card-primary card-outline" data-id="{{'com-'.$companerismo->id}}">
+                                <div class="card @if ($companerismo->role_id == 5) {{ 'bg-cordauxiliar' }}@else {{ 'card-primary' }} @endif  card-outline " data-id="{{'com-'.$companerismo->id}}">
                                     <div class="card-header companerismo row" data-id="{{'com-'.$companerismo->id}}"> 
                                         @foreach ($companerismo->inscripcioneCompanerismos as $inscripcioneCompanerismo)
                                         <div class="col-6 p-0" data-id="{{'ins-'.$inscripcioneCompanerismo->inscripcione->id}}">
