@@ -13,19 +13,51 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     @can('student.home')
-                    <x-jet-nav-link href="{{ route('st.index') }}" :active="request()->routeIs('st.index')">
-                        {{ __('Inicio') }}
-                    </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('st.obligaciones.index') }}" :active="request()->routeIs('st.obligaciones.index')">
-                        {{ __('Pagos') }}
-                    </x-jet-nav-link>
+                        <x-jet-nav-link href="{{ route('st.index') }}" :active="request()->routeIs('st.index')">
+                            {{ __('Inicio') }}
+                        </x-jet-nav-link>
                     @endcan
 
+                    <div class="inline-flex items-center px-1 pt-1">
+                        <x-jet-dropdown>
+                            <x-slot name="trigger">
+
+                                <button
+                                    class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
+                                    <div>Mi familia</div>
+
+                                    <div class="ml-1">
+                                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd"
+                                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                    </div>
+                                </button>
+
+                            </x-slot>
+
+                            <x-slot name="content">
+                                <!-- User Management -->
+                                @foreach (Auth::user()->personale->inscripciones as $inscripcione)
+                                    <x-jet-dropdown-link href="{{ route('st.grupos.show', $inscripcione->personale->companerismoPrograma($inscripcione->programa)->grupo) }}">
+                                        {{ $inscripcione->programa->nombre }}
+                                    </x-jet-dropdown-link>
+                                @endforeach
+                            </x-slot>
+
+                        </x-jet-dropdown>
+                    </div>
+
+                    <x-jet-nav-link href="{{ route('st.index') }}" :active="request()->routeIs('st.lectura.index')">
+                        {{ __('Mis lecturas') }}
+                    </x-jet-nav-link>
 
                     @can('admin.home')
-                    <x-jet-nav-link href="{{ route('admin.index') }}" :active="request()->routeIs('admin.index')">
-                        {{ __('Panel administrativo') }}
-                    </x-jet-nav-link>
+                        <x-jet-nav-link href="{{ route('admin.index') }}" :active="request()->routeIs('admin.index')">
+                            {{ __('Panel administrativo') }}
+                        </x-jet-nav-link>
                     @endcan
                 </div>
             </div>
@@ -37,11 +69,15 @@
                         <x-jet-dropdown align="right" width="60">
                             <x-slot name="trigger">
                                 <span class="inline-flex rounded-md">
-                                    <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:bg-gray-50 hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50 transition ease-in-out duration-150">
+                                    <button type="button"
+                                        class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:bg-gray-50 hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50 transition ease-in-out duration-150">
                                         {{ Auth::user()->currentTeam->name }}
 
-                                        <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                            <path fill-rule="evenodd" d="M10 3a1 1 0 01.707.293l3 3a1 1 0 01-1.414 1.414L10 5.414 7.707 7.707a1 1 0 01-1.414-1.414l3-3A1 1 0 0110 3zm-3.707 9.293a1 1 0 011.414 0L10 14.586l2.293-2.293a1 1 0 011.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                        <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd"
+                                                d="M10 3a1 1 0 01.707.293l3 3a1 1 0 01-1.414 1.414L10 5.414 7.707 7.707a1 1 0 01-1.414-1.414l3-3A1 1 0 0110 3zm-3.707 9.293a1 1 0 011.414 0L10 14.586l2.293-2.293a1 1 0 011.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                                                clip-rule="evenodd" />
                                         </svg>
                                     </button>
                                 </span>
@@ -55,7 +91,8 @@
                                     </div>
 
                                     <!-- Team Settings -->
-                                    <x-jet-dropdown-link href="{{ route('teams.show', Auth::user()->currentTeam->id) }}">
+                                    <x-jet-dropdown-link
+                                        href="{{ route('teams.show', Auth::user()->currentTeam->id) }}">
                                         {{ __('Team Settings') }}
                                     </x-jet-dropdown-link>
 
@@ -86,16 +123,23 @@
                     <x-jet-dropdown align="right" width="48">
                         <x-slot name="trigger">
                             @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
-                                <button class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out">
-                                    <img class="h-8 w-8 rounded-full object-cover" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
+                                <button
+                                    class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out">
+                                    <img class="h-8 w-8 rounded-full object-cover"
+                                        src="{{ Auth::user()->profile_photo_url }}"
+                                        alt="{{ Auth::user()->name }}" />
                                 </button>
                             @else
                                 <span class="inline-flex rounded-md">
-                                    <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
+                                    <button type="button"
+                                        class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
                                         {{ Auth::user()->name }}
 
-                                        <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                        <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd"
+                                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                                clip-rule="evenodd" />
                                         </svg>
                                     </button>
                                 </span>
@@ -124,8 +168,7 @@
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
 
-                                <x-jet-dropdown-link href="{{ route('logout') }}"
-                                         onclick="event.preventDefault();
+                                <x-jet-dropdown-link href="{{ route('logout') }}" onclick="event.preventDefault();
                                                 this.closest('form').submit();">
                                     {{ __('Cerrar sesión') }}
                                 </x-jet-dropdown-link>
@@ -137,10 +180,13 @@
 
             <!-- Hamburger -->
             <div class="-mr-2 flex items-center sm:hidden">
-                <button @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
+                <button @click="open = ! open"
+                    class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
                     <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                        <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                        <path :class="{'hidden': ! open, 'inline-flex': open }" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round"
+                            stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        <path :class="{'hidden': ! open, 'inline-flex': open }" class="hidden" stroke-linecap="round" stroke-linejoin="round"
+                            stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </button>
             </div>
@@ -151,18 +197,87 @@
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             @can('student.home')
-            <x-jet-responsive-nav-link href="{{ route('st.index') }}" :active="request()->routeIs('st.index')">
-                {{ __('Inicio') }}
-            </x-jet-responsive-nav-link>
-            <x-jet-responsive-nav-link href="{{ route('st.obligaciones.index') }}" :active="request()->routeIs('st.obligaciones.index')">
-                {{ __('Pagos') }}
-            </x-jet-responsive-nav-link>
+                <x-jet-responsive-nav-link href="{{ route('st.index') }}" :active="request()->routeIs('st.index')">
+                    {{ __('Inicio') }}
+                </x-jet-responsive-nav-link>
+
+                <li class="navigation-item has-submenu is-active">
+                    <a class="navigation-link" href="#">
+                        Dropdown
+                        <span class="submenu-indicator is-active"></span>
+                    </a>
+                    <ul class="navigation-dropdown navigation-submenu is-visible" style="right: auto;">
+                        <li class="navigation-dropdown-item">
+                            <a class="navigation-dropdown-link" href="#">Design</a>
+                        </li>
+                        <li class="navigation-dropdown-item">
+                            <a class="navigation-dropdown-link" href="#">Audio</a>
+                        </li>
+                        <li class="navigation-dropdown-item">
+                            <a class="navigation-dropdown-link" href="#">Video</a>
+                        </li>
+                        <li class="navigation-dropdown-item has-submenu">
+                            <a class="navigation-dropdown-link" href="#">
+                                Programming
+                                <span class="submenu-indicator"></span>
+                            </a>
+                            <ul class="navigation-dropdown navigation-submenu">
+                                <li class="navigation-dropdown-item">
+                                    <a class="navigation-dropdown-link" href="#">Wordpress</a>
+                                </li>
+                                <li class="navigation-dropdown-item">
+                                    <a class="navigation-dropdown-link" href="#">.NET</a>
+                                </li>
+                                <li class="navigation-dropdown-item has-submenu">
+                                    <a class="navigation-dropdown-link" href="#">
+                                        Javascript
+                                        <span class="submenu-indicator submenu-indicator-left"></span>
+                                    </a>
+                                    <ul class="navigation-dropdown navigation-dropdown-left navigation-submenu">
+                                        <li class="navigation-dropdown-item">
+                                            <a class="navigation-dropdown-link" href="#">Vue</a>
+                                        </li>
+                                        <li class="navigation-dropdown-item">
+                                            <a class="navigation-dropdown-link" href="#">React</a>
+                                        </li>
+                                        <li class="navigation-dropdown-item">
+                                            <a class="navigation-dropdown-link" href="#">Ember</a>
+                                        </li>
+                                        <li class="navigation-dropdown-item has-submenu">
+                                            <a class="navigation-dropdown-link" href="#">
+                                                Angular
+                                                <span class="submenu-indicator submenu-indicator-left"></span>
+                                            </a>
+                                            <ul class="navigation-dropdown navigation-dropdown-left navigation-submenu">
+                                                <li class="navigation-dropdown-item">
+                                                    <a class="navigation-dropdown-link" href="#">Angular</a>
+                                                </li>
+                                                <li class="navigation-dropdown-item">
+                                                    <a class="navigation-dropdown-link" href="#">Angular 2</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="navigation-dropdown-item">
+                                    <a class="navigation-dropdown-link" href="#">Python</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+
+                
+
+                <x-jet-responsive-nav-link href="{{ route('st.grupos.index') }}" :active="request()->routeIs('st.grupos.index')">
+                    {{ __('Pagos') }}
+                </x-jet-responsive-nav-link>
             @endcan
 
             @can('admin.home')
-            <x-jet-responsive-nav-link href="{{ route('admin.index') }}" :active="request()->routeIs('admin.index')">
-                {{ __('Admin') }}
-            </x-jet-responsive-nav-link>
+                <x-jet-responsive-nav-link href="{{ route('admin.index') }}" :active="request()->routeIs('admin.index')">
+                    {{ __('Admin') }}
+                </x-jet-responsive-nav-link>
             @endcan
         </div>
 
@@ -171,7 +286,8 @@
             <div class="flex items-center px-4">
                 @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
                     <div class="flex-shrink-0 mr-3">
-                        <img class="h-10 w-10 rounded-full object-cover" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
+                        <img class="h-10 w-10 rounded-full object-cover" src="{{ Auth::user()->profile_photo_url }}"
+                            alt="{{ Auth::user()->name }}" />
                     </div>
                 @endif
 
@@ -197,8 +313,7 @@
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
 
-                    <x-jet-responsive-nav-link href="{{ route('logout') }}"
-                                   onclick="event.preventDefault();
+                    <x-jet-responsive-nav-link href="{{ route('logout') }}" onclick="event.preventDefault();
                                     this.closest('form').submit();">
                         {{ __('Cerrar Sessión') }}
                     </x-jet-responsive-nav-link>
@@ -213,7 +328,8 @@
                     </div>
 
                     <!-- Team Settings -->
-                    <x-jet-responsive-nav-link href="{{ route('teams.show', Auth::user()->currentTeam->id) }}" :active="request()->routeIs('teams.show')">
+                    <x-jet-responsive-nav-link href="{{ route('teams.show', Auth::user()->currentTeam->id) }}"
+                        :active="request()->routeIs('teams.show')">
                         {{ __('Team Settings') }}
                     </x-jet-responsive-nav-link>
 
