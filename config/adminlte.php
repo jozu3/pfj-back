@@ -277,7 +277,12 @@ return [
             'icon'        => 'fas fa-chalkboard-teacher',
             'can'  =>   'admin.programas.index'
         ],
-      
+        [
+            'text' => 'Inscripciones',
+            'route'  => 'admin.inscripciones.index',
+            'icon' => 'fas fa-address-card',
+            'can'  =>   'admin.inscripciones.index'
+        ],
         [
             'header' => 'Inscripción', 
             'key' => 'ventas',
@@ -319,21 +324,16 @@ return [
             'icon' => 'fab fa-leanpub',
             'can'  =>   'admin.grupos.migrupo'
         ],
-        [
-            'text' => 'Inscripciones',
-            'route'  => 'admin.inscripciones.index',
-            'icon' => 'fas fa-address-card',
-            'can'  =>   'admin.inscripciones.index'
-        ],
+ 
         [ 
             'header' => 'Anuncios',
             'can'  =>   'admin.personales.index'
         ],
         [
-            'text'        => 'Mensaje semanal',
-            'route'         => 'admin.profesores.index',
+            'text'        => 'Anuncios',
+            'route'         => 'admin.anuncios.index',
             'icon'        => 'fas fa-chalkboard-teacher',
-            'can'  =>   'admin.profesores.index'
+            'can'  =>   'admin.anuncios.index'
         ],
         [ 
             'header' => 'Reportes',

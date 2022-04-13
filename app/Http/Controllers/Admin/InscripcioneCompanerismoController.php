@@ -107,7 +107,7 @@ class InscripcioneCompanerismoController extends Controller
             $inscripcione->update([
                 'role_id' => 6
             ]);
-            return 'create';
+            return 'inscripcione_companerismo create';
         } 
         if ($cant == 1) {
             InscripcioneCompanerismo::where('inscripcione_id', $inscripcione->id)->update([
@@ -116,7 +116,7 @@ class InscripcioneCompanerismoController extends Controller
             $inscripcione->update([
                 'role_id' => 6
             ]);        
-            return 'update';
+            return 'inscripcione_companerismo update';
         }
 
 

@@ -2,7 +2,9 @@
     <div class="card">
     	<div class="card-header">
             @if (isset($pfj_id) || $mis_programas == true)
+            @can('admin.programas.create')
                 <a href="{{ route('admin.programas.create', 'idpfj='.$pfj_id) }}" class="btn btn-success btn-sm float-right">Nueva sesión</a>
+            @endcan
             @else
                 <div class="form-row align-items-center">
                 <div class="col-md-10 my-1">
@@ -106,12 +108,12 @@
                         </td>
                         @can('admin.programas.edit')
     				  	<td width="10px">
-                            <a href="{{ route('admin.programas.edit', $programa) }}" class="btn btn-sm btn-primary" >Editar</a>
+                            <a href="{{ route('admin.programas.edit', $programa) }}" class="btn btn-sm btn-primary" alt="Administrar sesión" data-toggle="tooltip" data-placement="top" title="Administrar sesión"><i class="fas fa-cogs"></i></a>
                         </td>
                         @endcan
-                        @can(['admin.inscripciones.index'])
+                        @can(['admin.programas.edit'])
                         <td width="10px">
-                            <a href="{{ route('admin.programas.show', $programa) }}" class="btn btn-sm btn-primary" >Personal</a>
+                            <a href="{{ route('admin.programas.show', $programa) }}" class="btn btn-sm btn-primary" alt="Personal" data-toggle="tooltip" data-placement="top" title="Personal"><i class="fas fa-user-friends"></i></a>
                         </td>
                         @endcan
                         @can('admin.programas.destroy')
@@ -119,19 +121,19 @@
 							<form method="POST" action="{{ route('admin.programas.destroy', $programa) }}">
 								@csrf
 								@method('DELETE')
-								<button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
+								<button type="submit" class="btn btn-sm btn-danger" alt="Eliminar" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="fas fa-trash"></i></button>
 							</form>
 						</td>
                         @endcan
                         <td>
                         </td>
-                        @if (auth()->user()->can('admin.programas.viewList'))
-                        <td width="200px">
+                        @can('admin.inscripcioneCompanerismos.edit')                            
+                        <td width="10px">
                             <a href="{{ route('admin.programas.asignar', $programa) }}" 
-                                        class="btn btn-success btn-sm float-right mr-3">
-                                <i class="fas fa-sitemap"></i> Asignaciones</a>
+                            class="btn btn-success btn-sm float-right mr-3" alt="Organigrama" data-toggle="tooltip" data-placement="top" title="Organigrama">
+                            <i class="fas fa-sitemap"></i></a>
                         </td>
-                        @endif
+                        @endcan
     				  </tr>
     				@endforeach
 

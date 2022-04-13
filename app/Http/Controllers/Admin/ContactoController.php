@@ -86,7 +86,7 @@ class ContactoController extends Controller
     public function show(Contacto $contacto)
     {
         //dd($contacto->id);
-        $this->authorize('vendiendo', $contacto);
+        // $this->authorize('vendiendo', $contacto);
 
         $seguimientos = Seguimiento::where('contacto_id', $contacto->id)->get();
         $pfjs = Pfj::pluck('nombre', 'id');
@@ -109,7 +109,7 @@ class ContactoController extends Controller
      */
     public function edit(Contacto $contacto)
     {
-        $this->authorize('vendiendo', $contacto);
+        
      
     }
 
@@ -122,7 +122,7 @@ class ContactoController extends Controller
      */
     public function update(StoreContactoRequest $request, Contacto $contacto)
     {
-        $this->authorize('vendiendo', $contacto);
+        
 
         /*if (isset($request['vendedor_id'])) {
             $request['personal_id'] = $request['vendedor_id'];

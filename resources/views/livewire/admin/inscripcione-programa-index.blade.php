@@ -1,4 +1,7 @@
 <div>
+    <div class="card-header">
+        <input wire:model="search" class="form-control" placeholder="Ingrese nombre de un personal">
+    </div>
     <table class="table table-striped">
         <thead>
             <tr>
@@ -20,7 +23,7 @@
                     @if ($inscripcione->role->name == 'Cordinador')
                         <td>{{ $inscripcione->role->name }}</td>
                     @else
-                        @if ($inscripcione->inscripcioneCompanerismo->companerismo != null)
+                        @if ($inscripcione->inscripcioneCompanerismo != null)
                             
                         <td>
                             {{  $inscripcione->inscripcioneCompanerismo->companerismo->grupo->numero . ' - ' . $inscripcione->inscripcioneCompanerismo->companerismo->numero }}
@@ -31,7 +34,7 @@
                     @endif
                     @endif
                     <td>
-                        <img id="imgperfil" class="rounded-circle" width="50" src="{{ $inscripcione->personale->user->adminlte_image() }}" alt="">
+                        <img id="imgperfil" class="rounded-circle" width="50" height="50" src="{{ $inscripcione->personale->user->adminlte_image() }}" alt="">
                     </td>
                     <td>
                         {{ $inscripcione->personale->contacto->nombres }}
@@ -46,7 +49,7 @@
                         @endif
                     </td>
                     <td width="10px">
-                        <a href="{{ route('admin.inscripciones.edit', $inscripcione) }}" class="btn btn-primary" >Editar</a>
+                        <a href="{{ route('admin.contactos.show', $inscripcione->personale->contacto) }}" class="btn btn-primary" >Editar</a>
                     </td>
                 </tr>
         @empty

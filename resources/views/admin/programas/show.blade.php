@@ -11,7 +11,7 @@
     <a href="{{ route('admin.excel.personalesGrupo', $programa) }}" class="btn btn-success btn-sm float-right mr-3"><i
             class="far fa-file-excel"></i> Registro de personales</a>
 
-    <h1>Grupo: {{ $programa->pfj->nombre . ' ' . date('d/m/Y', strtotime($programa->fecha)) }}</h1>
+    <h1>Sesión: {{ $programa->nombre . ' ' . date('d/m/Y', strtotime($programa->fecha_inicio)) }}</h1>
 @stop
 
 @section('content')

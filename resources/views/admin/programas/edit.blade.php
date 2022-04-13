@@ -6,7 +6,8 @@
 
 @section('content_header')
      <a href="{{ route('admin.programas.show', $programa) }}" class="btn btn-success btn-sm float-right"><i class="fas fa-user-graduate"></i> Ver personales</a>
-
+	 <a href="{{ route('admin.programas.asignar', $programa) }}" class="btn btn-success btn-sm float-right mr-3">
+		<i class="fas fa-sitemap"></i> Asignaciones</a>
     <h1>Editar programa</h1>
 @stop
 
