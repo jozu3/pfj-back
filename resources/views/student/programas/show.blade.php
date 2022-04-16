@@ -68,8 +68,12 @@
                                 </div>
 
                                 <div class="container py-6">
-                                    <div class="text-2xl text-right text-gray-400 border-b-2 font-bold">
-                                        <p class="">Metas</p> <!-- border-b-4 -->
+                                    <div class=" grid grid-cols-3 border-b-2 font-bold">
+                                        <p class="col-span-2 text-lef text-2xl text-gray-400">Metas de lectura</p>
+                                        <!-- border-b-4 -->
+                                        <p class="col-span-1 text-right"><a
+                                                href="{{ route('st.tareas.mislecturas', $inscripcione->programa) }}"><span class="border-l-2 pl-2">
+                                                    Mis lecturas</span></a></p>                                                    
                                     </div>
                                     <div class="overflow-hidden border-b border-gray-200 sm:rounded-lg">
                                         <table class="min-w-full divide-y divide-gray-200 text-center">
@@ -81,22 +85,18 @@
                                                 </tr>
                                             </thead> --}}
                                             <tbody class="bg-white divide-y divide-gray-200">
-                                                <tr>
-                                                    <td class="px-6 py-4"><input type="checkbox" name="" id=""></td>                                                    
-                                                    <td class="px-6 py-4 font-bold whitespace-normal">1 Nefi 4-5</td>
-                                                    <td class="px-6 py-4 font-bold text-gray-400">16/03/2022</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="px-6 py-4"><input type="checkbox" name="" id=""></td>                                                    
-                                                    <td class="px-6 py-4 font-bold whitespace-normal">1 Nefi 2-4</td>
-                                                    <td class="px-6 py-4 font-bold text-gray-400">15/03/2022</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="px-6 py-4"><input type="checkbox" name="" id=""></td>                                                    
-                                                    <td class="px-6 py-4 font-bold whitespace-normal">1 Nefi 1-2</td>
-                                                    <td class="px-6 py-4 font-bold text-gray-400">14/03/2022</td>
-                                                </tr>
-
+                                                @forelse ($inscripcione->programa->tareas->sortByDesc('fecha')->take(3) as $tarea)
+                                                    <tr>
+                                                        <td class="px-6 py-4">
+                                                            <input type="checkbox" name="" id="">
+                                                        </td>
+                                                        <td class="px-6 py-4 font-bold whitespace-normal">{{$tarea->descripcion}}
+                                                        </td>
+                                                        <td class="px-6 py-4 font-bold text-gray-400">{{$tarea->fecha}}</td>
+                                                    </tr>                                                
+                                                @empty
+                                                    <p>No asignados</p>
+                                                @endforelse
                                             </tbody>
                                         </table>
                                     </div>

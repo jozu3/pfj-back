@@ -18,25 +18,28 @@
                     </div>
 
                     {{-- <div class="flex items-center justify-center h-screen bg-gray-900"> --}}
-                    <div class="grid grid-cols-4 gap-4 flex items-center justify-center">
+                    <div class="grid grid-cols-6 gap-4 flex items-center justify-center">
                         @foreach ($grupo->companerismos as $companerismo)
                             {{-- <div class="mb-4">
                         <h1 class="font-semibold text-gray-50">Mutual Followers</h1>
                       </div> --}}
-                            {{-- @foreach ($companerismo->personale_companerismos->personale as $personal) --}}
-                                <div class="border-2 rounded-lg col-span-4 p-4 flex justify-center lg:col-span-1 md:col-span-2">
+
+                            <div
+                                class="border-2 rounded-lg col-span-4 p-4 flex justify-center lg:col-span-2 md:col-span-3">
+                                @foreach ($companerismo->inscripcioneCompanerismos as $inscripcioneCompanerismo)
                                     <div class="flex items-center justify-center flex-col rounded-lg space-y-4">
                                         <img class="rounded-full border-gray-100 shadow-sm w-24 h-24"
-                                            src="https://randomuser.me/api/portraits/women/43.jpg" alt="user image">
-                                        <h1 class="text-gray-500 font-semibold text-center">Ali Hanson</h1>
+                                            src="{{$inscripcioneCompanerismo->inscripcione->personale->user->adminlte_image()}}" alt="user image">
+                                        <h1 class="text-gray-500 font-semibold text-center">
+                                            {{ $inscripcioneCompanerismo->inscripcione->personale->user->name }}</h1>
                                         {{-- <button class="px-8 py-1 border-2 border-indigo-600 bg-indigo-600 rounded-full text-gray-50 font-semibold">Follow</button> --}}
                                     </div>
-                                    <div class="flex items-center justify-center flex-col p-4 rounded-lg space-y-4">
+                                    {{-- <div class="flex items-center justify-center flex-col p-4 rounded-lg space-y-4">
                                         <img class="rounded-full border-gray-100 shadow-sm w-24 h-24"
                                             src="https://randomuser.me/api/portraits/men/81.jpg" alt="user image">
                                         <h1 class="text-gray-500 font-semibold text-center">Derry Harris</h1>
-                                         {{-- <button class="px-8 py-1 border-2 border-indigo-600 bg-indigo-600 rounded-full text-gray-50 font-semibold">Follow</button> --}} 
-                                    </div>
+                                          <button class="px-8 py-1 border-2 border-indigo-600 bg-indigo-600 rounded-full text-gray-50 font-semibold">Follow</button> 
+                                    </div> --}}
 
                                     {{-- <div class="flex items-center justify-center flex-col bg-gray-700 p-4 rounded-lg w-48 space-y-4">
                           <img class="rounded-full border-gray-100 shadow-sm w-24 h-24" src="https://randomuser.me/api/portraits/women/2.jpg" alt="user image">
@@ -50,11 +53,10 @@
                       </div> --}}
                                     {{-- <br>
                                 <div>
-                                    <b>{{ $companerismo->personale_companerismos }}</b>
+                                    <b>{{ $companerismo->inscripcioneCompanerismo }}</b>
                                 </div> --}}
-
-                                </div>
-                            {{-- @endforeach --}}
+                                @endforeach
+                            </div>
                         @endforeach
                     </div>
                     {{-- </div> --}}

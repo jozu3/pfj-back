@@ -114,11 +114,10 @@
                 console.log(localStorage.getItem(k))
                 result[k] = localStorage.getItem(k)
 
-/*
-                $.post( "{{ route('admin.grupos.index') }}", function( data ) {
-                    $( ".result" ).html( data );
-                });
-*/
+
+                // $.post( "{{ route('admin.grupos.index') }}", function( data ) {
+                //     $( ".result" ).html( data );
+                // });
                 
             }
             var m = localStorage.key(4)+ localStorage.getItem(localStorage.key(4));

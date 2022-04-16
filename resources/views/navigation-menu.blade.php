@@ -41,9 +41,11 @@
                             <x-slot name="content">
                                 <!-- User Management -->
                                 @foreach (Auth::user()->personale->inscripciones as $inscripcione)
-                                    <x-jet-dropdown-link href="{{ route('st.grupos.show', $inscripcione->personale->companerismoPrograma($inscripcione->programa)->grupo) }}">
+                                    <x-jet-dropdown-link
+                                        href="{{ route('st.grupos.show', $inscripcione->inscripcioneCompanerismo->companerismo->grupo) }}">
                                         {{ $inscripcione->programa->nombre }}
                                     </x-jet-dropdown-link>
+                                    {{-- {{$inscripcione->inscripcioneCompanerismo}} --}}
                                 @endforeach
                             </x-slot>
 
@@ -201,77 +203,44 @@
                     {{ __('Inicio') }}
                 </x-jet-responsive-nav-link>
 
-                <li class="navigation-item has-submenu is-active">
-                    <a class="navigation-link" href="#">
-                        Dropdown
-                        <span class="submenu-indicator is-active"></span>
-                    </a>
-                    <ul class="navigation-dropdown navigation-submenu is-visible" style="right: auto;">
-                        <li class="navigation-dropdown-item">
-                            <a class="navigation-dropdown-link" href="#">Design</a>
-                        </li>
-                        <li class="navigation-dropdown-item">
-                            <a class="navigation-dropdown-link" href="#">Audio</a>
-                        </li>
-                        <li class="navigation-dropdown-item">
-                            <a class="navigation-dropdown-link" href="#">Video</a>
-                        </li>
-                        <li class="navigation-dropdown-item has-submenu">
-                            <a class="navigation-dropdown-link" href="#">
-                                Programming
-                                <span class="submenu-indicator"></span>
-                            </a>
-                            <ul class="navigation-dropdown navigation-submenu">
-                                <li class="navigation-dropdown-item">
-                                    <a class="navigation-dropdown-link" href="#">Wordpress</a>
-                                </li>
-                                <li class="navigation-dropdown-item">
-                                    <a class="navigation-dropdown-link" href="#">.NET</a>
-                                </li>
-                                <li class="navigation-dropdown-item has-submenu">
-                                    <a class="navigation-dropdown-link" href="#">
-                                        Javascript
-                                        <span class="submenu-indicator submenu-indicator-left"></span>
-                                    </a>
-                                    <ul class="navigation-dropdown navigation-dropdown-left navigation-submenu">
-                                        <li class="navigation-dropdown-item">
-                                            <a class="navigation-dropdown-link" href="#">Vue</a>
-                                        </li>
-                                        <li class="navigation-dropdown-item">
-                                            <a class="navigation-dropdown-link" href="#">React</a>
-                                        </li>
-                                        <li class="navigation-dropdown-item">
-                                            <a class="navigation-dropdown-link" href="#">Ember</a>
-                                        </li>
-                                        <li class="navigation-dropdown-item has-submenu">
-                                            <a class="navigation-dropdown-link" href="#">
-                                                Angular
-                                                <span class="submenu-indicator submenu-indicator-left"></span>
-                                            </a>
-                                            <ul class="navigation-dropdown navigation-dropdown-left navigation-submenu">
-                                                <li class="navigation-dropdown-item">
-                                                    <a class="navigation-dropdown-link" href="#">Angular</a>
-                                                </li>
-                                                <li class="navigation-dropdown-item">
-                                                    <a class="navigation-dropdown-link" href="#">Angular 2</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="navigation-dropdown-item">
-                                    <a class="navigation-dropdown-link" href="#">Python</a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
+                <div class="pt-4 pb-1 ">
+                    <div class="flex items-center px-4">
+                        {{-- @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
+                            <div class="flex-shrink-0 mr-3">
+                                <img class="h-10 w-10 rounded-full object-cover" src="{{ Auth::user()->profile_photo_url }}"
+                                    alt="{{ Auth::user()->name }}" />
+                            </div>
+                        @endif --}}
 
-                
+                        <div>
+                            <div class="font-medium text-base text-gray-400">{{ __('Mi familia') }}</div>
+                            {{-- <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div> --}}
+                        </div>
+                    </div>
 
-                <x-jet-responsive-nav-link href="{{ route('st.grupos.index') }}" :active="request()->routeIs('st.grupos.index')">
+                    <div class="mt-3 space-y-1">
+                        <!-- Account Management -->
+                        {{-- <x-jet-responsive-nav-link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')">
+                            {{ __('Mi familia') }}
+                        </x-jet-responsive-nav-link> --}}
+                        @foreach (Auth::user()->personale->inscripciones as $inscripcione)
+                            <x-jet-responsive-nav-link
+                                href="{{ route('st.grupos.show', $inscripcione->inscripcioneCompanerismo->companerismo->grupo) }}">
+                                {{ $inscripcione->programa->nombre }}
+                            </x-jet-responsive-nav-link>
+                            {{-- {{$inscripcione->inscripcioneCompanerismo}} --}}
+                        @endforeach
+
+
+
+                    </div>
+                </div>
+
+
+
+                {{-- <x-jet-responsive-nav-link href="{{ route('st.grupos.index') }}" :active="request()->routeIs('st.grupos.index')">
                     {{ __('Pagos') }}
-                </x-jet-responsive-nav-link>
+                </x-jet-responsive-nav-link> --}}
             @endcan
 
             @can('admin.home')

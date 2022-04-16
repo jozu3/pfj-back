@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
+use App\Models\Programa;
 use Illuminate\Http\Request;
 
-class LecturaController extends Controller
+class TareaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +15,7 @@ class LecturaController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**
@@ -81,5 +82,10 @@ class LecturaController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function mislecturas(Programa $programa)
+    {
+        return view('student.tareas.mislecturas', compact('programa'));
     }
 }

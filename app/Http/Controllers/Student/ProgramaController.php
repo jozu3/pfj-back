@@ -10,6 +10,9 @@ use Illuminate\Http\Request;
 
 class ProgramaController extends Controller
 {
+    public function __construct(){
+        $this->middleware('can:student.programas.index')->only('index', 'show');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -49,7 +52,7 @@ class ProgramaController extends Controller
      */
     public function show(Programa $programa)
     {
-        $this->authorize('view', $programa);
+        // $this->authorize('view', $programa);
 
         $personale = auth()->user()->personale;
 
