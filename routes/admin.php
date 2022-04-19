@@ -19,7 +19,7 @@ use App\Http\Controllers\Admin\PagoController;
 use App\Http\Controllers\Admin\CuentaController;
 use App\Http\Controllers\Admin\PDFController;
 use App\Http\Controllers\Admin\CapacitacioneController;
-use App\Http\Controllers\Admin\InscripcioneCompanerismoeController;
+use App\Http\Controllers\Admin\InscripcioneCompanerismoController;
 use App\Http\Controllers\Admin\ExcelController;
 use App\Http\Controllers\Admin\CompanerismoController;
 
@@ -44,10 +44,10 @@ Route::resource('inscripciones', InscripcioneController::class)->names('admin.in
 Route::resource('obligaciones', ObligacioneController::class)->names('admin.obligaciones');
 Route::resource('pagos', PagoController::class)->names('admin.pagos');
 Route::resource('cuentas', CuentaController::class)->names('admin.cuentas');
-Route::resource('inscripcioneCompanerismoes', InscripcioneCompanerismoeController::class)->names('admin.inscripcioneCompanerismoes');
+Route::post('inscripcione_companerismos/updateInscripcione/{inscripcione}', [InscripcioneCompanerismoController::class, 'updateInscripcione'])->name('admin.inscripcione_companerismos.updateInscripcione');
+Route::resource('inscripcione_companerismos', InscripcioneCompanerismoController::class)->names('admin.inscripcione_companerismos');
 
-Route::delete('inscripcioneCompanerismoes/destroyfromgroup/{grupo}', [InscripcioneCompanerismoeController::class, 'destroyfromgroup'])->name('admin.inscripcioneCompanerismoes.destroyfromgroup');
-Route::post('capacitaciones/updatefromgroup/{grupo}', [InscripcioneCompanerismoeController::class, 'updatefromgroup'])->name('admin.inscripcioneCompanerismoes.updatefromgroup');
+
 
 Route::delete('capacitaciones/destroyfromgroup/{grupo}', [CapacitacioneController::class, 'destroyfromgroup'])->name('admin.capacitaciones.destroyfromgroup');
 Route::post('capacitaciones/storeforgroup/{grupo}', [CapacitacioneController::class, 'storeforgroup'])->name('admin.capacitaciones.storeforgroup');
