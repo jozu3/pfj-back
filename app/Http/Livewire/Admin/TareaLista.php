@@ -14,9 +14,14 @@ class TareaLista extends Component
     public $descripcion;
 
     protected $listeners = ['render' => 'render'];
+    protected $rules = [
+        'fecha' => 'required',
+        'descripcion' => 'required'
+    ];
 
     public function saveTarea()
     {
+        $this->validate();
         Tarea::create([
             'fecha' => $this->fecha,
             'descripcion' => $this->descripcion,
