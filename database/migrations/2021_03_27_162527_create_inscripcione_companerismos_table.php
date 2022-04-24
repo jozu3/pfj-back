@@ -28,6 +28,6 @@ class CreateInscripcioneCompanerismosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('inscripcioneCompanerismos');
+        Schema::dropIfExists('inscripcione_companerismos');
     }
 }

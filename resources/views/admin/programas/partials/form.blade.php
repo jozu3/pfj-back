@@ -2,7 +2,6 @@
 <div class="col-md-3">
 	{!! Form::label('nombre', 'Nombre') !!}
 	{!! Form::text('nombre', null, ['class' => 'form-control', /*'disabled' => ''*/]) !!}
-	{!! Form::hidden('pfj_id', null) !!}
 
 	@error('nombre')
 		<small class="text-danger">{{ $message }}</small>

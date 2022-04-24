@@ -18,6 +18,7 @@
     	<div class="card-body">
     		{!! Form::model($contacto, ['route' => 'admin.inscripciones.store']) !!}
                 @include('admin.inscripciones.partials.form')
+                @include('admin.personales.partials.form')
                 {!! Form::submit('Registrar', ['class' => 'btn btn-primary']) !!}
     		{!! Form::close() !!}
     	</div>

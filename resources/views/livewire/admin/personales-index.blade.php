@@ -30,7 +30,17 @@
     				  	<td width="10px">
     				  		<a href="{{ route('admin.personales.edit', ['personale' => $personal]) }}" class="btn btn-primary" >Editar</a>
     				  	</td>
+						  @can('admin.personales.destroy')
+						  <td width="10px">
+							<form method="POST" class="eliminar-personales" action="{{ route('admin.personales.destroy', $personal) }}">
+							  @csrf
+							  @method('DELETE')
+							  <button type="submit" class="btn btn-sm btn-danger ">Eliminar</button>
+							</form>
+						  </td>
+						  @endcan
     				  </tr>
+
     				@endforeach
 
     			</tbody>

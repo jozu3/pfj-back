@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreInscripcioneRequest;
+use App\Models\Barrio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Personale;
@@ -43,13 +44,13 @@ class InscripcioneController extends Controller
     {
 
         $contacto = Contacto::find($_GET['idcontacto']);
-        $this->authorize('vendiendo', $contacto);
         $personale_existe = null;
         if (isset($contacto->personale)) {
             $personale_existe = 'Ya es personale, se sugiere tipo de matrícula para personale antiguo.';
         }
 
         $roles = Role::whereNotIn('id', [1])->pluck('name', 'id');
+        $barrios = Barrio::orderBy('nombre')->pluck('nombre', 'id');
 
         // $vendedores = [];
         // if (auth()->user()->can(['Admin'])) {
@@ -57,7 +58,7 @@ class InscripcioneController extends Controller
         //     //$contacto['vendedor_id'] = $contacto->personal_id;
         // }
 
-        return view('admin.inscripciones.create', compact('contacto', 'personale_existe', 'roles'));
+        return view('admin.inscripciones.create', compact('contacto', 'personale_existe', 'roles', 'barrios'));
     }
 
     /**
@@ -100,7 +101,7 @@ class InscripcioneController extends Controller
                 'email' => $contacto->email,
                 'password' => Hash::make('password'),
                 'estado' => 1,
-            ])->assignRole('Personal');
+            ])->assignRole(Role::find($request->role_id)->name);
 
             $request['user_id'] = $user->id;
             $request['permiso_obispo'] = 0;
@@ -118,7 +119,7 @@ class InscripcioneController extends Controller
 
                 $personale = $contacto->personale;
             } else {
-                 return redirect()->back()->with('error', 'El personale ya está inscripcionedo en el grupo seleccionado.');
+                 return redirect()->back()->with('error', 'El personale ya está inscrito en el grupo seleccionado.');
             }
         }
 
@@ -209,7 +210,12 @@ class InscripcioneController extends Controller
      */
     public function destroy(Inscripcione $inscripcione)
     {
+        $personale = $inscripcione->personale; 
+        $user = $personale->user;
         $inscripcione->delete();
+        $personale->delete();
+        $user->delete();
+
         return redirect()->route('admin.inscripciones.index')->with('eliminar','Ok');
     }
 }

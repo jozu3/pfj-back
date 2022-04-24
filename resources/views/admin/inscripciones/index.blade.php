@@ -40,7 +40,7 @@
 		    		e.preventDefault();
 			    	Swal.fire({
 					  title: 'Se necesita confirmación',
-					  text: "No se podrá recuperar los datos de la matrícula.",
+					  text: "No se podrá recuperar los datos de la inscrición.",
 					  icon: 'warning',
 					  showCancelButton: true,
 					  confirmButtonColor: '#3085d6',

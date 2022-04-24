@@ -36,23 +36,14 @@ class InscripcionesIndex extends Component
 	        $this->estado_retirado == true ? array_push($states, "1") : ''; 
 	        $this->estado_suspendido == true ? array_push($states, "2") : ''; 
 
-    		$inscripciones = Inscripcione::/*select('inscripciones.id', 'contactos.apellidos as contacto_apellidos', 
-												  'inscripciones.id as idinscripcione', 'inscripciones.estado as incripcione_estado')
-    							->*/join('personales', 'personales.id', '=', 'inscripciones.personale_id')
-    							->join('contactos', 'contactos.id', '=', 'personales.contacto_id')
-                                ->whereIn('inscripciones.estado', $states)
-    							->where(function($query) {
-			                          $query->orWhere('contactos.nombres', 'like','%'.$this->search.'%')
-			                                ->orWhere('contactos.apellidos', 'like','%'.$this->search.'%');
-			                            });
+    		$inscripciones = Inscripcione::whereIn('inscripciones.estado', $states)
+    							->whereHas('Personale', function($query) {
+			                          $query->whereHas('contacto', function ($q){
+										  $q->where('nombres', 'like','%'.$this->search.'%')
+											->orWhere('apellidos', 'like','%'.$this->search.'%');
+											});
+									  });
 
-    		$user = auth()->user();
-    		if ($user->hasRole('Vendedor')) {
-				$inscripciones = $inscripciones->where(function($query) {
-			                          $query->orWhere('inscripciones.personal_id', auth()->user()->personal->id)
-			                                ->orWhere('contactos.personal_id', auth()->user()->personal->id);
-			                            });
-    		}
 
     		$inscripciones = $inscripciones->orderBy('inscripciones.id', 'asc')->paginate();
 

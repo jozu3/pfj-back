@@ -24,7 +24,7 @@ class PersonalesIndex extends Component
 		$that = $this;
 
     	$personales = Personale::whereHas('contacto', function($query) use ($that) {
-								$query->orWhere('apellidos', 'like','%'.$that->search.'%')
+								$query->where('apellidos', 'like','%'.$that->search.'%')
 										->orWhere('nombres', 'like','%'.$that->search.'%')
 										->orWhere('telefono', 'like','%'.$that->search.'%')
 										->orWhere('email', 'like','%'.$that->search.'%');

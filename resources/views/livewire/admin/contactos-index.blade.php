@@ -55,8 +55,8 @@
                         <th wire:click="sortBy('estado')" style="cursor:pointer">Estado
                             @include('partials._sort-icon', ['field' => 'estado'])
                         </th>
-                        <th wire:click="sortBy('personal_id')" style="cursor:pointer">Estaca
-                            @include('partials._sort-icon', ['field' => 'personal_id'])
+                        <th wire:click="sortBy('estaca_id')" style="cursor:pointer">Estaca
+                            @include('partials._sort-icon', ['field' => 'estaca_id'])
                         </th>
                         <th wire:click="" style="">Comentarios de su vendedor actual
                         </th>
@@ -75,7 +75,12 @@
                             @endif
                         </td>
                     	<td>{{ $contacto->apellidos }}</td>
-                    	<td>{{ $contacto->telefono }}</td>
+                    	<td>
+                            <span>
+                                <a href="tel:{{ $contacto->telefono }}" alt="Llamar por teléfono" data-toggle="tooltip" data-placement="top" title="Llamar por teléfono">{{ $contacto->telefono }}</a>
+                                <a href="https://api.whatsapp.com/send?phone=51{{ $contacto->telefono }}" class="text-success" target="_blank" alt="Enviar Whatsapp" data-toggle="tooltip" data-placement="top" title="Enviar Whatsapp"><i class="fab fa-whatsapp"></i></a>
+                            </span>
+                        </td>
                         <td>
                             @php 
                                 $estados = [
@@ -133,7 +138,11 @@
                                 </td> --}}
                             @endif
                                 <td>
-                                    Estaca
+                                    @if ($contacto->personale != null)
+                                        {{$contacto->personale->barrio->estaca->nombre}}
+                                    @else
+                                    {{ 'No se ha registrado' }}
+                                    @endif
                                 </td>
                                 <td>
                                     @php

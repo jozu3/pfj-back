@@ -50,13 +50,13 @@
                     <label class="form-check-label" for="personale">
                         Personale
                     </label>
-                  </div>
+                  </div-->
                   <div class="custom-control custom-checkbox mr-sm-2 d-inline">
                     <input class="form-check-input" wire:model= "otros" type="checkbox" value="" id="otros">
                     <label class="form-check-label" for="otros">
                         Otros
                     </label>
-                  </div-->
+                  </div>
                 </div>
             </div>
     	</div>
@@ -86,9 +86,17 @@
     				  	<td width="10px">
     				  		<a href="{{ route('admin.users.edit', $user) }}" class="btn btn-primary" >Editar</a>
     				  	</td>
+                @can('admin.users.destroy')
+                <td width="10px">
+                  <form method="POST" class="eliminar-users" action="{{ route('admin.users.destroy', $user) }}">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-sm btn-danger ">Eliminar</button>
+                  </form>
+                </td>
+                @endcan
     				  </tr>
     				@endforeach
-
     			</tbody>
     		</table>
     	</div>

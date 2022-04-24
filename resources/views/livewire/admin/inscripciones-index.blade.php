@@ -41,40 +41,40 @@
     				@foreach($inscripciones as $inscripcione)
     				  <tr>
                 
-                        <td>{{ $inscripcione->id }}</td>
-                        <td>{{ $inscripcione->personale->contacto->nombres }}</td>
-                        <td>{{ $inscripcione->personale->contacto->apellidos }}</td>
-                        <td>{{ $inscripcione->personale->contacto->telefono }}</td>
-                        <td>{{ $inscripcione->personale->user->email }}</td>                        
-                        <td>{{ date('d/m/Y', strtotime($inscripcione->fecha)) }}</td>
-                        <td>{{ $inscripcione->programa->nombre }}</td>
-                        <td>{{ $inscripcione->role->name }}</td>
-                        <td>
-                            @switch($inscripcione->estado)
-                                @case(0)
-                                    {{ 'Habilitado' }}
-                                    @break
-                                @case(1)
-                                    {{ 'Retirado' }}
-                                    @break
-                                @case(2)
-                                    {{ 'Suspendido' }}
-                                    @break
-                                @default
-                            @endswitch
-                        </td>
-    				  	<td width="10px">
-    				  		<a href="{{ route('admin.inscripciones.show', $inscripcione->id) }}" class="btn btn-primary">Ver</a>
-    				  	</td>
-                        @can('admin.inscripciones.destroy')
-                        <td width="10px">
-                           <form method="POST" class="eliminar-inscripcione" action="{{ route('admin.inscripciones.destroy', $inscripcione->id) }}">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-sm btn-danger ">Eliminar</button>
-                            </form>
-                        </td>
-                        @endcan
+                <td>{{ $inscripcione->id }}</td>
+                <td>{{ $inscripcione->personale->contacto->nombres }}</td>
+                <td>{{ $inscripcione->personale->contacto->apellidos }}</td>
+                <td>{{ $inscripcione->personale->contacto->telefono }}</td>
+                <td>{{ $inscripcione->personale->user->email }}</td>                        
+                <td>{{ date('d/m/Y', strtotime($inscripcione->fecha)) }}</td>
+                <td>{{ $inscripcione->programa->nombre }}</td>
+                <td>{{ $inscripcione->role->name }}</td>
+                <td>
+                    @switch($inscripcione->estado)
+                        @case(0)
+                            {{ 'Habilitado' }}
+                            @break
+                        @case(1)
+                            {{ 'Retirado' }}
+                            @break
+                        @case(2)
+                            {{ 'Suspendido' }}
+                            @break
+                        @default
+                    @endswitch
+                </td>
+                <td width="10px">
+                  <a href="{{ route('admin.inscripciones.show', $inscripcione) }}" class="btn btn-primary">Ver</a>
+                </td>
+                @can('admin.inscripciones.destroy')
+                <td width="10px">
+                    <form method="POST" class="eliminar-inscripcione" action="{{ route('admin.inscripciones.destroy', $inscripcione) }}">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-sm btn-danger ">Eliminar</button>
+                    </form>
+                </td>
+                @endcan
     				  </tr>
     				@endforeach
 

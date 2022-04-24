@@ -29,50 +29,8 @@
             <div class="tab-content" id="nav-tabContent">
                 @forelse ($inscripcione->programa->grupos as $grupo)
                 <div class="tab-pane fade show" id="nav-home{{ $grupo->id }}" role="tabpanel" aria-labelledby="nav-home-tab{{ $grupo->id }}">
-                   @livewire('admin.personale-programa-index', ['grupo_id' => $grupo->id])
-                   
-                    {{-- <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>Asignación</th>
-                                <th>Nombres</th>
-                                <th>Apellidos</th>
-                                <th>Telefono</th>
-                                <th>Correo electrónico</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        @forelse ($grupo->inscripcioneCompanerismos as $inscripcioneCompanerismo)
-                                <tr>
-                                    <td>{{ $inscripcioneCompanerismo->personale->rolPrograma($grupo->programa)->name }}</td>
-                                    <td>{{ $inscripcioneCompanerismo->personale->contacto->nombres }}</td>
-                                    <td>{{ $inscripcioneCompanerismo->personale->contacto->apellidos }}</td>
-                                    <td>{{ $inscripcioneCompanerismo->personale->contacto->telefono }}</td>
-                                    <td>
-                                        @if ( $inscripcioneCompanerismo->personale->user)
-                                        {{ $inscripcioneCompanerismo->personale->user->email }}
-                                        @else
-                                        <a href="{{ route('admin.users.create', ['personale' => $inscripcioneCompanerismo->personale]) }}" class="btn btn-primary" >Crear usuario</a>
-                                        @endif
-                                    </td>
-                                    <td width="10px">
-                                        <a href="{{ route('admin.personales.edit', $inscripcioneCompanerismo->personale) }}" class="btn btn-primary" >Editar</a>
-                                    </td>
-                                </tr>
-                        @empty
-                        <tr>
-                            <td colspan="100%">
-                                <div class="card">
-                                    <div class="card-header text-warning">
-                                        {{ 'No hay personal' }}
-                                    </div>
-                                </div>
-                                
-                            </td>
-                        </tr>
-                        @endforelse
-                        </tbody>
-                    </table> --}}
+                   @livewire('admin.inscripcione-programa-index', ['grupo_id' => $grupo->id], key($grupo->id))
+                  
                 </div>
                 @empty
                 <div class="card">

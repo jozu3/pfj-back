@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Permission\Models\Role;
 
 class Companerismo extends Model
 {
@@ -13,6 +14,9 @@ class Companerismo extends Model
     
     public function grupo(){
     	return $this->belongsTo(Grupo::class);
+    }
+    public function role(){
+    	return $this->belongsTo(Role::class);
     }
 
     public function inscripcioneCompanerismos()   {

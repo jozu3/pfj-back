@@ -79,16 +79,23 @@ class CompanerismoController extends Controller
      */
     public function update(Request $request, Companerismo $companerismo)
     {
-        $request->validate([
-            'role_id' => 'required',
-        ]);
-
-        $companerismo->update($request->all());
-        $programa = $companerismo->grupo->programa;
-        $grupo = $companerismo->grupo;
-
+        if(!$request->organigrama){
+            $request->validate([
+                'role_id' => 'required',
+            ]);
+            
+            $companerismo->update($request->all());
+            $programa = $companerismo->grupo->programa;
+            $grupo = $companerismo->grupo;
+    
+            
+            return redirect()->route('admin.programas.edit', compact('programa', 'grupo'))->with('info_comp', 'El compañerismo se actualizó con éxito'); 
+        }
         
-        return redirect()->route('admin.programas.edit', compact('programa', 'grupo'))->with('info_comp', 'El compañerismo se actualizó con éxito'); 
+        $companerismo->update([
+            'grupo_id' => $request->grupo_id
+        ]);
+        return 'grupo editado';
     }
 
     /**

@@ -13,8 +13,8 @@
     	<thead>
     		<tr>
 				<th></th>
-    			<th>Nombre</th>
-    			<th>Número</th>
+    			<th>Nombre de grupo</th>
+    			<th>Número de grupo</th>
     			<th></th>
     		</tr>
     	</thead>
@@ -109,24 +109,22 @@
 					</td>
 				</tr>
     		@endforeach
-
-
 			<tr>
-				<form wire:submit.prevent="submit">
-				<td class="text-center">
-					<b>Nuevo grupo:</b>
-				</td>
-                <td>
-                    <input type="text" name="nombre_grupo" wire:model="nombre_grupo" class="form-control">
-                    @error('nombre_grupo')<small class="text-danger">{{ $message }}</small> @enderror
-                </td>
-                <td>
-                    <input type="text" name="numero_grupo" wire:model="numero_grupo" class="form-control">
-                    @error('numero_grupo')<small class="text-danger">{{ $message }}</small> @enderror
-                </td>
-				<td>
-					<input type="submit" value="Guardar"  wire:loading.attr="disabled" wire:target="submit" class="btn btn-sm btn-primary disabled:opacity-25">
-				</td>
+				<form wire:submit.prevent="">
+					<td class="text-center">
+						<b>Nuevo grupo:</b>
+					</td>
+					<td>
+						<input type="text" name="nombre_grupo" wire:model="nombre_grupo" class="form-control">
+						@error('nombre_grupo')<small class="text-danger">{{ $message }}</small> @enderror
+					</td>
+					<td>
+						<input type="text" name="numero_grupo" wire:model="numero_grupo" class="form-control">
+						@error('numero_grupo')<small class="text-danger">{{ $message }}</small> @enderror
+					</td>
+					<td>
+						<input type="submit" value="Guardar"  wire:loading.attr="disabled" wire:click="submit" wire:target="submit" class="btn btn-sm btn-primary disabled:opacity-25">
+					</td>
 				</form>
 			</tr>
     	</tbody>

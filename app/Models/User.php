@@ -71,6 +71,9 @@ class User extends Authenticatable
         if ($this->personale->contacto->image) {
             return Storage::url($this->personale->contacto->image->url);
         }
+        // if($this->personale->contacto->fotodrive){
+        //     return $this->personale->contacto->fotodrive;
+        // }
         return 'https://picsum.photos/300/300';
     }
 
@@ -85,20 +88,41 @@ class User extends Authenticatable
         $this->notify(new ResetPasswordNotification($token));
     }
 
+    public function getProfilePhotoUrlAttribute(){
+        return $this->adminlte_image();
+    }
+
+    public function updateProfilePhoto($input){
+        if($input  != '' && $input != null){
+
+            $url = Storage::put('contactos', $input);
+            //$contacto->image()->delete();
+            if($this->personale->contacto->image != null){
+                Storage::delete($this->personale->contacto->image->url);
+                $this->personale->contacto->image->update([
+                    'url' => $url
+                ]);
+            } else {
+                $this->personale->contacto->image()->create([
+                    'url' => $url
+                ]);
+            }
+            
+        }
+    }
+
+    public function profile_photo_path(){
+           return $this->adminlte_image();
+    }
+
     public function adminlte_profile_url(){
         return 'user/profile';
     }
 
-   
-    public function personal(){
-        return $this->hasOne(Personale::class);
-    }
 
     public function personale(){
         return $this->hasOne(Personale::class);
     }
 
-    public function cordAxiliare(){
-        return $this->hasOne(Cord_auxiliare::class);
-    }
+
 }

@@ -45,19 +45,22 @@ class UsersIndex extends Component
     $this->otros == true ? array_push($roles_checked, "otros") : '';
 
   	$users = User::where(function($query) use ($that) {
-                      $query->orWhere('email', 'like','%'.$that->search.'%')
+                      $query->where('email', 'like','%'.$that->search.'%')
                             ->orWhere('name', 'like','%'.$that->search.'%');
                 		})
   								->whereHas("roles", function($q) use ($roles_checked, $all_roles, $that){
 		  										$q->whereIn("slug", $roles_checked); 
-                          if($that->otros == true){
-                            $q->whereIn("slug", $roles_checked)
-                              ->orWhereNotIn('slug', $all_roles->pluck('slug'));
-                          }
+                          // if($that->otros == true){
+                          //   $q->whereIn("slug", $roles_checked)
+                          //     ->orWhereNotIn('slug', $all_roles->pluck('slug'));
+                          // }
 		  							});
 
     if ($this->otros == true) {
-      $users = User::doesntHave('roles')
+      $users = User::doesntHave('roles')->where(function($query) use ($that) {
+        $query->where('email', 'like','%'.$that->search.'%')
+              ->orWhere('name', 'like','%'.$that->search.'%');
+      })
                     ->union($users);
     }
 

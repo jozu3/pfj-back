@@ -15,6 +15,7 @@ class TestSeeder extends Seeder
     {
         $this->call(RoleSeeder::class);
         $this->call(PermissionPersonaleSeeder::class);
+        $this->call(BarrioSeeder::class);
         $this->call(UserSeeder::class);
     }
 }

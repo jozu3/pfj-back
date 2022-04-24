@@ -10,7 +10,8 @@ use App\Models\User;
 class PersonaleController extends Controller
 {   
     public function __construct(){
-        $this->middleware('can:admin.personales.index');//->only('index');
+        $this->middleware('can:admin.personales.index')->only('index');
+        $this->middleware('can:admin.personales.edit')->only('edit');
     }
     /**
      * Display a listing of the resource.
@@ -85,17 +86,21 @@ class PersonaleController extends Controller
     {
 
         $request->validate([
-            'nombres' => 'required',
-            'apellidos' => 'required',
-            'telefono' => 'required',
+            // 'nombres' => 'required',
+            // 'apellidos' => 'required',
+            // 'telefono' => 'required',
+            'permiso_obispo' => 'required'
         ]);
 
-        $personale->contacto->update($request->all());
+        //$personale->contacto->update($request->all());
+        $personale->update($request->all());
 
-        $upt = User::where('id', $personale->user_id)->update([
-            'name' => $request->nombres. ' ' . $request->apellidos
-        ]);
-
+        // $upt = User::where('id', $personale->user_id)->update([
+        //     'name' => $request->nombres. ' ' . $request->apellidos
+        // ]);
+        if ($request->show_contacto) {
+            return redirect()->route('admin.contactos.show', $personale->contacto)->with('info', 'Los datos se guardaron correctamente');
+        }
         return redirect()->route('admin.personales.edit', $personale)->with('info', 'Los datos se guardaron correctamente');
     }
 
@@ -105,8 +110,10 @@ class PersonaleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Personale $personale)
     {
-        //
+        $personale->delete();
+
+        return redirect()->back()->with('info', 'El personal se eliminó correctamente.');
     }
 }
