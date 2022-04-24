@@ -13,9 +13,9 @@
                     </div>
                 </div> --}}
                 <div class="px-14 py-12">
-                    <div class="text-3xl text-center text-gray-900 border-b-2 font-bold mb-8">
-                        <p class="text-yellow-500">Grupo: [Nombre de grupo]</p> <!-- border-b-4 -->
-                    </div>
+                    {{-- <div class="text-3xl text-center text-gray-900 border-b-2 font-bold mb-8">
+                        <p class="text-yellow-500">Grupo: [Nombre de grupo]</p>
+                    </div> --}}
 
                     {{-- <div class="flex items-center justify-center h-screen bg-gray-900"> --}}
                     <div class="grid grid-cols-6 gap-4 flex items-center justify-center">
@@ -25,13 +25,18 @@
                       </div> --}}
 
                             <div
-                                class="border-2 rounded-lg col-span-4 p-4 flex justify-center lg:col-span-2 md:col-span-3">
+                                class="border-2 rounded-lg col-span-4 p-4 flex justify-center lg:col-span-2 md:col-span-3 shadow-md">
                                 @foreach ($companerismo->inscripcioneCompanerismos as $inscripcioneCompanerismo)
-                                    <div class="flex items-center justify-center flex-col rounded-lg space-y-4">
+                                    <div class="flex flex-col w-1/2 items-center justify-center rounded-lg space-y-4">
                                         <img class="rounded-full border-gray-100 shadow-sm w-24 h-24"
                                             src="{{$inscripcioneCompanerismo->inscripcione->personale->user->adminlte_image()}}" alt="user image">
-                                        <h1 class="text-gray-500 font-semibold text-center">
+                                        <h1 class="text-gray-900 font-semibold text-center px-1">
                                             {{ $inscripcioneCompanerismo->inscripcione->personale->user->name }}</h1>
+                                            {{-- <h2 class="text-gray-500"><i class="fas fa-birthday-cake"></i></h2> --}}
+                                            <h2 class="bg-yellow-100 text-yellow-500 p-1 rounded">
+                                              <i class="fas fa-phone-alt"></i> 
+                                              {{$inscripcioneCompanerismo->inscripcione->personale->contacto->telefono}}
+                                            </h2>                                            
                                         {{-- <button class="px-8 py-1 border-2 border-indigo-600 bg-indigo-600 rounded-full text-gray-50 font-semibold">Follow</button> --}}
                                     </div>
                                     {{-- <div class="flex items-center justify-center flex-col p-4 rounded-lg space-y-4">

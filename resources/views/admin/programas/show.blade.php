@@ -84,7 +84,7 @@
                         @include('admin.programas.partials.asistencia')
                     </div>
                     <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                        {{-- @include('admin.programas.partials.register-notas') --}}
+                        @include('admin.programas.partials.lectura')
                     </div>
                 </div>
             </div>
