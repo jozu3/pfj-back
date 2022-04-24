@@ -54,6 +54,8 @@ return [
 
     'url' => env('APP_URL', 'http://localhost'),
 
+    'description' => 'Para la Fortaleza de la Juventud (PFJ), es una actividad de casi una semana que está orientada a la juventud de 13 a 17 años de edad, y que se centra en la enseñanza de los principios de la Iglesia de Jesucristo de los Santos de los Últimos Dias. ',
+
     'asset_url' => env('ASSET_URL', null),
 
     /*

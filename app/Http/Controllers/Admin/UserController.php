@@ -18,7 +18,8 @@ class UserController extends Controller
     use PasswordValidationRules;
 
     public function __construct(){
-        $this->middleware('can:admin.users.index');//->only('index');
+        $this->middleware('can:admin.users.index')->only('index');
+        // $this->middleware('can:admin.users.destroy')->only('destroy');
         
     }
     /**
@@ -148,8 +149,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        $user->delete();
+
+        return redirect()->back()->with('info', 'El usuario se eliminó correctamente');
     }
 }

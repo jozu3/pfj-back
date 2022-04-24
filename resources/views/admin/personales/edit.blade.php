@@ -15,10 +15,9 @@
     <div class="card">
     	<div class="card-body">
     		{!! Form::model($personale, ['route' => ['admin.personales.update', $personale], 'method' => 'put']) !!}
-
     			@include('admin.personales.partials.form')
                 
-                {!! Form::submit('Guardar', ['class' => 'btn btn-primary']) !!}
+                {!! Form::submit('Guardar', ['class' => 'btn btn-yellow-pfj']) !!}
     		{!! Form::close() !!}
     	</div>
     </div>

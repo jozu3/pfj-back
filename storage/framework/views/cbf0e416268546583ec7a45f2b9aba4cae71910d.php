@@ -56,47 +56,31 @@
 		
 	</div>
 	<?php if($contacto->personale != null): ?>
-	<div class="col-md-12">
-		<div class="card">
-			<div class="card-header">
-				<h5 class="card-title">Información de personal</h5>
-			</div>
-			<?php
-				$personale = $contacto->personale;
-			?>
-			<div class="card-body">
-				<?php echo Form::model($personale, ['route' => ['admin.personales.update', $personale], 'method' => 'put']); ?>
+		<div class="col-md-12">
+			<div class="card">
+				<div class="card-header">
+					<h5 class="card-title">Información de personal</h5>
+				</div>
+				<?php
+					$personale = $contacto->personale;
+				?>
+				<div class="card-body">
+					<?php echo Form::model($personale, ['route' => ['admin.personales.update', $personale], 'method' => 'put']); ?>
 
-				<?php echo Form::hidden('show_contacto', '1'); ?>
+					<?php echo Form::hidden('show_contacto', '1'); ?>
 
 
-					<?php echo $__env->make('admin.personales.partials.form', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-					
-					<?php echo Form::submit('Guardar', ['class' => 'btn btn-yellow-pfj']); ?>
+						<?php echo $__env->make('admin.personales.partials.form', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+						
+						<?php echo Form::submit('Guardar', ['class' => 'btn btn-yellow-pfj']); ?>
 
-				<?php echo Form::close(); ?>
+					<?php echo Form::close(); ?>
 
+				</div>
 			</div>
 		</div>
-	</div>
 	<?php endif; ?>
-	<div class="col-md-12">
-		<?php
-if (! isset($_instance)) {
-    $html = \Livewire\Livewire::mount('admin.contacto-seguimientos', ['contacto' => $contacto])->html();
-} elseif ($_instance->childHasBeenRendered('Le1c48B')) {
-    $componentId = $_instance->getRenderedChildComponentId('Le1c48B');
-    $componentTag = $_instance->getRenderedChildComponentTagName('Le1c48B');
-    $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('Le1c48B');
-} else {
-    $response = \Livewire\Livewire::mount('admin.contacto-seguimientos', ['contacto' => $contacto]);
-    $html = $response->html();
-    $_instance->logRenderedChild('Le1c48B', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
-}
-echo $html;
-?>
-	</div>
+	
 </div>
 <?php $__env->stopSection(); ?>
 

@@ -67,11 +67,11 @@
                             <?php endswitch; ?>
                         </td>
     				  	<td width="10px">
-    				  		<a href="<?php echo e(route('admin.inscripciones.show', $inscripcione->id)); ?>" class="btn btn-primary">Ver</a>
+    				  		<a href="<?php echo e(route('admin.inscripciones.show', $inscripcione)); ?>" class="btn btn-primary">Ver</a>
     				  	</td>
                         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('admin.inscripciones.destroy')): ?>
                         <td width="10px">
-                           <form method="POST" class="eliminar-inscripcione" action="<?php echo e(route('admin.inscripciones.destroy', $inscripcione->id)); ?>">
+                           <form method="POST" class="eliminar-inscripcione" action="<?php echo e(route('admin.inscripciones.destroy', $inscripcione)); ?>">
                                 <?php echo csrf_field(); ?>
                                 <?php echo method_field('DELETE'); ?>
                                 <button type="submit" class="btn btn-sm btn-danger ">Eliminar</button>

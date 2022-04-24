@@ -67,7 +67,7 @@ return [
 
     'usermenu_enabled' => true,
     'usermenu_header' => true,
-    'usermenu_header_class' => 'bg-primary',
+    'usermenu_header_class' => 'bg-white',
     'usermenu_image' => true,
     'usermenu_desc' => false,
     'usermenu_profile_url' => true,
@@ -107,7 +107,7 @@ return [
     'classes_auth_body' => '',
     'classes_auth_footer' => '',
     'classes_auth_icon' => '',
-    'classes_auth_btn' => 'btn-flat btn-primary',
+    'classes_auth_btn' => 'btn-flat btn-yellow-pfj',
 
     /*
     |--------------------------------------------------------------------------
@@ -127,7 +127,7 @@ return [
     'classes_content_wrapper' => '',
     'classes_content_header' => '',
     'classes_content' => '',
-    'classes_sidebar' => 'sidebar-dark-primary elevation-4',
+    'classes_sidebar' => 'sidebar-dark-yellow-pfj elevation-4',
     'classes_sidebar_nav' => '',
     'classes_topnav' => 'navbar-white navbar-light',
     'classes_topnav_nav' => 'navbar-expand',
@@ -277,7 +277,12 @@ return [
             'icon'        => 'fas fa-chalkboard-teacher',
             'can'  =>   'admin.programas.index'
         ],
-      
+        [
+            'text' => 'Inscripciones',
+            'route'  => 'admin.inscripciones.index',
+            'icon' => 'fas fa-address-card',
+            'can'  =>   'admin.inscripciones.index'
+        ],
         [
             'header' => 'Inscripción', 
             'key' => 'ventas',
@@ -319,25 +324,20 @@ return [
             'icon' => 'fab fa-leanpub',
             'can'  =>   'admin.grupos.migrupo'
         ],
-        [
-            'text' => 'Inscripciones',
-            'route'  => 'admin.inscripciones.index',
-            'icon' => 'fas fa-address-card',
-            'can'  =>   'admin.inscripciones.index'
-        ],
+ 
         [ 
             'header' => 'Anuncios',
-            'can'  =>   'admin.personales.index'
+            'can'  =>   'admin.anuncios.index'
         ],
         [
-            'text'        => 'Mensaje semanal',
-            'route'         => 'admin.profesores.index',
+            'text'        => 'Anuncios',
+            'route'         => 'admin.anuncios.index',
             'icon'        => 'fas fa-chalkboard-teacher',
-            'can'  =>   'admin.profesores.index'
+            'can'  =>   'admin.anuncios.index'
         ],
         [ 
             'header' => 'Reportes',
-            'can'  =>   'admin.personales.index'
+            'can'  =>   'admin.reportes.index'
         ],
         [
             'text'        => 'Reportes',

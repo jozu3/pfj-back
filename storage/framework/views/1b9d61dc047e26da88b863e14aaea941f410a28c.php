@@ -81,6 +81,53 @@ echo $html;
             border-top: 3px solid #40bf1f;
         
         }
+        .img-personal{
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+        }
+
+        .cont-psinasignar{
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            margin-left: 250px;
+        }
+        .cont-psinasignar>.card>.card-body{
+            height: 25vh;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
+
+        @media (max-width: 1470px) {
+            .img-personal{
+                width: 80px;
+                height: 80px;
+            }
+        }
+        @media (max-width: 1010px) {
+            .img-personal{
+                width: 80px;
+                height: 80px;
+            }
+            .cont-psinasignar{
+                margin-left: 0;
+            }
+        }
+        @media (max-width: 767px) {
+            .img-personal{
+                width: 150px;
+                height: 150px;
+            }
+        }
+        @media (max-width: 457px) {
+            .img-personal{
+                width: 60px;
+                height: 60px;
+            }
+        }
+
         
         </style>
 <?php $__env->stopSection(); ?>
@@ -94,6 +141,8 @@ echo $html;
             $('#cont-progress').hide();
             $('#guardar').attr('disabled','')
 
+            
+
         });
 
         const grupos = document.getElementsByClassName('group');
@@ -106,15 +155,16 @@ echo $html;
                 animation: 150,
                 fallbackOnBody: true,
                 swapThreshold: 0.65,
-                onEnd: () => {
-                    console.log('se inserto un elemento')
+                filter: ".ignore-elements",
+                onEnd: (sortable) => {
+                    console.log('se inserto un compañerismo')
+                    console.log(sortable.el)
                 },
                 store: {
                     //guardamos el orden
                     set: (sortable) => {
                         const orden = sortable.toArray();
                         localStorage.setItem(sortable.el.getAttribute('data-id'), orden.join('|'));
-                        //console.log(sortable.el)
                         //Livewire.emit('moverCompanerismo')
                         if (localStorage.length>0) {
                             $('#guardar').removeAttr('disabled')
@@ -141,14 +191,36 @@ echo $html;
                 animation: 150,
                 fallbackOnBody: true,
                 swapThreshold: 0.65,
-                onEnd: () => {
+                ghostClass: "col-md-6", 
+                onEnd: (sortable) => {
+                    //console.log(sortable.to)
+                    var data_id = sortable.to.getAttribute('data-id');
+                    if(data_id.includes('com') || data_id.includes('cordis'))
+                    {
+                        //sortable.item.removeAttr('class')
+                        sortable.item.setAttribute('class', 'col-6')
+                        console.log('se movio un personal a un compañerismo')
+                    } else if(sortable.to.getAttribute('data-id').includes('sinAsignar')) {
+                        sortable.item.setAttribute('class', 'col-sm-2 col-md-1')
+                        console.log('se movio un personal a sin asignar')
+                        
+                    }
+
                     console.log('se inserto un personal')
                 },
                 store: {
                     //guardamos el orden
                     set: (sortable) => {
                         const orden = sortable.toArray();
-                        localStorage.setItem(sortable.el.getAttribute('data-id'), orden.join('|'));
+                        console.log(orden)
+                        var iddata = sortable.el.getAttribute('data-id')
+                        // if (iddata == 'sinAsignar') {
+                        //     localStorage.setItem('quitarInsComp', orden.join('|'));
+                        // } else {
+                            localStorage.setItem(iddata, orden.join('|'));
+                        // }
+
+
                         //console.log(sortable)
                         if (localStorage.length>0) {
                             $('#guardar').removeAttr('disabled')
@@ -174,12 +246,10 @@ echo $html;
         var solucionados = 0;
 
         $('#guardar').click(function() {
-            $("#progress").css('width', "0%");
-            solucionados = 0;
-
+            
             if(localStorage.length == 0){
                 $('#success-alert').addClass("alert alert-warning");
-
+                
                 $('#success-alert').show().html("<b>No ha realizado cambios</b>");
                 $("#success-alert").fadeTo(1000, 500).slideUp(500, function() {
                     $("#success-alert").slideUp(500);
@@ -187,41 +257,72 @@ echo $html;
                 
                 return;
             }
-
-            $('#cont-progress').show();
-
+            
+            
             for (let c = 0; c < localStorage.length; c++) {
-
+                
                 var k = localStorage.key(c)
-                var value = localStorage.getItem(k)
-                let arr = value.split('|');
-                if (arr[0] != '') {
-                    cambios = cambios + arr.length
-                }
+                //if(k != 'sinAsignar'){
+                    
+                    var value = localStorage.getItem(k)
+                    let arr = value.split('|');
+                    if (arr[0] != '') {
+                        cambios = cambios + arr.length
+                    }
+                //}
             }
-
+            
             prog = 100/cambios;
 
-
+            //termina si no hay cambios
+            if(cambios == 0){
+                localStorage.clear();
+                return;
+            }
+            $('#cont-progress').show();
+            
+            $("#progress").css('width', "0%");
+            solucionados = 0;
+            
             for (let i = 0; i < localStorage.length; i++) {
 
                 var k = localStorage.key(i)
                 var value = localStorage.getItem(k)
 
-                if (k.includes('com-') && value != '' && k != 'sinAsignar') {
-                    result = false;
+                var role = 6
+                if (k.includes('cordis')) {
+                    role = 4
+                }
+                if (k.includes('auxiliar')) {
+                    role = 5
+                }
+                if (k.includes('Consejero')) {
+                    role = 6
+                }
 
+                
+                if ((k.includes('com-') || k.includes('cordis')) && value != '' && !k.includes('sinAsignar')) {
+                    result = false;
+                    
                     //console.log('compañerimso' + k.split('com-')[1])
-                    let com = k.split('com-')[1]
+                    var com = 0;
+                    
+                    if (k != 'sinAsignar') {
+                        com = k.split('-')[1]
+                    }
+                    console.log(com)
+                    
+
                     let arr = value.split('|');
-                    var key1 = k;
                     //console.log('cant inscripcioen:' + arr.length)
+
                     for (let j = 0; j < arr.length; j++) {
                         const ins = arr[j].split('ins-')[1];
-                        //console.log(ins)
+                        console.log(ins+ '-' + com)
                         $.post(`<?php echo e(route('admin.index')); ?>/inscripcione_companerismos/updateInscripcione/` + ins, {
                                 _token: "<?php echo e(csrf_token()); ?>",
-                                companerismo_id: com
+                                companerismo_id: com,
+                                role_id: role
                             },
                             function(data, status) {
                                 console.log("Data: " + data + "\nStatus: " + status);
@@ -240,41 +341,38 @@ echo $html;
                     }
                 }
 
-                if (k == 'cordis' && value != '') {
-                   // console.log('cordis')
-                    result = false
-
+                if (k.includes('sinAsignar')) {
                     let arr = value.split('|');
-                    //console.log('cant inscripcioen:' + arr.length)
-                    var key2 = k;
-                    for (let j = 0; j < arr.length; j++) {
-                        const ins = arr[j].split('ins-')[1];
-                       // console.log(ins)
-                        $.post(`<?php echo e(route('admin.index')); ?>/inscripcione_companerismos/updateInscripcione/` + ins, {
-                                _token: "<?php echo e(csrf_token()); ?>",
-                                cordis: 'cord'
-                            },
-                            function(data, status) {
-                                console.log("Data: " + data + "\nStatus: " + status);
-                                if(status == 'success'){
-                                    result = true;
+
+                    $.post(`<?php echo e(route('admin.index')); ?>/inscripcione_companerismos/deleteInscripcioneCompanerismo` , {
+                            _token: "<?php echo e(csrf_token()); ?>",
+                            ins_comps: value
+                        },
+                        function(data, status) {
+                            console.log("Data: " + data + "\nStatus: " + status);
+                            
+                            if(status == 'success'){
+                                result = true;
+                                
+                                for (let j = 0; j < arr.length; j++) {
                                     progressBar();
-                                    // $("#success-alert").show();
-                                    // $("#success-alert").fadeTo(1000, 500).slideUp(500, function() {
-                                    //     $("#success-alert").slideUp(500);
-                                    // });
                                 }
+                                    
+                                // $("#success-alert").show();
+                                // $("#success-alert").fadeTo(1000, 500).slideUp(500, function() {
+                                //     $("#success-alert").slideUp(500);
+                                // });
                             }
-                        );
-                    }
+                        }
+                    );
                 }
+
 
                 if (k.includes('grupo-') && value != '') {
                     result = false;
                    // console.log('grupo' + k.split('grupo-')[1])
                     let grupo = k.split('grupo-')[1]
                     let arr = value.split('|');
-                    var key3 = k;
                     //console.log('cant compañerismos:' + arr.length)
                     for (let j = 0; j < arr.length; j++) {
                         const comp = arr[j].split('com-')[1];
@@ -321,21 +419,6 @@ echo $html;
                                 }
                             }
                         });
-
-                        // $.post(`<?php echo e(route('admin.companerismos.index')); ?>/`+ comp,
-                        //     {
-                        //         _method: 'PUT',
-                        //         _token: "<?php echo e(csrf_token()); ?>",
-                        //         grupo_id: grupo
-                        //     },
-                        //     function(data, status) {
-                        //         console.log("Data: " + data + "\nStatus: " + status);
-                        //         $("#success-alert").show();
-                        //         $("#success-alert").fadeTo(1000, 500).slideUp(500, function() {
-                        //             $("#success-alert").slideUp(500);
-                        //         });
-                        //     }
-                        // );
                     }
                 }
 
@@ -360,6 +443,7 @@ echo $html;
                 $("#success-alert").fadeTo(1000, 500).slideUp(500, function() {
                     $("#success-alert").slideUp(500);
                 });
+                
                 $('#cont-progress').fadeTo(1000, 500).slideUp(500, function() {
                     $("#cont-progress").slideUp(500);
                 });

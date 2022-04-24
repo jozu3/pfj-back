@@ -41,11 +41,14 @@
                             <x-slot name="content">
                                 <!-- User Management -->
                                 @foreach (Auth::user()->personale->inscripciones as $inscripcione)
+                                @if (isset($inscripcione->inscripcioneCompanerismo->companerismo))
+
                                     <x-jet-dropdown-link
                                         href="{{ route('st.grupos.show', $inscripcione->inscripcioneCompanerismo->companerismo->grupo) }}">
                                         {{ $inscripcione->programa->nombre }}
                                     </x-jet-dropdown-link>
                                     {{-- {{$inscripcione->inscripcioneCompanerismo}} --}}
+                                @endif
                                 @endforeach
                             </x-slot>
 
@@ -224,11 +227,14 @@
                             {{ __('Mi familia') }}
                         </x-jet-responsive-nav-link> --}}
                         @foreach (Auth::user()->personale->inscripciones as $inscripcione)
+                        @if (isset($inscripcione->inscripcioneCompanerismo->companerismo))
+
                             <x-jet-responsive-nav-link
                                 href="{{ route('st.grupos.show', $inscripcione->inscripcioneCompanerismo->companerismo->grupo) }}">
                                 {{ $inscripcione->programa->nombre }}
                             </x-jet-responsive-nav-link>
                             {{-- {{$inscripcione->inscripcioneCompanerismo}} --}}
+                            @endif
                         @endforeach
 
 

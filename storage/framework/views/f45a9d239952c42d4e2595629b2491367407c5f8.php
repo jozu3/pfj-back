@@ -75,7 +75,12 @@
                             <?php endif; ?>
                         </td>
                     	<td><?php echo e($contacto->apellidos); ?></td>
-                    	<td><?php echo e($contacto->telefono); ?></td>
+                    	<td>
+                            <span>
+                                <a href="tel:<?php echo e($contacto->telefono); ?>" alt="Llamar por teléfono" data-toggle="tooltip" data-placement="top" title="Llamar por teléfono"><?php echo e($contacto->telefono); ?></a>
+                                <a href="https://api.whatsapp.com/send?phone=51<?php echo e($contacto->telefono); ?>" class="text-success" target="_blank" alt="Enviar Whatsapp" data-toggle="tooltip" data-placement="top" title="Enviar Whatsapp"><i class="fab fa-whatsapp"></i></a>
+                            </span>
+                        </td>
                         <td>
                             <?php 
                                 $estados = [

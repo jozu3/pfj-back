@@ -33,6 +33,10 @@ class Personale extends Model
     	return $this->belongsTo(Contacto::class);
     }
     
+    public function barrio(){
+    	return $this->belongsTo(Barrio::class);
+    }
+    
     public function inscripcioneCompanerismos(){
     	return $this->hasMany(InscripcioneCompanerismo::class);
     }

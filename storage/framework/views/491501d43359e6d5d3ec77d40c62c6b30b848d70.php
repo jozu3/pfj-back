@@ -85,11 +85,11 @@ if (! isset($_instance)) {
 											'inscripcione_id' => $inscripcione->id,
 											'is_report' => $is_report
 											])->html();
-} elseif ($_instance->childHasBeenRendered('oYLovlN')) {
-    $componentId = $_instance->getRenderedChildComponentId('oYLovlN');
-    $componentTag = $_instance->getRenderedChildComponentTagName('oYLovlN');
+} elseif ($_instance->childHasBeenRendered('V2AXdn7')) {
+    $componentId = $_instance->getRenderedChildComponentId('V2AXdn7');
+    $componentTag = $_instance->getRenderedChildComponentTagName('V2AXdn7');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('oYLovlN');
+    $_instance->preserveRenderedChild('V2AXdn7');
 } else {
     $response = \Livewire\Livewire::mount('admin.create-asistencia', [
 											'capacitacione_id' => $capacitacione->id,
@@ -97,7 +97,7 @@ if (! isset($_instance)) {
 											'is_report' => $is_report
 											]);
     $html = $response->html();
-    $_instance->logRenderedChild('oYLovlN', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('V2AXdn7', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>

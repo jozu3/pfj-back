@@ -54,7 +54,7 @@ unset($__errorArgs, $__bag); ?>
 
 	<div class="row p-2">
 		<div class="col">
-			<img id="img-show" class="img-fluid" src="<?php if( isset($contacto) && $contacto->image != null): ?> <?php echo e(Storage::url($contacto->image->url)); ?> <?php else: ?> <?php echo e('no image'); ?> <?php endif; ?>"  alt="">
+			<img id="img-show" class="img-fluid" src="<?php if( isset($contacto)): ?> <?php if(isset($contacto->image)): ?> <?php echo e(Storage::url($contacto->image->url)); ?> <?php endif; ?> <?php endif; ?>"  alt="">
 		</div>
 		<div class="col">
 			<?php echo Form::file('imgperfil', ['class' => 'form-control-file', 'accept' => 'image/*']); ?>
@@ -107,7 +107,26 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
 </div>
+<div class="col-md-12">
+	<?php echo Form::label('genero', 'Género'); ?>
 
+	<?php echo Form::select('genero', [
+			'Mujer' => 'Mujer',
+			'Hombre' => 'Hombre',
+		], null, ['class' => 'form-control', 'placeholder' => '-- Escoge --']);; ?>
+
+	<?php $__errorArgs = ['genero'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+		<small class="text-danger"><?php echo e($message); ?></small>
+	<?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+</div>
+ 
 
 
 </div> <?php /**PATH C:\xampp\htdocs\pfj\resources\views/admin/contactos/partials/form.blade.php ENDPATH**/ ?>

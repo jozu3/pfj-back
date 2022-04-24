@@ -4,7 +4,7 @@
 
 @section('content_header')
 	<a href="{{ route('admin.inscripciones.create', 'idcontacto='.$contacto->id) }}" class="btn btn-success btn-sm float-right">Inscribir</a>
-    <h1>Contacto: {{ $contacto->nombres.' '.$contacto->apellidos }}</h1>
+    <h1>Contacto JAS: {{ $contacto->nombres.' '.$contacto->apellidos }}</h1>
 @stop
 
 @section('content')
@@ -40,7 +40,7 @@
 				</div>
 				<br>
 				<div class="form-group">
-				{!! Form::submit('Actualizar datos', ['class' => 'btn btn-primary']) !!}
+				{!! Form::submit('Actualizar datos', ['class' => 'btn btn-yellow-pfj']) !!}
 				</div>
 				{!! Form::close() !!}
 				
@@ -48,9 +48,30 @@
 		</div>
 		
 	</div>
-	<div class="col-md-12">
+	@if ($contacto->personale != null)
+		<div class="col-md-12">
+			<div class="card">
+				<div class="card-header">
+					<h5 class="card-title">Información de personal</h5>
+				</div>
+				@php
+					$personale = $contacto->personale;
+				@endphp
+				<div class="card-body">
+					{!! Form::model($personale, ['route' => ['admin.personales.update', $personale], 'method' => 'put']) !!}
+					{!! Form::hidden('show_contacto', '1')!!}
+
+						@include('admin.personales.partials.form')
+						
+						{!! Form::submit('Guardar', ['class' => 'btn btn-yellow-pfj']) !!}
+					{!! Form::close() !!}
+				</div>
+			</div>
+		</div>
+	@endif
+	{{-- <div class="col-md-12">
 		@livewire('admin.contacto-seguimientos', ['contacto' => $contacto])
-	</div>
+	</div> --}}
 </div>
 @stop
 

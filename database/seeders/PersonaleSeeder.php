@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Barrio;
 use Illuminate\Database\Seeder;
 use App\Models\Inscripcione;
 use App\Models\InscripcioneCompanerismo;
@@ -36,7 +37,8 @@ class PersonaleSeeder extends Seeder
             $mdcontacto = Contacto::create([
                 'nombres' => $nombres,
                 'apellidos' => $apellidos,
-                'telefono' => $faker->phoneNumber(),
+                'telefono' => '9'.$faker->randomNumber(8),
+                'genero' => 'Hombre',
                 'email' => $faker->unique()->safeEmail,
                 'doc' => $faker->unique()->dni,
                 'estado' => $faker->numberBetween($min = 1, $max = 3),
@@ -46,6 +48,8 @@ class PersonaleSeeder extends Seeder
             $personale = Personale:: create([
                 'contacto_id' => $mdcontacto->id,
                 'user_id' => $mduser[0]->id,
+                'estado_rtemplo' => 1,
+                'barrio_id' => Barrio::all()->random()->id,
             ]);
 
             
@@ -78,7 +82,8 @@ class PersonaleSeeder extends Seeder
             $mdcontacto = Contacto::create([
                 'nombres' => $nombres,
                 'apellidos' => $apellidos,
-                'telefono' => $faker->phoneNumber(),
+                'telefono' => '9'.$faker->randomNumber(8),
+                'genero' => 'Mujer',
                 'email' => $faker->unique()->safeEmail,
                 'doc' => $faker->unique()->dni,
                 'estado' => $faker->numberBetween($min = 1, $max = 3),
@@ -88,6 +93,8 @@ class PersonaleSeeder extends Seeder
             $personale = Personale:: create([
                 'contacto_id' => $mdcontacto->id,
                 'user_id' => $mduser2[0]->id,
+                'estado_rtemplo' => 1,
+                'barrio_id' => Barrio::all()->random()->id,
             ]);
 
             
@@ -116,55 +123,6 @@ class PersonaleSeeder extends Seeder
         }
 
 
-
-
-
-
-
-        //consejeros
-        /*
-        $i = 0;
-
-        $consejeros_users = User::factory(500)->create();
-        $consejeros_contactos = Contacto::factory(500)->create();
-
-        foreach ($consejeros_users as $consejero){
-            $consejero->assignRole('Consejero');
-
-            $personale = Personale:: create([
-                'contacto_id' => $consejeros_contactos[$i]->id,
-                'user_id' => $consejero->id,
-            ]);
-
-            $personale->contacto->update([
-                'email' => $consejero->email,
-                'estado' => 5
-            ]);
-            
-            $personale->user->update([
-                'name' => $personale->contacto->nombres . ' ' . $personale->contacto->apellidos
-            ]);
-            
-            $inscripcione = Inscripcione::create([
-                "personale_id" => $personale->id,
-                "programa_id" => Programa::all()->random()->id,
-                'role_id' => Role::find(6)->id,
-                "estado" => 1,
-                "fecha" => date('Y-m-d'),
-            ]);
-
-            $i = $i+1;
-            $grupos = $inscripcione->programa->grupos;
-
-
-            InscripcioneCompanerismo::create([
-                'grupo_id' => $faker->randomElement($grupos)->id,
-                'personale_id' => $inscripcione->id
-            ]);
-
-        }
-*/
-        
         //Crear compañerismos
         foreach (Grupo::all() as $grupo) {
             for ($i=0; $i < 5; $i++) { 
@@ -189,8 +147,9 @@ class PersonaleSeeder extends Seeder
             $mdcontacto = Contacto::create([
                 'nombres' => $nombres,
                 'apellidos' => $apellidos,
-                'telefono' => $faker->phoneNumber(),
+                'telefono' => '9'.$faker->randomNumber(8),
                 'email' => $faker->unique()->safeEmail,
+                'genero' => 'Mujer',
                 'doc' => $faker->unique()->dni,
                 'estado' => $faker->numberBetween($min = 1, $max = 3),
             ]);
@@ -199,6 +158,8 @@ class PersonaleSeeder extends Seeder
             $personale = Personale:: create([
                 'contacto_id' => $mdcontacto->id,
                 'user_id' => $mduser2[0]->id,
+                'estado_rtemplo' => 1,
+                'barrio_id' => Barrio::all()->random()->id,
             ]);
 
             
@@ -237,8 +198,9 @@ class PersonaleSeeder extends Seeder
             $mdcontacto = Contacto::create([
                 'nombres' => $nombres,
                 'apellidos' => $apellidos,
-                'telefono' => $faker->phoneNumber(),
+                'telefono' => '9'.$faker->randomNumber(8),
                 'email' => $faker->unique()->safeEmail,
+                'genero' => 'Hombre',
                 'doc' => $faker->unique()->dni,
                 'estado' => $faker->numberBetween($min = 1, $max = 3),
             ]);
@@ -247,6 +209,8 @@ class PersonaleSeeder extends Seeder
             $personale = Personale:: create([
                 'contacto_id' => $mdcontacto->id,
                 'user_id' => $mduser[0]->id,
+                'estado_rtemplo' => 1,
+                'barrio_id' => Barrio::all()->random()->id,
             ]);
 
             
@@ -273,21 +237,7 @@ class PersonaleSeeder extends Seeder
                 'companerismo_id' => $companerismo->id,
             ]);
         }
-        
-       /* $inscripciones = Inscripcione::whereNotIn('role_id', [1,2,3])->get();
-        
-        foreach ($inscripciones as $inscripcione) {
-            $companerismo = $faker->randomElement(
-                Companerismo::whereHas('grupo', function($q) use ($inscripcione){
-                    $q->where('programa_id', $inscripcione->programa->id);
-                })->get());
-                
-                
-            InscripcioneCompanerismo::create([
-                'personale_id' => $inscripcione->personale->id,
-                'companerismo_id' => $companerismo->id,
-            ]);
-        }*/
+    
 
     }
 }

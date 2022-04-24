@@ -1,4 +1,7 @@
 <div>
+    <div class="card-header">
+        <input wire:model="search" class="form-control" placeholder="Ingrese nombre de un personal">
+    </div>
     <table class="table table-striped">
         <thead>
             <tr>
@@ -20,7 +23,7 @@
                     @if ($inscripcione->role->name == 'Cordinador')
                         <td>{{ $inscripcione->role->name }}</td>
                     @else
-                        @if ($inscripcione->inscripcioneCompanerismo->companerismo != null)
+                        @if ($inscripcione->inscripcioneCompanerismo != null)
                             
                         <td>
                             {{  $inscripcione->inscripcioneCompanerismo->companerismo->grupo->numero . ' - ' . $inscripcione->inscripcioneCompanerismo->companerismo->numero }}
@@ -31,22 +34,27 @@
                     @endif
                     @endif
                     <td>
-                        <img id="imgperfil" class="rounded-circle" width="50" src="{{ $inscripcione->personale->user->adminlte_image() }}" alt="">
+                        <img id="imgperfil" class="rounded-circle" width="50" height="50" src="{{ $inscripcione->personale->user->adminlte_image() }}" alt="">
                     </td>
                     <td>
                         {{ $inscripcione->personale->contacto->nombres }}
                     </td>
                     <td>{{ $inscripcione->personale->contacto->apellidos }}</td>
-                    <td>{{ $inscripcione->personale->contacto->telefono }}</td>
+                    <td>
+                        <span>
+                            <a href="tel:{{ $inscripcione->personale->contacto->telefono }}" alt="Llamar por teléfono" data-toggle="tooltip" data-placement="top" title="Llamar por teléfono">{{ $inscripcione->personale->contacto->telefono }}</a>
+                            <a href="https://api.whatsapp.com/send?phone=51{{ $inscripcione->personale->contacto->telefono }}" class="text-success" target="_blank" alt="Enviar Whatsapp" data-toggle="tooltip" data-placement="top" title="Enviar Whatsapp"><i class="fab fa-whatsapp"></i></a>
+                        </span>
+                    </td>
                     <td>
                         @if ( $inscripcione->personale->user)
-                        {{ $inscripcione->personale->user->email }}
+                            <a href="mailto:{{ $inscripcione->personale->user->email }}" alt="Enviar email" data-toggle="tooltip" data-placement="top" title="Enviar email">{{ $inscripcione->personale->user->email }}</a>
                         @else
                         <a href="{{ route('admin.users.create', ['personale' => $inscripcione->personale]) }}" class="btn btn-primary" >Crear usuario</a>
                         @endif
                     </td>
                     <td width="10px">
-                        <a href="{{ route('admin.inscripciones.edit', $inscripcione) }}" class="btn btn-primary" >Editar</a>
+                        <a href="{{ route('admin.contactos.show', $inscripcione->personale->contacto) }}" class="btn btn-primary" >Editar</a>
                     </td>
                 </tr>
         @empty

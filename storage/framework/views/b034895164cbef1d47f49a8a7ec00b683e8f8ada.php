@@ -23,15 +23,15 @@
     <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('admin.contactos-index')->html();
-} elseif ($_instance->childHasBeenRendered('KLmSZwO')) {
-    $componentId = $_instance->getRenderedChildComponentId('KLmSZwO');
-    $componentTag = $_instance->getRenderedChildComponentTagName('KLmSZwO');
+} elseif ($_instance->childHasBeenRendered('LlDRAYQ')) {
+    $componentId = $_instance->getRenderedChildComponentId('LlDRAYQ');
+    $componentTag = $_instance->getRenderedChildComponentTagName('LlDRAYQ');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('KLmSZwO');
+    $_instance->preserveRenderedChild('LlDRAYQ');
 } else {
     $response = \Livewire\Livewire::mount('admin.contactos-index');
     $html = $response->html();
-    $_instance->logRenderedChild('KLmSZwO', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('LlDRAYQ', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>

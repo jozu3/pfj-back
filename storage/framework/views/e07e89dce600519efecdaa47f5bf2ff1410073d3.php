@@ -51,13 +51,13 @@
                     <label class="form-check-label" for="personale">
                         Personale
                     </label>
-                  </div>
+                  </div-->
                   <div class="custom-control custom-checkbox mr-sm-2 d-inline">
                     <input class="form-check-input" wire:model= "otros" type="checkbox" value="" id="otros">
                     <label class="form-check-label" for="otros">
                         Otros
                     </label>
-                  </div-->
+                  </div>
                 </div>
             </div>
     	</div>
@@ -88,9 +88,17 @@
     				  	<td width="10px">
     				  		<a href="<?php echo e(route('admin.users.edit', $user)); ?>" class="btn btn-primary" >Editar</a>
     				  	</td>
+                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('admin.users.destroy')): ?>
+                <td width="10px">
+                  <form method="POST" class="eliminar-users" action="<?php echo e(route('admin.users.destroy', $user)); ?>">
+                    <?php echo csrf_field(); ?>
+                    <?php echo method_field('DELETE'); ?>
+                    <button type="submit" class="btn btn-sm btn-danger ">Eliminar</button>
+                  </form>
+                </td>
+                <?php endif; ?>
     				  </tr>
     				<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-
     			</tbody>
     		</table>
     	</div>

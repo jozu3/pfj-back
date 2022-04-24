@@ -15,8 +15,8 @@
     	<thead>
     		<tr>
 				<th></th>
-    			<th>Nombre</th>
-    			<th>Número</th>
+    			<th>Nombre de grupo</th>
+    			<th>Número de grupo</th>
     			<th></th>
     		</tr>
     	</thead>
@@ -143,16 +143,14 @@ unset($__errorArgs, $__bag); ?>
 					</td>
 				</tr>
     		<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-
-
 			<tr>
-				<form wire:submit.prevent="submit">
-				<td class="text-center">
-					<b>Nuevo grupo:</b>
-				</td>
-                <td>
-                    <input type="text" name="nombre_grupo" wire:model="nombre_grupo" class="form-control">
-                    <?php $__errorArgs = ['nombre_grupo'];
+				<form wire:submit.prevent="">
+					<td class="text-center">
+						<b>Nuevo grupo:</b>
+					</td>
+					<td>
+						<input type="text" name="nombre_grupo" wire:model="nombre_grupo" class="form-control">
+						<?php $__errorArgs = ['nombre_grupo'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -160,10 +158,10 @@ $message = $__bag->first($__errorArgs[0]); ?><small class="text-danger"><?php ec
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
-                </td>
-                <td>
-                    <input type="text" name="numero_grupo" wire:model="numero_grupo" class="form-control">
-                    <?php $__errorArgs = ['numero_grupo'];
+					</td>
+					<td>
+						<input type="text" name="numero_grupo" wire:model="numero_grupo" class="form-control">
+						<?php $__errorArgs = ['numero_grupo'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -171,10 +169,10 @@ $message = $__bag->first($__errorArgs[0]); ?><small class="text-danger"><?php ec
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
-                </td>
-				<td>
-					<input type="submit" value="Guardar"  wire:loading.attr="disabled" wire:target="submit" class="btn btn-sm btn-primary disabled:opacity-25">
-				</td>
+					</td>
+					<td>
+						<input type="submit" value="Guardar"  wire:loading.attr="disabled" wire:click="submit" wire:target="submit" class="btn btn-sm btn-primary disabled:opacity-25">
+					</td>
 				</form>
 			</tr>
     	</tbody>

@@ -20,6 +20,7 @@
     		<?php echo Form::model($contacto, ['route' => 'admin.inscripciones.store']); ?>
 
                 <?php echo $__env->make('admin.inscripciones.partials.form', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+                <?php echo $__env->make('admin.personales.partials.form', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                 <?php echo Form::submit('Registrar', ['class' => 'btn btn-primary']); ?>
 
     		<?php echo Form::close(); ?>

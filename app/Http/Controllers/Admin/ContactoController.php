@@ -10,6 +10,7 @@ use App\Models\Personale;
 use App\Models\Pfj;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreContactoRequest;
+use App\Models\Barrio;
 use DB;
 
 use Illuminate\Support\Facades\Storage;
@@ -86,19 +87,19 @@ class ContactoController extends Controller
     public function show(Contacto $contacto)
     {
         //dd($contacto->id);
-        $this->authorize('vendiendo', $contacto);
+        // $this->authorize('vendiendo', $contacto);
 
         $seguimientos = Seguimiento::where('contacto_id', $contacto->id)->get();
         $pfjs = Pfj::pluck('nombre', 'id');
 
-        $vendedores = [];
+        $barrios = Barrio::all()->pluck('nombre', 'id');
         // if (auth()->user()->hasRole(['Admin', 'Asistente'])) {
         //     $vendedores = Personale::select(DB::raw('concat(nombres, " ", apellidos) as nombre'), 'id')->pluck('nombre', 'id');
 
         //     $contacto['vendedor_id'] = $contacto->personal_id;
         // }
 
-        return view('admin.contactos.show', compact('contacto','seguimientos', 'pfjs', 'vendedores'));
+        return view('admin.contactos.show', compact('contacto','seguimientos', 'pfjs', 'barrios'));
     }
 
     /**
@@ -109,7 +110,7 @@ class ContactoController extends Controller
      */
     public function edit(Contacto $contacto)
     {
-        $this->authorize('vendiendo', $contacto);
+        
      
     }
 
@@ -122,7 +123,7 @@ class ContactoController extends Controller
      */
     public function update(StoreContactoRequest $request, Contacto $contacto)
     {
-        $this->authorize('vendiendo', $contacto);
+        
 
         /*if (isset($request['vendedor_id'])) {
             $request['personal_id'] = $request['vendedor_id'];
@@ -132,6 +133,12 @@ class ContactoController extends Controller
         if (!$contacto->update($request->all())) {
             
             return redirect()->route('admin.contactos.show', compact('contacto'))->with('error', 'Hubo un error al actualizar');
+        }
+        if($contacto->personale && $contacto->personale->user){
+
+            $contacto->personale->user->update([
+                'email' => $request->email
+            ]);
         }
         
         if ($request->file('imgperfil')) {

@@ -25,15 +25,15 @@
     <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('admin.pfjs-index')->html();
-} elseif ($_instance->childHasBeenRendered('CHKdEnP')) {
-    $componentId = $_instance->getRenderedChildComponentId('CHKdEnP');
-    $componentTag = $_instance->getRenderedChildComponentTagName('CHKdEnP');
+} elseif ($_instance->childHasBeenRendered('LCIDvVm')) {
+    $componentId = $_instance->getRenderedChildComponentId('LCIDvVm');
+    $componentTag = $_instance->getRenderedChildComponentTagName('LCIDvVm');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('CHKdEnP');
+    $_instance->preserveRenderedChild('LCIDvVm');
 } else {
     $response = \Livewire\Livewire::mount('admin.pfjs-index');
     $html = $response->html();
-    $_instance->logRenderedChild('CHKdEnP', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('LCIDvVm', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>

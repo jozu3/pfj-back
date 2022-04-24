@@ -10,6 +10,7 @@
 	<div class="card">
 		<div class="card-body">
 			{!! Form::open(['route' => 'admin.programas.store']) !!}
+				{!! Form::hidden('pfj_id', $pfj->id) !!}
 				
 				@include('admin.programas.partials.form')
 				

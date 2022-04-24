@@ -65,24 +65,13 @@ class Programa extends Model
         return $inscripcione;
     }
 
-    public function notasGenerateds(){
-        $notas_generadas = 0;
+    public function inscripcionesSinAsignar(){
+        $inscripciones = Inscripcione::where('programa_id', $this->id)->where('role_id', 6)->whereDoesntHave('inscripcioneCompanerismo', function ($query) {
+            $query->where('id','!=', '');
+        })->get();
 
-        foreach ($this->grupos as $grupo){
-            $notas_generadas += $grupo->personale_unidades->count();
-        }
+        return $inscripciones;
 
-        return $notas_generadas;
-    }
-
-    public function clasesGenerateds(){
-        $capacitaciones_generadas = 0;
-
-        foreach ($this->grupos as $unidad){
-            $capacitaciones_generadas += $unidad->capacitaciones->count();
-        }
-
-        return $capacitaciones_generadas;
     }
 
 }

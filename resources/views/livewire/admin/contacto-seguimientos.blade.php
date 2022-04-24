@@ -1,12 +1,12 @@
 <div class="card">
 			<div class="card-header">
 				<b>Comentarios</b>
-				<div class="form-check mt-2 d-inline float-right">
-              <input class="form-check-input" wire:model= "vermis_comentarios" type="checkbox" id="vermis_comentarios">
-              <label class="form-check-label" for="vermis_comentarios">
-                Ver solo del vendedor actual
-              </label>
-            </div>
+				{{-- <div class="form-check mt-2 d-inline float-right">
+					<input class="form-check-input" wire:model= "vermis_comentarios" type="checkbox" id="vermis_comentarios">
+					<label class="form-check-label" for="vermis_comentarios">
+						Ver solo del vendedor actual
+					</label>
+				</div> --}}
 			</div>
 			<div class="card-body">
 				<table class="table table-striped">
@@ -35,7 +35,7 @@
 							{!! Form::hidden('contacto_id', $contacto->id) !!}
 							{!! Form::hidden('tipo', 0) !!}
 							{!! Form::hidden('user_id', auth()->user()->id) !!}
-							{!! Form::hidden('personal_id', auth()->user()->personal->id) !!}
+							{!! Form::hidden('personal_id', auth()->user()->personale->id) !!}
 
                             <td width="100px">
 								{!! Form::date('', date('Y-m-d'), ['class' => 'form-control', 'disabled' => 'disabled']) !!}
@@ -53,7 +53,7 @@
 							@enderror
                             </td>
                             <td width="200px">
-                                {!! Form::text('user', auth()->user()->personal->user->name, ['class' => 'form-control', 'disabled' => 'disabled']) !!}
+                                {!! Form::text('user', auth()->user()->name, ['class' => 'form-control', 'disabled' => 'disabled']) !!}
                             </td>
                             <td>
 								{!! Form::select('estado', [

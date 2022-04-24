@@ -42,11 +42,15 @@
 
                     </td>
                     <td><?php echo e($inscripcione->personale->contacto->apellidos); ?></td>
-                    <td><?php echo e($inscripcione->personale->contacto->telefono); ?></td>
+                    <td>
+                        <span>
+                            <a href="tel:<?php echo e($inscripcione->personale->contacto->telefono); ?>" alt="Llamar por teléfono" data-toggle="tooltip" data-placement="top" title="Llamar por teléfono"><?php echo e($inscripcione->personale->contacto->telefono); ?></a>
+                            <a href="https://api.whatsapp.com/send?phone=51<?php echo e($inscripcione->personale->contacto->telefono); ?>" class="text-success" target="_blank" alt="Enviar Whatsapp" data-toggle="tooltip" data-placement="top" title="Enviar Whatsapp"><i class="fab fa-whatsapp"></i></a>
+                        </span>
+                    </td>
                     <td>
                         <?php if( $inscripcione->personale->user): ?>
-                        <?php echo e($inscripcione->personale->user->email); ?>
-
+                            <a href="mailto:<?php echo e($inscripcione->personale->user->email); ?>" alt="Enviar email" data-toggle="tooltip" data-placement="top" title="Enviar email"><?php echo e($inscripcione->personale->user->email); ?></a>
                         <?php else: ?>
                         <a href="<?php echo e(route('admin.users.create', ['personale' => $inscripcione->personale])); ?>" class="btn btn-primary" >Crear usuario</a>
                         <?php endif; ?>

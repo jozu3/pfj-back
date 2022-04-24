@@ -6,7 +6,8 @@
 
 @section('content_header')
      <a href="{{ route('admin.programas.show', $programa) }}" class="btn btn-success btn-sm float-right"><i class="fas fa-user-graduate"></i> Ver personales</a>
-
+	 <a href="{{ route('admin.programas.asignar', $programa) }}" class="btn btn-success btn-sm float-right mr-3">
+		<i class="fas fa-sitemap"></i> Asignaciones</a>
     <h1>Editar programa</h1>
 @stop
 
@@ -21,6 +22,7 @@
 	<div class="card">
 		<div class="card-body">
 			{!! Form::model($programa, ['route' => ['admin.programas.update', $programa], 'method' => 'put']) !!}
+				{!! Form::hidden('pfj_id', null) !!}
 				@include('admin.programas.partials.form')
 				<br>
 				<div class="form-group">
@@ -44,7 +46,7 @@
                         <a class="nav-item nav-link active" id="nav-personal-tab" data-toggle="tab" href="#nav-personal"
                             role="tab" aria-controls="nav-personal" aria-selected="true">Capacitaciones</a>
                         <a class="nav-item nav-link" id="nav-comp-tab" data-toggle="tab" href="#nav-comp" role="tab"
-                            aria-controls="nav-comp" aria-selected="true">Compañerismos</a>
+                            aria-controls="nav-comp" aria-selected="true">Grupos</a>
                         <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
                             aria-controls="nav-profile" aria-selected="false">Lecturas</a>
                     </div>

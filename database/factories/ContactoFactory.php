@@ -36,6 +36,7 @@ class ContactoFactory extends Factory
             'apellidos' => $this->faker->lastName().' '.$this->faker->lastName(),
             'telefono' => $this->faker->phoneNumber(),
             'email' => $this->faker->unique()->safeEmail,
+            'genero' => $this->faker->randomElement(['Hombre', 'Mujer']),
             'doc' => $this->faker->unique()->dni,
             'estado' => $this->faker->numberBetween($min = 0, $max = 3),
         ];

@@ -6,7 +6,7 @@
 <?php $component->withAttributes([]); ?>
      <?php $__env->slot('header'); ?> 
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            <?php echo e(__('Bienvenido a tu portal de estudiante')); ?>
+            <?php echo e(__('Bienvenido a tu portal PFJ')); ?>
 
         </h2>
      <?php $__env->endSlot(); ?>

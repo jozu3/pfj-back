@@ -1,12 +1,7 @@
 <div class="card">
 			<div class="card-header">
 				<b>Comentarios</b>
-				<div class="form-check mt-2 d-inline float-right">
-              <input class="form-check-input" wire:model= "vermis_comentarios" type="checkbox" id="vermis_comentarios">
-              <label class="form-check-label" for="vermis_comentarios">
-                Ver solo del vendedor actual
-              </label>
-            </div>
+				
 			</div>
 			<div class="card-body">
 				<table class="table table-striped">

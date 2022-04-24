@@ -26,7 +26,7 @@
 	{!! Form::label('imgperfil', 'Imagen de perfil') !!}
 	<div class="row p-2">
 		<div class="col">
-			<img id="img-show" class="img-fluid" src="@if ( isset($contacto) && $contacto->image != null) {{ Storage::url($contacto->image->url) }} @else {{'no image'}} @endif"  alt="">
+			<img id="img-show" class="img-fluid" src="@if ( isset($contacto)) @if(isset($contacto->image)) {{ Storage::url($contacto->image->url) }} @endif @endif"  alt="">
 		</div>
 		<div class="col">
 			{!! Form::file('imgperfil', ['class' => 'form-control-file', 'accept' => 'image/*']) !!}
@@ -53,22 +53,17 @@
 		<small class="text-danger">{{ $message }}</small>
 @enderror
 </div>
-{{-- <div class="col-md-12">
-	{!! Form::label('grado_academico', 'Grado académico') !!}
-	{!! Form::select('grado_academico', [
-			'1' => 'Profesor',
-			'2' => 'Bachiller',
-			'3' => 'Licenciado',
-			'4' => 'Magister',
-			'5' => 'Doctor',
-			'6' => 'Phd',
-			'7' => 'Estudiante',
-			'8' => 'No registra',
-		], null, ['class' => 'form-control', 'placeholder' => '-- Escoge un grado académico --']); !!}
-	@error('grado_academico')
+<div class="col-md-12">
+	{!! Form::label('genero', 'Género') !!}
+	{!! Form::select('genero', [
+			'Mujer' => 'Mujer',
+			'Hombre' => 'Hombre',
+		], null, ['class' => 'form-control', 'placeholder' => '-- Escoge --']); !!}
+	@error('genero')
 		<small class="text-danger">{{ $message }}</small>
 	@enderror
-</div>  --}}
+</div>
+ {{--  --}}
 {{-- @if (auth()->user()->can('admin.contactos.asignarVendedor'))
 <div class="col-md-12">
 	{!! Form::label('empleado_id', 'Vendedor') !!}

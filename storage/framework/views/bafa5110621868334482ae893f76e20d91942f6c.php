@@ -8,8 +8,11 @@
     <?php endif; ?>
     <a href="<?php echo e(route('admin.programas.asignar', $programa)); ?>" class="btn btn-success btn-sm float-right mr-3">
 		<i class="fas fa-sitemap"></i> Asignaciones</a>
-    <a href="<?php echo e(route('admin.excel.personalesGrupo', $programa)); ?>" class="btn btn-success btn-sm float-right mr-3"><i
-            class="far fa-file-excel"></i> Registro de personales</a>
+        
+            
+                <button type="button" class="btn btn-success btn-sm float-right mr-3" data-toggle="modal" data-target="#importExcelPersonal">
+                    <i class="far fa-file-excel"></i> Importar personal
+                </button>
 
     <h1>Sesión: <?php echo e($programa->nombre . ' ' . date('d/m/Y', strtotime($programa->fecha_inicio))); ?></h1>
 <?php $__env->stopSection(); ?>
@@ -21,6 +24,21 @@
 
         </div>
     <?php endif; ?>
+    <?php if(count($errors->getMessages()) > 0): ?>
+    <div class="alert alert-danger alert-dismissible" role="alert">
+        <strong>Validation Errors:</strong>
+        <ul>
+            <?php $__currentLoopData = $errors->getMessages(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $errorMessages): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <?php $__currentLoopData = $errorMessages; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $errorMessage): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <li>
+                        <?php echo e($errorMessage); ?>
+
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    </li>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+        </ul>
+    </div><?php endif; ?>
     <?php if(session('error')): ?>
         <div class="alert alert-danger">
             <?php echo e(session('error')); ?>
@@ -65,15 +83,15 @@
                         <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('admin.inscripcione-programa-index', ['programa_id' => $programa->id])->html();
-} elseif ($_instance->childHasBeenRendered('JgNXymc')) {
-    $componentId = $_instance->getRenderedChildComponentId('JgNXymc');
-    $componentTag = $_instance->getRenderedChildComponentTagName('JgNXymc');
+} elseif ($_instance->childHasBeenRendered('RyF1nT5')) {
+    $componentId = $_instance->getRenderedChildComponentId('RyF1nT5');
+    $componentTag = $_instance->getRenderedChildComponentTagName('RyF1nT5');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('JgNXymc');
+    $_instance->preserveRenderedChild('RyF1nT5');
 } else {
     $response = \Livewire\Livewire::mount('admin.inscripcione-programa-index', ['programa_id' => $programa->id]);
     $html = $response->html();
-    $_instance->logRenderedChild('JgNXymc', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('RyF1nT5', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -94,6 +112,39 @@ echo $html;
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
+
+    <!-- Button trigger modal -->
+    
+        
+        <!-- Modal -->
+        <div class="modal fade" id="importExcelPersonal" tabindex="-1" role="dialog" aria-labelledby="importExcelPersonalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form action="<?php echo e(route('admin.excel.importExcelPersonal', $programa)); ?>" method="post" enctype="multipart/form-data" >
+                    <?php echo csrf_field(); ?>
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="importExcelPersonalLabel">Importar datos de usuario</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="file">Seleccione archivo .xlsx</label>
+                            <input type="file" class="form-control-file" name="file" id="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" >
+                          </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-success">
+                            <i class="far fa-file-excel"></i> Importar
+                        </button>
+                            
+                    </div>
+                </form>
+            </div>
+            </div>
+        </div>
     
 <?php $__env->stopSection(); ?>
 
@@ -159,6 +210,9 @@ echo $html;
         $().ready(function() {
             $("#success-alert").hide();
         });
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
 
         Livewire.on('alert', function(result) {
 

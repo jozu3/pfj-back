@@ -18,15 +18,15 @@
     <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('admin.inscripciones-index')->html();
-} elseif ($_instance->childHasBeenRendered('gRR7vnj')) {
-    $componentId = $_instance->getRenderedChildComponentId('gRR7vnj');
-    $componentTag = $_instance->getRenderedChildComponentTagName('gRR7vnj');
+} elseif ($_instance->childHasBeenRendered('KMASq8t')) {
+    $componentId = $_instance->getRenderedChildComponentId('KMASq8t');
+    $componentTag = $_instance->getRenderedChildComponentTagName('KMASq8t');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('gRR7vnj');
+    $_instance->preserveRenderedChild('KMASq8t');
 } else {
     $response = \Livewire\Livewire::mount('admin.inscripciones-index');
     $html = $response->html();
-    $_instance->logRenderedChild('gRR7vnj', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('KMASq8t', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -55,7 +55,7 @@ echo $html;
 		    		e.preventDefault();
 			    	Swal.fire({
 					  title: 'Se necesita confirmación',
-					  text: "No se podrá recuperar los datos de la matrícula.",
+					  text: "No se podrá recuperar los datos de la inscrición.",
 					  icon: 'warning',
 					  showCancelButton: true,
 					  confirmButtonColor: '#3085d6',
