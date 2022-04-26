@@ -60,7 +60,7 @@
 						@livewire('admin.grupos-index', [ 'programa' => $programa])
                     </div>
                     <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-						{{-- @livewire('admin.asignaciones-index', [ 'programa' => $programa]) --}}
+						@livewire('admin.tarea-lista', ['programa' => $programa])
                     </div>
                 </div>
             </div>

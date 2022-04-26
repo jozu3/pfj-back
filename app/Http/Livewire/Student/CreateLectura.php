@@ -15,7 +15,8 @@ class CreateLectura extends Component
     public function render()
     {
         $programa = $this->programa;
-        $inscripcioneTarea = InscripcioneTarea::all();
+        $inscripcione = Inscripcione::where('personale_id', auth()->user()->personale->id)->where('programa_id', $this->programa->id)->first();
+        $inscripcioneTarea = InscripcioneTarea::where('inscripcione_id', $inscripcione->id)->get();
         return view('livewire.student.create-lectura', compact('programa', 'inscripcioneTarea'));
     }
 

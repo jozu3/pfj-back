@@ -83,15 +83,15 @@
                         <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('admin.inscripcione-programa-index', ['programa_id' => $programa->id])->html();
-} elseif ($_instance->childHasBeenRendered('RyF1nT5')) {
-    $componentId = $_instance->getRenderedChildComponentId('RyF1nT5');
-    $componentTag = $_instance->getRenderedChildComponentTagName('RyF1nT5');
+} elseif ($_instance->childHasBeenRendered('NNVR0g3')) {
+    $componentId = $_instance->getRenderedChildComponentId('NNVR0g3');
+    $componentTag = $_instance->getRenderedChildComponentTagName('NNVR0g3');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('RyF1nT5');
+    $_instance->preserveRenderedChild('NNVR0g3');
 } else {
     $response = \Livewire\Livewire::mount('admin.inscripcione-programa-index', ['programa_id' => $programa->id]);
     $html = $response->html();
-    $_instance->logRenderedChild('RyF1nT5', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('NNVR0g3', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>

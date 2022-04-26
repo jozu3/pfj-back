@@ -63,15 +63,15 @@
 						<?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('admin.capacitaciones-index', [ 'programa' => $programa])->html();
-} elseif ($_instance->childHasBeenRendered('X37vNo6')) {
-    $componentId = $_instance->getRenderedChildComponentId('X37vNo6');
-    $componentTag = $_instance->getRenderedChildComponentTagName('X37vNo6');
+} elseif ($_instance->childHasBeenRendered('LaaMWfK')) {
+    $componentId = $_instance->getRenderedChildComponentId('LaaMWfK');
+    $componentTag = $_instance->getRenderedChildComponentTagName('LaaMWfK');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('X37vNo6');
+    $_instance->preserveRenderedChild('LaaMWfK');
 } else {
     $response = \Livewire\Livewire::mount('admin.capacitaciones-index', [ 'programa' => $programa]);
     $html = $response->html();
-    $_instance->logRenderedChild('X37vNo6', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('LaaMWfK', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -80,21 +80,35 @@ echo $html;
 						<?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('admin.grupos-index', [ 'programa' => $programa])->html();
-} elseif ($_instance->childHasBeenRendered('GirZNzi')) {
-    $componentId = $_instance->getRenderedChildComponentId('GirZNzi');
-    $componentTag = $_instance->getRenderedChildComponentTagName('GirZNzi');
+} elseif ($_instance->childHasBeenRendered('nC8DCuV')) {
+    $componentId = $_instance->getRenderedChildComponentId('nC8DCuV');
+    $componentTag = $_instance->getRenderedChildComponentTagName('nC8DCuV');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('GirZNzi');
+    $_instance->preserveRenderedChild('nC8DCuV');
 } else {
     $response = \Livewire\Livewire::mount('admin.grupos-index', [ 'programa' => $programa]);
     $html = $response->html();
-    $_instance->logRenderedChild('GirZNzi', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('nC8DCuV', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
                     </div>
                     <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-						
+						<?php
+if (! isset($_instance)) {
+    $html = \Livewire\Livewire::mount('admin.tarea-lista', ['programa' => $programa])->html();
+} elseif ($_instance->childHasBeenRendered('fEOQ91o')) {
+    $componentId = $_instance->getRenderedChildComponentId('fEOQ91o');
+    $componentTag = $_instance->getRenderedChildComponentTagName('fEOQ91o');
+    $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
+    $_instance->preserveRenderedChild('fEOQ91o');
+} else {
+    $response = \Livewire\Livewire::mount('admin.tarea-lista', ['programa' => $programa]);
+    $html = $response->html();
+    $_instance->logRenderedChild('fEOQ91o', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+}
+echo $html;
+?>
                     </div>
                 </div>
             </div>
