@@ -29,7 +29,10 @@
 			<img id="img-show" class="img-fluid" src="@if ( isset($contacto)) @if(isset($contacto->image)) {{ Storage::url($contacto->image->url) }} @endif @endif"  alt="">
 		</div>
 		<div class="col">
-			{!! Form::file('imgperfil', ['class' => 'form-control-file', 'accept' => 'image/*']) !!}
+			<div class="custom-file">
+				{!! Form::file('imgperfil', ['class' => 'custom-file-input', 'accept' => 'image/*']) !!}
+				<label class="custom-file-label" for="imgperfil">Escoge una foto</label>
+			</div>
 			<p>Solo se permite los formatos de imagen(jpg, png)</p>
 			@error('imgperfil')
 				<small class="text-danger">{{ $message }}</small>

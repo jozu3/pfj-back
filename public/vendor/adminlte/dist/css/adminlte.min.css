@@ -62,3 +62,14 @@
     background-color: #fe9a18;
     color: #fff;
 }
+
+.text-pfj{
+  color: #ffb900;
+}
+
+.avatar-circle{
+  width:130px;
+  height: 130px;
+  object-fit: cover;
+  object-position: center
+}

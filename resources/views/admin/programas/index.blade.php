@@ -20,6 +20,15 @@
         .card-body {
             overflow: auto;
         }
+        td{
+            vertical-align: middle!important
+        }
+        .avatar-circle{
+            width:130px;
+            height: 130px;
+            object-fit: cover;
+            object-position: center
+        }
     </style>
 @stop
 

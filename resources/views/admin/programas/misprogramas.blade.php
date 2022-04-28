@@ -20,6 +20,9 @@
         .card-body {
             overflow: auto;
         }
+        td{
+            vertical-align: middle!important
+        }
     </style>
 @stop
 
