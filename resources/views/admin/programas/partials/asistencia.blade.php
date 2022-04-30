@@ -6,8 +6,13 @@
 		<table class="table table-striped">
 			<thead>
 				<tr>
-					<th class="apellido-fijo">Apellidos</th>
-					<th class="nombre-fijo">Nombres</th>
+					<th class="apellido-fijo fijo">
+						Apellidos
+					</th>
+					<th class="nombre-fijo fijo">
+						Nombres
+					</th>
+
 					@if (isset($is_report) && $is_report == true)
 	                	<th class="">Código de matrícula</th>
 						<th class="">DNI/Documento de identidad</th>
@@ -16,14 +21,16 @@
 	                @endif
 					@forelse($programa->capacitaciones as $capacitacione)
 						<th colspan="1" class="text-center border-left">
+							<b>{{ $capacitacione->tema }}</b> <br>
 							<b>{{ date('d/m/Y', strtotime($capacitacione->fechacapacitacion)) }}</b>
 						</th>
 					@empty
+					<th colspan="100%" height="74" ></th>
 					@endforelse
 				</tr>
 			</thead>
 			<tbody>
-				@foreach($programa->inscripcionesEstado([0,1,2]) as $inscripcione)
+				@foreach($inscripciones as $inscripcione)
 					<tr>
 						<td class="apellido-fijo">
 							<b>{{$inscripcione->personale->contacto->apellidos.' ' }}</b>

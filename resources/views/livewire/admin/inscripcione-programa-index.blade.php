@@ -11,6 +11,7 @@
                 <th>Apellidos</th>
                 <th>Telefono</th>
                 <th>Correo electrónico</th>
+                <th>Permiso del obispo</th>
             </tr>
         </thead>
         <tbody>
@@ -51,6 +52,11 @@
                             <a href="mailto:{{ $inscripcione->personale->user->email }}" alt="Enviar email" data-toggle="tooltip" data-placement="top" title="Enviar email">{{ $inscripcione->personale->user->email }}</a>
                         @else
                         <a href="{{ route('admin.users.create', ['personale' => $inscripcione->personale]) }}" class="btn btn-primary" >Crear usuario</a>
+                        @endif
+                    </td>
+                    <td>
+                        @if ($inscripcione->personale->permiso_obispo)
+                            {{ 'Sí' }}
                         @endif
                     </td>
                     <td width="10px">

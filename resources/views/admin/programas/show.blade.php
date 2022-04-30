@@ -2,6 +2,8 @@
 
 @section('title', 'Sesión')
 
+@section('plugins.Chartjs', true)
+
 @section('content_header')
     @can('admin.programas.edit')
         <a href="{{ route('admin.programas.edit', $programa) }}" class="btn btn-success btn-sm float-right">Editar programa</a>
@@ -48,18 +50,9 @@
             <div class="card">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-3">
-                            <p>Capacitaciones:</p>
+                        <div class="col-md-2" >
+                            <canvas id="myChart" width="400" height="400"></canvas>
                         </div>
-                        <div class="col-md-9"><b>{{ count($programa->capacitaciones) }}</b></div>
-                        <div class="col-md-3">
-                            <p>Grupos:</p>
-                        </div>
-                        <div class="col-md-9"> <b>{{ count($programa->grupos) }}</b></div>
-                        <div class="col-md-3">
-                            <p>Personal:</p>
-                        </div>
-                        <div class="col-md-9"><b>{{ count($programa->inscripciones) }}</b></div>
                     </div>
                 </div>
             </div>
@@ -144,6 +137,12 @@
         .una-fila {
             flex-wrap: nowrap;
         }
+        .fijo{
+            height: 74px;
+            justify-content: center;
+            display: flex;
+            align-items: center;
+        }
 
         .apellido-fijo {
             position: absolute;
@@ -208,6 +207,30 @@
             }
 
         });
+
+        const data = {
+            labels: [
+                'Aprobados',
+                'Falta Aprobación',
+            ],
+            datasets: [{
+                label: 'My First Dataset',
+                data: [ {{ $aprobacion['aprobados'] }}, {{ $aprobacion['no_aprobados'] }}],
+                backgroundColor: [
+                    'rgb(255, 205, 86)',
+                    'rgb(255, 99, 132)',    
+                ],
+                hoverOffset: 4
+            }]
+        };
+
+        const config = {
+            type: 'doughnut',
+            data: data,
+        };
+
+        const ctx = document.getElementById('myChart');
+        const myChart = new Chart(ctx, config)
 
         /*	$('input[type="radio"]').change(function () {
 

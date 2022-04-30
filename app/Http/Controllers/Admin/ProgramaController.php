@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Inscripcione;
 use Illuminate\Http\Request;
 use App\Models\Pfj;
 use App\Models\Programa;
@@ -90,7 +91,30 @@ class ProgramaController extends Controller
      */
     public function show(Programa $programa)
     {
-        return view('admin.programas.show', compact('programa'));
+        $inscripciones = Inscripcione::where('programa_id', $programa->id)->whereIn('estado', [0,1,2])
+            ->with('personale.contacto')
+            ->get()
+            ->sortBy('personale.contacto.apellidos');
+
+
+            
+        $aprobados = Inscripcione::where('programa_id', $programa->id)->whereHas('personale', function($q){
+                $q->where('permiso_obispo', 1);
+            })->count();
+
+        $no_aprobados = Inscripcione::where('programa_id', $programa->id)->whereHas('personale', function($q){
+            $q->where('permiso_obispo', '<>', 1);
+        })->count();
+        
+
+
+        $aprobacion = [
+            'aprobados' => $aprobados,
+            'no_aprobados' => $no_aprobados
+        ];
+
+
+        return view('admin.programas.show', compact('programa', 'inscripciones', 'aprobacion'));
     }
 
     /**

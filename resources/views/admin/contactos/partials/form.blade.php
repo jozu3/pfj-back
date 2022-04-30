@@ -56,13 +56,20 @@
 		<small class="text-danger">{{ $message }}</small>
 @enderror
 </div>
-<div class="col-md-12">
+<div class="col-md-6">
 	{!! Form::label('genero', 'Género') !!}
 	{!! Form::select('genero', [
 			'Mujer' => 'Mujer',
 			'Hombre' => 'Hombre',
 		], null, ['class' => 'form-control', 'placeholder' => '-- Escoge --']); !!}
 	@error('genero')
+		<small class="text-danger">{{ $message }}</small>
+	@enderror
+</div>
+<div class="col-md-6">
+	{!! Form::label('fecnac', 'Fecha de nacimiento') !!}
+	{!! Form::date('fecnac', null, ['class' => 'form-control']); !!}
+	@error('fecnac')
 		<small class="text-danger">{{ $message }}</small>
 	@enderror
 </div>
