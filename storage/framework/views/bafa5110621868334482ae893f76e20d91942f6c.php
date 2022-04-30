@@ -83,15 +83,15 @@
                         <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('admin.inscripcione-programa-index', ['programa_id' => $programa->id])->html();
-} elseif ($_instance->childHasBeenRendered('NNVR0g3')) {
-    $componentId = $_instance->getRenderedChildComponentId('NNVR0g3');
-    $componentTag = $_instance->getRenderedChildComponentTagName('NNVR0g3');
+} elseif ($_instance->childHasBeenRendered('GVAQtQ5')) {
+    $componentId = $_instance->getRenderedChildComponentId('GVAQtQ5');
+    $componentTag = $_instance->getRenderedChildComponentTagName('GVAQtQ5');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('NNVR0g3');
+    $_instance->preserveRenderedChild('GVAQtQ5');
 } else {
     $response = \Livewire\Livewire::mount('admin.inscripcione-programa-index', ['programa_id' => $programa->id]);
     $html = $response->html();
-    $_instance->logRenderedChild('NNVR0g3', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('GVAQtQ5', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -100,7 +100,7 @@ echo $html;
                         <?php echo $__env->make('admin.programas.partials.asistencia', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                     </div>
                     <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                        
+                        <?php echo $__env->make('admin.programas.partials.lectura', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                     </div>
                 </div>
             </div>

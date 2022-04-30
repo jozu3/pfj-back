@@ -1,11 +1,11 @@
 <div>
     {{ $programa->tareas->count() }}
-    {{ $inscripcioneTarea->count() }}
+    {{ $inscripcioneTareas->where('realizado', true)->count() }}
     @php
-        $avance = ($inscripcioneTarea->count() / $programa->tareas->count()) * 100;
+        $avance = ($inscripcioneTareas->where('realizado', true)->count() / $programa->tareas->count()) * 100;
     @endphp
     <div class="w-full bg-gray-100 rounded-full mt-2 mx-2">
-        <div class="bg-yellow-500 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-l-full"
+        <div class="bg-yellow-pfj text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-l-full"
             style="width: {{ $avance }}%"> {{ $avance }}%</div>
     </div>
     <div class="grid grid-cols-6 my-4 mx-2">
@@ -18,7 +18,7 @@
                             $idTarea = $tarea->id;
                             $realizado = true;
                             
-                            $checkedTarea = $inscripcioneTarea->contains(function ($val, $key) use ($idTarea, $realizado) {
+                            $checkedTarea = $inscripcioneTareas->contains(function ($val, $key) use ($idTarea, $realizado) {
                                 return $val->tarea_id == $idTarea && $val->realizado == $realizado;
                             })
                                 ? 'checked'
