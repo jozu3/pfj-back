@@ -36,17 +36,17 @@ class ProgramasIndex extends Component
 	    
 	    //$pfj_id = $this->pfj_id;
 
-    	$programas = Programa::orWhere('nombre', 'like','%'.$this->search.'%')
+    	$programas = Programa::where('nombre', 'like','%'.$this->search.'%')
 							->whereIn('estado', $states);
 										
 
 		if($this->pfj_id != ''){
-			$programas = $programas->orWhereHas('pfj', function($q) {
+			$programas = $programas->whereHas('pfj', function($q) {
 				$q->where( 'id', $this->pfj_id);
 			});
 		}
 		
-		$programas = $programas->orWhereHas('pfj', function ($q){
+		$programas = $programas->whereHas('pfj', function ($q){
 			$q->where( 'nombre', 'like','%'.$this->search.'%');
 		});
 		
@@ -55,7 +55,7 @@ class ProgramasIndex extends Component
 		if ($this->mis_programas == true) {
 			$programas = Programa::whereHas("inscripciones", function($q) {
 				$q->where("personale_id", auth()->user()->personale->id); 
-			});
+			})->whereIn('estado', $states);
 		}
 
 

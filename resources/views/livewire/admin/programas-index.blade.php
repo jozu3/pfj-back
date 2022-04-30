@@ -59,9 +59,8 @@
     				<tr>
                         <th>ID</th>
     					<th>Sesión</th>
-    					<th>Matrimonio Director</th>
-    					<th>Fecha de inicio</th>
-                        <th>Fecha de fin</th>
+    					<th colspan="2" >Matrimonio Director</th>
+    					<th>Fecha</th>
                         <th>Estado</th>
                         <th>Personal</th>
                         {{-- @if (!auth()->user()->hasRole('Profesor')) --}}
@@ -78,13 +77,21 @@
     				  <tr>
                         <td>{{ $programa->id }}</td>
     				  	<td>{{ $programa->nombre }}</td>
-    				  	<td>
+                        <td>
+                            @if ($programa->imageMatrimonioDirector)
+                                <img class="rounded-circle avatar-circle" src="{{ Storage::url($programa->imageMatrimonioDirector->url) }}" alt="">
+                            @endif
+                        </td>
+    				  	<td class="font-weight-bold text-pfj">
                               @foreach ($programa->matrimonioDirectores() as $mdirector)
                                 {{$mdirector->personale->user->name}}<br>
                               @endforeach
                         </td>
-    				  	<td>{{ date('d/m/Y', strtotime($programa->fecha_inicio)) }}</td>
-    				  	<td>{{ date('d/m/Y', strtotime($programa->fecha_fin)) }}</td>
+    				  	<td>
+                            {{ date('d/m/Y', strtotime($programa->fecha_inicio)) }} - 
+                            <br>
+                            {{ date('d/m/Y', strtotime($programa->fecha_fin)) }}
+                        </td>
     				  	<td>
                             @if ( $programa->estado == '0')
                                 {{ 'Por iniciar' }}
@@ -108,12 +115,12 @@
                         </td>
                         @can('admin.programas.edit')
     				  	<td width="10px">
-                            <a href="{{ route('admin.programas.edit', $programa) }}" class="btn btn-sm btn-primary" alt="Administrar sesión" data-toggle="tooltip" data-placement="top" title="Administrar sesión"><i class="fas fa-cogs"></i></a>
+                            <a href="{{ route('admin.programas.edit', $programa) }}" class="btn btn-sm btn-yellow-pfj " alt="Administrar sesión" data-toggle="tooltip" data-placement="top" title="Administrar sesión"><i class="fas fa-cogs"></i></a>
                         </td>
                         @endcan
                         @can(['admin.programas.edit'])
                         <td width="10px">
-                            <a href="{{ route('admin.programas.show', $programa) }}" class="btn btn-sm btn-primary" alt="Personal" data-toggle="tooltip" data-placement="top" title="Personal"><i class="fas fa-user-friends"></i></a>
+                            <a href="{{ route('admin.programas.show', $programa) }}" class="btn btn-sm btn-yellow-pfj " alt="Personal" data-toggle="tooltip" data-placement="top" title="Personal"><i class="fas fa-user-friends"></i></a>
                         </td>
                         @endcan
                         @can('admin.programas.destroy')

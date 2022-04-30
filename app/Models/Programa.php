@@ -8,7 +8,6 @@ use App\Models\Pfj;
 use App\Models\Inscripcione;
 use App\Models\Capacitacione;
 use App\Models\Grupo;
-use App\Models\Personale_unidade;
 
 class Programa extends Model
 {
@@ -73,6 +72,15 @@ class Programa extends Model
         return $inscripciones;
 
     }
+
+    public function imageMatrimonioDirector(){
+        return $this->morphOne(Image::class, 'imageable');
+    }
+
+    // public function imageMatrimonioLogistica(){
+    //     return $this->morphOne(Image::class, 'imageable');
+    // }
+
 
 }
 /*

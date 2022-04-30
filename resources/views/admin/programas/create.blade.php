@@ -9,7 +9,7 @@
 @section('content')
 	<div class="card">
 		<div class="card-body">
-			{!! Form::open(['route' => 'admin.programas.store']) !!}
+			{!! Form::open(['route' => 'admin.programas.store', 'files' => true]) !!}
 				{!! Form::hidden('pfj_id', $pfj->id) !!}
 				
 				@include('admin.programas.partials.form')
@@ -25,9 +25,31 @@
 @stop
 
 @section('css')
-    <link rel="stylesheet" href="">
+    <style>
+		.avatar-image{
+            width:250px;
+            height: 250px;
+            object-fit: cover;
+            object-position: center
+        }
+	</style>
 @stop
 
 @section('js')
-    <script> console.log('Hi!'); </script>
+    <script> 
+		document.getElementById('imgMatrimonioDirector').addEventListener('change', cambiarImagen);
+		document.getElementById('imgMatrimonioLogistica').addEventListener('change', cambiarImagen);
+
+		function cambiarImagen(event){
+			var file = event.target.files[0];
+			console.log(event)
+			var input = event.target
+			var reader = new FileReader();
+			reader.onload = (event) => {
+				document.getElementById(input.getAttribute('data-img-show')).setAttribute('src', event.target.result);
+			};
+
+			reader.readAsDataURL(file);
+		}
+	</script>
 @stop

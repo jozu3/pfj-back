@@ -84,13 +84,15 @@
 @section('css')
     <link rel="stylesheet" href="">
     <style>
-    	.list-nota{
-    		width: 20%;
-    		padding: 0.15rem 1.25rem;
-    	}
-    	.list-nota2{
-    		width: 80%;
-    	}
+		td{
+			vertical-align: middle!important
+		}
+		.avatar-circle{
+            width:130px;
+            height: 130px;
+            object-fit: cover;
+            object-position: center
+        }
     </style>
 @stop
 

@@ -21,7 +21,7 @@
     @if (auth()->user()->can('admin.programas.edit'))
 	<div class="card">
 		<div class="card-body">
-			{!! Form::model($programa, ['route' => ['admin.programas.update', $programa], 'method' => 'put']) !!}
+			{!! Form::model($programa, ['route' => ['admin.programas.update', $programa], 'method' => 'put', 'files' => true]) !!}
 				{!! Form::hidden('pfj_id', null) !!}
 				@include('admin.programas.partials.form')
 				<br>
@@ -82,6 +82,12 @@
     	.list-group-horizontal {
 		    border-bottom: 1px solid #bbbbbb;
 		}
+		.avatar-image{
+            width:250px;
+            height: 250px;
+            object-fit: cover;
+            object-position: center
+        }
     </style>
 @stop
 
@@ -132,5 +138,20 @@
 	    
 
 	    });
-    </script>
+
+		document.getElementById('imgMatrimonioDirector').addEventListener('change', cambiarImagen);
+		document.getElementById('imgMatrimonioLogistica').addEventListener('change', cambiarImagen);
+
+		function cambiarImagen(event){
+			var file = event.target.files[0];
+			console.log(event)
+			var input = event.target
+			var reader = new FileReader();
+			reader.onload = (event) => {
+				document.getElementById(input.getAttribute('data-img-show')).setAttribute('src', event.target.result);
+			};
+
+			reader.readAsDataURL(file);
+		}
+	</script>
 @stop
