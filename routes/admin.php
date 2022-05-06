@@ -23,6 +23,7 @@ use App\Http\Controllers\Admin\InscripcioneCompanerismoController;
 use App\Http\Controllers\Admin\ExcelController;
 use App\Http\Controllers\Admin\CompanerismoController;
 use App\Http\Controllers\Admin\AnuncioController;
+use App\Http\Controllers\Admin\ReporteController;
 
 Route::resource('', HomeController::class)->names('admin');
 Route::resource('users', UserController::class)->names('admin.users');
@@ -49,6 +50,7 @@ Route::resource('cuentas', CuentaController::class)->names('admin.cuentas');
 Route::post('inscripcione_companerismos/deleteInscripcioneCompanerismo', [InscripcioneCompanerismoController::class, 'deleteInscripcioneCompanerismo'])->name('admin.inscripcione_companerismos.deleteInscripcioneCompanerismo');
 Route::post('inscripcione_companerismos/updateInscripcione/{inscripcione}', [InscripcioneCompanerismoController::class, 'updateInscripcione'])->name('admin.inscripcione_companerismos.updateInscripcione');
 Route::resource('inscripcione_companerismos', InscripcioneCompanerismoController::class)->names('admin.inscripcione_companerismos');
+Route::get('reportes', [ReporteController::class, 'index'])->name('admin.reportes.index');
 
 
 

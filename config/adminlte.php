@@ -235,6 +235,11 @@ return [
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
         ],
+        [
+            'text' => 'Portal PFJ',
+            'route' => 'st.index',
+            'topnav' => true,
+        ], 
       /*  [
             'text'        => 'Dashboard',
             'route'         => 'admin.index',
@@ -242,7 +247,6 @@ return [
             'label'       => 14,
             'label_color' => 'success',
         ],*/
-        
         [ 
             'header' => 'Administración',
             'can'  =>   'admin.personales.index'
@@ -500,7 +504,7 @@ return [
                 [
                     'type' => 'js',
                     'asset' => true,
-                    'location' => '/vendor/chart.js/Chart.bundle.min.js',
+                    'location' => '/vendor/chart.js/chart.js',
                     // 'location' => '//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.bundle.min.js',
                 ],
             ],

@@ -41,14 +41,22 @@
                             <x-slot name="content">
                                 <!-- User Management -->
                                 @foreach (Auth::user()->personale->inscripciones as $inscripcione)
-                                @if (isset($inscripcione->inscripcioneCompanerismo->companerismo))
+                                    @if (isset($inscripcione->inscripcioneCompanerismo->companerismo))
 
+                                        <x-jet-dropdown-link
+                                            href="{{ route('st.grupos.show', $inscripcione->inscripcioneCompanerismo->companerismo->grupo) }}">
+                                            {{ $inscripcione->programa->nombre }}
+                                        </x-jet-dropdown-link>
+                                        {{-- {{$inscripcione->inscripcioneCompanerismo}} --}}
+                                    @endif
+                                    
+                                    @can('admin.programas.grupos') {{-- Si puede 'Ver los grupos de su sesión' --}}
                                     <x-jet-dropdown-link
-                                        href="{{ route('st.grupos.show', $inscripcione->inscripcioneCompanerismo->companerismo->grupo) }}">
+                                        href="{{ route('st.index', $inscripcione->programa) }}">
                                         {{ $inscripcione->programa->nombre }}
                                     </x-jet-dropdown-link>
-                                    {{-- {{$inscripcione->inscripcioneCompanerismo}} --}}
-                                @endif
+                                    @endcan
+
                                 @endforeach
                             </x-slot>
 

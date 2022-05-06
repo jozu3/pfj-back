@@ -101,17 +101,22 @@ class RoleSeeder extends Seeder
 
          //Permisos asistencias
          Permission::create(['name' => 'admin.asistencias.index', 'description' => 'Ver listado de asistencias'])->syncRoles([$role1, $role2, $role3, $role4, $role5]);
-         Permission::create(['name' => 'admin.asistencias.create', 'description' => 'Crear asistencias'])->syncRoles([$role1, $role2, $role3, $role4, $role5]);
-         Permission::create(['name' => 'admin.asistencias.edit', 'description' => 'Editar asistencias'])->syncRoles([$role1, $role2, $role3, $role4, $role5]);
-         Permission::create(['name' => 'admin.asistencias.destroy', 'description' => 'Eliminar asistencias'])->syncRoles([$role1, $role2, $role3, $role4, $role5]);
+         Permission::create(['name' => 'admin.asistencias.create', 'description' => 'Crear asistencias'])->syncRoles([$role1, $role2, $role3, $role4]);
+         Permission::create(['name' => 'admin.asistencias.edit', 'description' => 'Editar asistencias'])->syncRoles([$role1, $role2, $role3, $role4,]);
+         Permission::create(['name' => 'admin.asistencias.destroy', 'description' => 'Eliminar asistencias'])->syncRoles([$role1, $role2, $role3, $role4]);
+         //coordinador auxiliar
+         Permission::create(['name' => 'admin.asistencias.migrupo', 'description' => 'Eliminar asistencias'])->syncRoles([$role1, $role2, $role3, $role4, $role5]);
  
 
           //Permisos anuncios
-        Permission::create(['name' => 'admin.anuncios.index', 'description' => 'Ver listado de anuncios'])->syncRoles([$role1, $role2, $role3, $role4]);
-        Permission::create(['name' => 'admin.anuncios.create', 'description' => 'Crear anuncios'])->syncRoles([$role1, $role2, $role3, $role4]);
-        Permission::create(['name' => 'admin.anuncios.edit', 'description' => 'Editar anuncios'])->syncRoles([$role1, $role2, $role3, $role4]);
-        Permission::create(['name' => 'admin.anuncios.destroy', 'description' => 'Eliminar anuncios'])->syncRoles([$role1, $role2, $role3, $role4]);
+          Permission::create(['name' => 'admin.anuncios.index', 'description' => 'Ver listado de anuncios'])->syncRoles([$role1, $role2, $role3, $role4]);
+          Permission::create(['name' => 'admin.anuncios.create', 'description' => 'Crear anuncios'])->syncRoles([$role1, $role2, $role3, $role4]);
+          Permission::create(['name' => 'admin.anuncios.edit', 'description' => 'Editar anuncios'])->syncRoles([$role1, $role2, $role3, $role4]);
+          Permission::create(['name' => 'admin.anuncios.destroy', 'description' => 'Eliminar anuncios'])->syncRoles([$role1, $role2, $role3, $role4]);
+  
 
+             //Permisos admin.reportes.index
+        Permission::create(['name' => 'admin.reportes.index', 'description' => 'Ver listado de reportes'])->syncRoles([$role1, $role2, $role3, $role4, $role5]);
 
 
 
