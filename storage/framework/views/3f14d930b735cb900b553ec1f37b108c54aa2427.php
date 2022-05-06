@@ -16,15 +16,15 @@
     <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('admin.programas-index', ['mis_programas' => true])->html();
-} elseif ($_instance->childHasBeenRendered('VCILEuw')) {
-    $componentId = $_instance->getRenderedChildComponentId('VCILEuw');
-    $componentTag = $_instance->getRenderedChildComponentTagName('VCILEuw');
+} elseif ($_instance->childHasBeenRendered('qL9G7M5')) {
+    $componentId = $_instance->getRenderedChildComponentId('qL9G7M5');
+    $componentTag = $_instance->getRenderedChildComponentTagName('qL9G7M5');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('VCILEuw');
+    $_instance->preserveRenderedChild('qL9G7M5');
 } else {
     $response = \Livewire\Livewire::mount('admin.programas-index', ['mis_programas' => true]);
     $html = $response->html();
-    $_instance->logRenderedChild('VCILEuw', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('qL9G7M5', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -34,6 +34,9 @@ echo $html;
     <style type="text/css">
         .card-body {
             overflow: auto;
+        }
+        td{
+            vertical-align: middle!important
         }
     </style>
 <?php $__env->stopSection(); ?>

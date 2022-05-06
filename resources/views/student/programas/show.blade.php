@@ -77,22 +77,12 @@
                                     </div>
                                     <div class="overflow-hidden border-b border-gray-200 sm:rounded-lg">
                                         <table class="min-w-full divide-y divide-gray-200 text-center">
-                                            {{-- <thead>
-                                                <tr>
-                                                    <th>Hecho</th>                                                    
-                                                    <th>Escritura</th>
-                                                    <th>Fecha</th>
-                                                </tr>
-                                            </thead> --}}
                                             <tbody class="bg-white divide-y divide-gray-200">
                                                 @forelse ($inscripcione->programa->tareas->sortByDesc('fecha')->take(3) as $tarea)
                                                     <tr>
-                                                        <td class="px-6 py-4">
-                                                            <input type="checkbox" name="" id="">
-                                                        </td>
+                                                        <td class="w-1/4 px-6 py-4 font-bold text-gray-400">{{$tarea->fecha}}</td>
                                                         <td class="px-6 py-4 font-bold whitespace-normal">{{$tarea->descripcion}}
-                                                        </td>
-                                                        <td class="px-6 py-4 font-bold text-gray-400">{{$tarea->fecha}}</td>
+                                                        </td>                                                        
                                                     </tr>                                                
                                                 @empty
                                                     <p>No asignados</p>

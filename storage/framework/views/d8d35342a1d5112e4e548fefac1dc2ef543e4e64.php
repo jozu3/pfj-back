@@ -16,15 +16,15 @@
     <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('admin.programas-index')->html();
-} elseif ($_instance->childHasBeenRendered('x6KdTFU')) {
-    $componentId = $_instance->getRenderedChildComponentId('x6KdTFU');
-    $componentTag = $_instance->getRenderedChildComponentTagName('x6KdTFU');
+} elseif ($_instance->childHasBeenRendered('6AkPIEa')) {
+    $componentId = $_instance->getRenderedChildComponentId('6AkPIEa');
+    $componentTag = $_instance->getRenderedChildComponentTagName('6AkPIEa');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('x6KdTFU');
+    $_instance->preserveRenderedChild('6AkPIEa');
 } else {
     $response = \Livewire\Livewire::mount('admin.programas-index');
     $html = $response->html();
-    $_instance->logRenderedChild('x6KdTFU', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('6AkPIEa', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -34,6 +34,15 @@ echo $html;
     <style type="text/css">
         .card-body {
             overflow: auto;
+        }
+        td{
+            vertical-align: middle!important
+        }
+        .avatar-circle{
+            width:130px;
+            height: 130px;
+            object-fit: cover;
+            object-position: center
         }
     </style>
 <?php $__env->stopSection(); ?>
