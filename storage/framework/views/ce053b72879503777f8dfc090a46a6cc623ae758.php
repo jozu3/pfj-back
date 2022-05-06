@@ -22,7 +22,7 @@
     <?php if(auth()->user()->can('admin.programas.edit')): ?>
 	<div class="card">
 		<div class="card-body">
-			<?php echo Form::model($programa, ['route' => ['admin.programas.update', $programa], 'method' => 'put']); ?>
+			<?php echo Form::model($programa, ['route' => ['admin.programas.update', $programa], 'method' => 'put', 'files' => true]); ?>
 
 				<?php echo Form::hidden('pfj_id', null); ?>
 
@@ -63,15 +63,15 @@
 						<?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('admin.capacitaciones-index', [ 'programa' => $programa])->html();
-} elseif ($_instance->childHasBeenRendered('LaaMWfK')) {
-    $componentId = $_instance->getRenderedChildComponentId('LaaMWfK');
-    $componentTag = $_instance->getRenderedChildComponentTagName('LaaMWfK');
+} elseif ($_instance->childHasBeenRendered('gesR6La')) {
+    $componentId = $_instance->getRenderedChildComponentId('gesR6La');
+    $componentTag = $_instance->getRenderedChildComponentTagName('gesR6La');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('LaaMWfK');
+    $_instance->preserveRenderedChild('gesR6La');
 } else {
     $response = \Livewire\Livewire::mount('admin.capacitaciones-index', [ 'programa' => $programa]);
     $html = $response->html();
-    $_instance->logRenderedChild('LaaMWfK', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('gesR6La', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -80,15 +80,15 @@ echo $html;
 						<?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('admin.grupos-index', [ 'programa' => $programa])->html();
-} elseif ($_instance->childHasBeenRendered('nC8DCuV')) {
-    $componentId = $_instance->getRenderedChildComponentId('nC8DCuV');
-    $componentTag = $_instance->getRenderedChildComponentTagName('nC8DCuV');
+} elseif ($_instance->childHasBeenRendered('WObPwW2')) {
+    $componentId = $_instance->getRenderedChildComponentId('WObPwW2');
+    $componentTag = $_instance->getRenderedChildComponentTagName('WObPwW2');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('nC8DCuV');
+    $_instance->preserveRenderedChild('WObPwW2');
 } else {
     $response = \Livewire\Livewire::mount('admin.grupos-index', [ 'programa' => $programa]);
     $html = $response->html();
-    $_instance->logRenderedChild('nC8DCuV', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('WObPwW2', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -97,15 +97,15 @@ echo $html;
 						<?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('admin.tarea-lista', ['programa' => $programa])->html();
-} elseif ($_instance->childHasBeenRendered('fEOQ91o')) {
-    $componentId = $_instance->getRenderedChildComponentId('fEOQ91o');
-    $componentTag = $_instance->getRenderedChildComponentTagName('fEOQ91o');
+} elseif ($_instance->childHasBeenRendered('k1De3q9')) {
+    $componentId = $_instance->getRenderedChildComponentId('k1De3q9');
+    $componentTag = $_instance->getRenderedChildComponentTagName('k1De3q9');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('fEOQ91o');
+    $_instance->preserveRenderedChild('k1De3q9');
 } else {
     $response = \Livewire\Livewire::mount('admin.tarea-lista', ['programa' => $programa]);
     $html = $response->html();
-    $_instance->logRenderedChild('fEOQ91o', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('k1De3q9', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -130,6 +130,12 @@ echo $html;
     	.list-group-horizontal {
 		    border-bottom: 1px solid #bbbbbb;
 		}
+		.avatar-image{
+            width:250px;
+            height: 250px;
+            object-fit: cover;
+            object-position: center
+        }
     </style>
 <?php $__env->stopSection(); ?>
 
@@ -180,6 +186,21 @@ echo $html;
 	    
 
 	    });
-    </script>
+
+		document.getElementById('imgMatrimonioDirector').addEventListener('change', cambiarImagen);
+		document.getElementById('imgMatrimonioLogistica').addEventListener('change', cambiarImagen);
+
+		function cambiarImagen(event){
+			var file = event.target.files[0];
+			console.log(event)
+			var input = event.target
+			var reader = new FileReader();
+			reader.onload = (event) => {
+				document.getElementById(input.getAttribute('data-img-show')).setAttribute('src', event.target.result);
+			};
+
+			reader.readAsDataURL(file);
+		}
+	</script>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('adminlte::page', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\pfj\resources\views/admin/programas/edit.blade.php ENDPATH**/ ?>

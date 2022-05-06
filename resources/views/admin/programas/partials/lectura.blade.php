@@ -9,12 +9,12 @@
                 <input wire:model="search" class="form-control form-control-sm"
                     placeholder="Ingrese nombre o apellido de un personal">
             </div>
-            <div>
+            <div class="cont-table-div">
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>Apellidos</th>
-                            <th>Nombres</th>
+                            <th class="apellido-fijo">Apellidos</th>
+                            <th class="nombre-fijo">Nombres</th>
                             @forelse ($programa->tareas->sortBy('fecha') as $tarea)
                                 <th class="text-center">{{ $tarea->descripcion }}</th>
                             @empty
@@ -25,10 +25,10 @@
                     <tbody>
                         @foreach ($programa->inscripcionesEstado([0, 1, 2]) as $inscripcione)
                             <tr>
-                                <td>
+                                <td class="apellido-fijo">
                                     <b>{{ $inscripcione->personale->contacto->apellidos }}</b>
                                 </td>
-                                <td>
+                                <td class="nombre-fijo">
                                     <b>{{ $inscripcione->personale->contacto->nombres }}</b>
                                 </td>
                                 @forelse ($programa->tareas->sortBy('fecha') as $tarea)                                    
